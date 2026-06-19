@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AttackData" format=3 uid="uid://cd3xsq7f438y4"]
+
+[ext_resource type="Script" uid="uid://xoreh2dqf6ec" path="res://Ressources/AttackData.gd" id="1_pigbt"]
+[ext_resource type="Resource" uid="uid://b3hxqm08c14v7" path="res://Ressources/player Attack/Thrust.tres" id="1_rir52"]
+
+[resource]
+script = ExtResource("1_pigbt")
+animation_name = &"Slash2"
+next_light_attack = ExtResource("1_rir52")
+lunge_speed = 500.0
+windup_duration = 0.1
+active_duration = 0.2
+recovery_frame = 0.1
+metadata/_custom_type_script = "uid://xoreh2dqf6ec"

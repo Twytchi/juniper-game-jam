@@ -5,9 +5,9 @@
 
 [resource]
 script = ExtResource("1_1nqvo")
-animation_name = &"Slash simple"
+animation_name = &"Slash1"
 next_light_attack = ExtResource("1_uw4ge")
-damage = 12.0
+damage = 3.0
 spin_power = 1.0
 poise_damage = 2.0
 knockback = 10.0

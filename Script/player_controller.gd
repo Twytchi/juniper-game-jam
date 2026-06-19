@@ -4,7 +4,7 @@ class_name Player
 # Statistiques
 @export var speed: float = 350.0
 @export var acceleration: float = 15.0
-@export var attack_friction: float = 5.0 
+@export var attack_friction: float = 4.0 
 @export var health: float
 
 enum Action { NONE, LIGHT, HEAVY, SPIN, DASH, HURT }
@@ -12,11 +12,31 @@ enum Action { NONE, LIGHT, HEAVY, SPIN, DASH, HURT }
 var current_action: Action = Action.NONE
 var buffered_input: Action = Action.NONE
 var direction := Vector2.RIGHT 
+var height : float = 0.0 
+const GRAVITY := 800.0
+const JUMP_FORCE := 400.0
+var target_height := 0.0
+var vertical_velocity = 0.0
+
+@onready var shadow :Node2D = $Node2D
+@onready var sprite : Sprite2D = $Sprite2D
+
+
+
 
 # Attack
 @export var first_attack: AttackData
+@export var first_heavy_attack: AttackData
+
 var current_attack: AttackData
 var attack_velocity := Vector2.ZERO 
+
+
+func _process(_delta: float) -> void:
+	sprite.position.y = -height
+	var shadow_scale = clamp(1.0 - (height / 200.0), 0.5, 1.0)
+	shadow.scale = Vector2(shadow_scale, shadow_scale)
+
 
 func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "up", "down")
@@ -27,19 +47,42 @@ func _physics_process(delta: float) -> void:
 		_move_state(input_dir, delta)
 	elif current_action in [Action.LIGHT, Action.HEAVY]: 
 		_attack_state(delta)
+	elif current_action == Action.DASH :
+		dash(delta)
+	
+
+	if Input.is_action_just_pressed("ui_accept") and height <= 0.0:
+		current_action = Action.DASH
+		vertical_velocity = JUMP_FORCE
+		velocity = direction * speed * 1.5
+		current_attack = null
+
+	vertical_velocity -= GRAVITY * delta * (1.0 if (vertical_velocity > 0 ) else 1.6)
+	height += vertical_velocity * delta
+
+	if height <= 0.0:
+		height = 0.0
+		vertical_velocity = 0.0
+		if current_action == Action.DASH :
+			current_action = Action.NONE
+			velocity = Vector2.ZERO
+
+
+func dash(delta : float ) : 
+	velocity = velocity.lerp(Vector2.ZERO, 0.75 * delta)
+	move_and_slide()
+
 
 func _move_state(input_dir: Vector2, delta: float) -> void:
-	# Mouvement normal fluide
 	velocity = velocity.lerp(input_dir * speed, acceleration * delta)
 	move_and_slide()
 
 func _attack_state(delta: float) -> void:
-	# Le fameux amortissement ! La vitesse d'attaque retombe à zéro progressivement.
 	attack_velocity = attack_velocity.lerp(Vector2.ZERO, attack_friction * delta)
 	velocity = attack_velocity
 	move_and_slide()
 
-# --- INPUTS ---
+# INPUTS 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("light"): 
@@ -54,27 +97,37 @@ func handle_attack_input(input_type: Action) -> void:
 	else:
 		buffered_input = input_type
 
-# --- SYSTEME D'ATTAQUE ---
+#     SYSTEME D'ATTAQUE 
 
 func start_attack() -> void:
 	if current_attack == null:
-		current_attack = first_attack
+		if buffered_input == Action.LIGHT:
+			current_attack = first_attack
+		elif buffered_input == Action.HEAVY:
+			current_attack = first_heavy_attack
+		
+		if current_attack == null : return
 		current_action = buffered_input # On passe en état de combat
 		buffered_input = Action.NONE
 	
+	
+	
 	attack_velocity = Vector2.ZERO 
 	
-	# PHASE 1 : WINDUP
+	#  WINDUP
 	await _wait(current_attack.windup_duration)
+	if current_action not in [Action.HEAVY, Action.LIGHT] : return
 	
-	# PHASE 2 : ACTIVE
+	# ACTIVE
 	_apply_attack_effects()
-	# On donne le grand coup de pied au cul (l'impulsion) directionnel !
+	# impulsion
 	attack_velocity = direction * current_attack.lunge_speed 
 	await _run_active_phase(current_attack.active_duration)
+	if current_action not in [Action.HEAVY, Action.LIGHT] : return
 	
-	# PHASE 3 : RECOVERY
+	# RECOVERY
 	await _run_recovery(current_attack.recovery_frame)
+	if current_action not in [Action.HEAVY, Action.LIGHT] : return
 	
 	finish_attack()
 
@@ -87,9 +140,9 @@ func _run_active_phase(duration: float) -> void:
 func _run_recovery(duration: float) -> void:
 	var timer := 0.0
 	while timer < duration:
-		# Plus besoin de recalculer les inputs ici, le _physics_process le fait !
+		
 		if buffered_input != Action.NONE:
-			return # Cancel magique
+			return # Cancel 
 		await get_tree().process_frame
 		timer += get_process_delta_time()
 
@@ -101,7 +154,7 @@ func finish_attack() -> void:
 		elif buffered_input == Action.HEAVY:
 			next_attack = current_attack.next_heavy_attack
 		
-		var next_action = buffered_input # Sauvegarde l'action pour la machine à état
+		var next_action = buffered_input 
 		buffered_input = Action.NONE
 		
 		if next_attack:

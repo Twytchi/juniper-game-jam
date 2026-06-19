@@ -1,13 +1,15 @@
 [gd_resource type="Resource" script_class="AttackData" format=3 uid="uid://cu1gx0ypo6rbo"]
 
 [ext_resource type="Script" uid="uid://xoreh2dqf6ec" path="res://Ressources/AttackData.gd" id="1_3ujxp"]
+[ext_resource type="Resource" uid="uid://d31t5e11dte88" path="res://Ressources/player Attack/Slash_3.tres" id="1_ec404"]
 
 [resource]
 script = ExtResource("1_3ujxp")
-animation_name = &"Slash Rapide"
-damage = 23.0
+animation_name = &"Slash2"
+next_light_attack = ExtResource("1_ec404")
+damage = 5.0
 lunge_speed = 500.0
 windup_duration = 0.1
 active_duration = 0.2
-recovery_frame = 0.3
+recovery_frame = 0.1
 metadata/_custom_type_script = "uid://xoreh2dqf6ec"

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AttackData" format=3 uid="uid://b3hxqm08c14v7"]
+
+[ext_resource type="Script" uid="uid://xoreh2dqf6ec" path="res://Ressources/AttackData.gd" id="1_ipv2a"]
+
+[resource]
+script = ExtResource("1_ipv2a")
+animation_name = &"Thrust"
+lunge_speed = 700.0
+windup_duration = 0.15
+active_duration = 0.4
+recovery_frame = 0.15
+metadata/_custom_type_script = "uid://xoreh2dqf6ec"
