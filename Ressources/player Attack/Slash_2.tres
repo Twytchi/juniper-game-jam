@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AttackData" format=3 uid="uid://cu1gx0ypo6rbo"]
+
+[ext_resource type="Script" uid="uid://xoreh2dqf6ec" path="res://Ressources/AttackData.gd" id="1_3ujxp"]
+
+[resource]
+script = ExtResource("1_3ujxp")
+animation_name = &"Slash Rapide"
+damage = 23.0
+lunge_speed = 500.0
+windup_duration = 0.1
+active_duration = 0.2
+recovery_frame = 0.3
+metadata/_custom_type_script = "uid://xoreh2dqf6ec"

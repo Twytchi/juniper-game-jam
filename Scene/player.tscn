@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dmf2vaa260wvp"]
+
+[ext_resource type="Script" uid="uid://d12xnvgikvn1y" path="res://Script/player_controller.gd" id="1_y8w33"]
+[ext_resource type="Resource" uid="uid://c5x4xfub375ov" path="res://Ressources/player Attack/Slash_1.tres" id="2_58ae2"]
+[ext_resource type="Texture2D" uid="uid://swobx6frxop5" path="res://icon.svg" id="2_xa75v"]
+
+[node name="Player" type="CharacterBody2D" unique_id=500224478]
+script = ExtResource("1_y8w33")
+first_attack = ExtResource("2_58ae2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1917093323]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_xa75v")

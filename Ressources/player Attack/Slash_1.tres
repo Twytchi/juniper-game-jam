@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AttackData" format=3 uid="uid://c5x4xfub375ov"]
+
+[ext_resource type="Script" uid="uid://xoreh2dqf6ec" path="res://Ressources/AttackData.gd" id="1_1nqvo"]
+[ext_resource type="Resource" uid="uid://cu1gx0ypo6rbo" path="res://Ressources/player Attack/Slash_2.tres" id="1_uw4ge"]
+
+[resource]
+script = ExtResource("1_1nqvo")
+animation_name = &"Slash simple"
+next_light_attack = ExtResource("1_uw4ge")
+damage = 12.0
+spin_power = 1.0
+poise_damage = 2.0
+knockback = 10.0
+lunge_speed = 500.0
+active_duration = 0.2
+recovery_frame = 0.1
+metadata/_custom_type_script = "uid://xoreh2dqf6ec"
