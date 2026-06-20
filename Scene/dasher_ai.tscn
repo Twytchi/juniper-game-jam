@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://0gsss83wv40"]
+
+[ext_resource type="Script" uid="uid://oub2iknj45xr" path="res://Scene/dasher_ai.gd" id="1_ppukq"]
+[ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="2_ppukq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fq4oq"]
+size = Vector2(127, 126)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppukq"]
+size = Vector2(130, 126)
+
+[node name="Dasher_AI" type="CharacterBody2D" unique_id=1315360929]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_ppukq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2028319693]
+texture = ExtResource("2_ppukq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1577805832]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_fq4oq")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=46061126]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=120205585]
+shape = SubResource("RectangleShape2D_ppukq")

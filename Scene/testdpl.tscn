@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="1_vxfbs"]
 [ext_resource type="PackedScene" uid="uid://c2ijjihaf42m5" path="res://Scene/enemy_AI.tscn" id="2_i01lx"]
+[ext_resource type="PackedScene" uid="uid://0gsss83wv40" path="res://Scene/dasher_ai.tscn" id="3_umnua"]
+[ext_resource type="PackedScene" uid="uid://dljwoierldrq4" path="res://Scene/kamikaze_ai.tscn" id="4_fnsd3"]
 
 [node name="test" type="Node2D" unique_id=1915128990]
 
@@ -11,3 +13,9 @@ first_heavy_attack = null
 
 [node name="EnemyAi" parent="." unique_id=1686390776 instance=ExtResource("2_i01lx")]
 position = Vector2(514, 252)
+
+[node name="Dasher_AI" parent="." unique_id=1315360929 instance=ExtResource("3_umnua")]
+position = Vector2(378, 524)
+
+[node name="Kamikaze_AI" parent="." unique_id=687512682 instance=ExtResource("4_fnsd3")]
+position = Vector2(839, 402)
