@@ -20,7 +20,7 @@ radius = 95.047356
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2sw5t"]
 size = Vector2(105, 206)
 
-[node name="Player" type="CharacterBody2D" unique_id=500224478]
+[node name="Player" type="CharacterBody2D" unique_id=500224478 groups=["player"]]
 script = ExtResource("1_y8w33")
 first_attack = ExtResource("2_58ae2")
 first_heavy_attack = ExtResource("3_p6qlh")
