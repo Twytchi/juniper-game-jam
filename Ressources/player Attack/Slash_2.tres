@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xoreh2dqf6ec" path="res://Ressources/AttackData.gd" id="1_3ujxp"]
 [ext_resource type="Resource" uid="uid://d31t5e11dte88" path="res://Ressources/player Attack/Slash_3.tres" id="1_ec404"]
-[ext_resource type="Resource" path="res://Ressources/player Attack/Big_slash.tres" id="1_ol7bm"]
+[ext_resource type="Resource" uid="uid://cesdse1q8k8b2" path="res://Ressources/player Attack/Big_slash.tres" id="1_ol7bm"]
 
 [resource]
 script = ExtResource("1_3ujxp")

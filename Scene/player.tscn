@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://c5x4xfub375ov" path="res://Ressources/player Attack/Slash_1.tres" id="2_58ae2"]
 [ext_resource type="Texture2D" uid="uid://swobx6frxop5" path="res://icon.svg" id="2_xa75v"]
 [ext_resource type="Resource" uid="uid://cesdse1q8k8b2" path="res://Ressources/player Attack/Big_slash.tres" id="3_p6qlh"]
+[ext_resource type="Resource" uid="uid://b7gtwcjadua20" path="res://Ressources/player Attack/Ground_dive.tres" id="4_2sw5t"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="4_58ae2"]
 [ext_resource type="Script" uid="uid://buhtjxd0xcjed" path="res://Script/hitbox_j.gd" id="5_ivevv"]
 [ext_resource type="Script" uid="uid://cbke8txvrjdgm" path="res://Scene/Missile_box.gd" id="6_r6jsd"]
@@ -27,6 +28,7 @@ size = Vector2(105, 206)
 script = ExtResource("1_y8w33")
 first_attack = ExtResource("2_58ae2")
 first_heavy_attack = ExtResource("3_p6qlh")
+dive_attack = ExtResource("4_2sw5t")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1917093323]
 scale = Vector2(0.5, 0.5)

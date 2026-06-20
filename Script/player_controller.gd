@@ -14,7 +14,7 @@ var buffered_input: Action = Action.NONE
 var direction := Vector2.RIGHT 
 var height : float = 0.0 
 const GRAVITY := 800.0
-const JUMP_FORCE := 400.0
+const JUMP_FORCE := 500.0
 var target_height := 0.0
 var vertical_velocity = 0.0
 
@@ -27,6 +27,8 @@ var vertical_velocity = 0.0
 # Attack
 @export var first_attack: AttackData
 @export var first_heavy_attack: AttackData
+@export var dive_attack : AttackData
+
 
 var current_attack: AttackData
 var attack_velocity := Vector2.ZERO 
@@ -42,7 +44,7 @@ var attack_velocity := Vector2.ZERO
 
 var can_spin := true 
 var in_windup := false
-
+var dive_s = 1.0
 
 func _process(_delta: float) -> void:
 	sprite.position.y = -height
@@ -63,6 +65,10 @@ func _physics_process(delta: float) -> void:
 	elif current_action == Action.DASH :
 		dash(delta)
 		can_spin = false
+		if Input.is_action_just_pressed("heavy"):
+			current_attack = dive_attack
+			current_action = Action.HEAVY
+			start_attack()
 	elif current_action == Action.SPIN :
 		velocity = velocity.lerp(Vector2.ZERO, delta * 5)
 		move_and_slide()
@@ -70,14 +76,16 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and height <= 0.0:
 		if current_action in [Action.SPIN, Action.HURT] : 
 			return
+		if current_attack == dive_attack :
+			return
 		current_action = Action.DASH
-		for h  in [slash_simple_h, thrust_h] :
+		for h  in [slash_simple_h, thrust_h, big_slash_h] :
 			h.disable_hitbox()
 		vertical_velocity = JUMP_FORCE
 		velocity = direction * speed * 1.5
 		current_attack = null
 
-	vertical_velocity -= GRAVITY * delta * (1.0 if (vertical_velocity > 0 ) else 1.6)
+	vertical_velocity -= GRAVITY * delta * (1.0 if (vertical_velocity > 0  )else 1.6) * dive_s  
 	height += vertical_velocity * delta
 
 	if height <= 0.0:
@@ -137,10 +145,8 @@ func start_attack() -> void:
 	can_spin = false
 	attack_velocity = velocity
 	#  WINDUP
-	if current_attack.animation_name in [&"Dive"] : 
-		pass
-	else :
-		await _wait(current_attack.windup_duration)
+
+	await _wait(current_attack.windup_duration)
 	if current_action not in [Action.HEAVY, Action.LIGHT] : return
 	
 	# ACTIVE
@@ -159,7 +165,16 @@ func start_attack() -> void:
 
 func _run_active_phase(duration: float) -> void:
 	var timer := 0.0
+
 	while timer < duration:
+		if current_attack : 
+			if current_attack.animation_name in [&"Dive"] : 
+				if  height == 0.0 :
+					timer = duration
+				else : 
+					timer = 0
+		else :  
+			return
 		await get_tree().process_frame
 		timer += get_process_delta_time()
 
@@ -177,7 +192,8 @@ func _run_recovery(duration: float) -> void:
 		current_attack = null
 		return
 	elif current_attack.animation_name in [&"Dive"] :
-		pass
+		dive_s = 1.0 
+		velocity = Vector2.ZERO
 	can_spin = true
 	var timer := 0.0
 	while timer < duration:
@@ -186,7 +202,8 @@ func _run_recovery(duration: float) -> void:
 			if buffered_input == Action.LIGHT:
 				if current_attack.next_light_attack : return
 			elif buffered_input == Action.HEAVY:
-				if  current_attack.next_heavy_attack : return
+				if current_attack :
+					if  current_attack.next_heavy_attack : return
 		await get_tree().process_frame
 		timer += get_process_delta_time()
 
@@ -229,6 +246,8 @@ func _apply_attack_effects() -> void:
 	elif current_attack.animation_name in [&"Luncher"] :
 		vertical_velocity = JUMP_FORCE
 		luncher_h.enable_hitbox()
+	elif  current_attack.animation_name in [&"Dive"] : 
+		dive_s = 3.0
 
 
 func take_damage(amount : int ) :
