@@ -137,7 +137,10 @@ func start_attack() -> void:
 	can_spin = false
 	attack_velocity = velocity
 	#  WINDUP
-	await _wait(current_attack.windup_duration)
+	if current_attack.animation_name in [&"Dive"] : 
+		pass
+	else :
+		await _wait(current_attack.windup_duration)
 	if current_action not in [Action.HEAVY, Action.LIGHT] : return
 	
 	# ACTIVE
@@ -173,7 +176,8 @@ func _run_recovery(duration: float) -> void:
 		current_action = Action.DASH
 		current_attack = null
 		return
-	
+	elif current_attack.animation_name in [&"Dive"] :
+		pass
 	can_spin = true
 	var timer := 0.0
 	while timer < duration:
