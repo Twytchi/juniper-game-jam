@@ -8,5 +8,5 @@ animation_name = &"Thrust"
 lunge_speed = 700.0
 windup_duration = 0.15
 active_duration = 0.4
-recovery_frame = 0.15
+recovery_frame = 0.25
 metadata/_custom_type_script = "uid://xoreh2dqf6ec"

@@ -2,11 +2,13 @@
 
 [ext_resource type="Resource" uid="uid://cd3xsq7f438y4" path="res://Ressources/player Attack/Slash4.tres" id="1_8t1tn"]
 [ext_resource type="Script" uid="uid://xoreh2dqf6ec" path="res://Ressources/AttackData.gd" id="1_r8qte"]
+[ext_resource type="Resource" uid="uid://0550vbu74ldo" path="res://Ressources/player Attack/Upper_cut.tres" id="1_ws4vi"]
 
 [resource]
 script = ExtResource("1_r8qte")
 animation_name = &"Slash1"
 next_light_attack = ExtResource("1_8t1tn")
+next_heavy_attack = ExtResource("1_ws4vi")
 lunge_speed = 500.0
 active_duration = 0.2
 recovery_frame = 0.1

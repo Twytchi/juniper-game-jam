@@ -36,6 +36,7 @@ var attack_velocity := Vector2.ZERO
 @onready var slash_simple_h : PlayerHitbox = $hitbox/Slash_simple
 @onready var thrust_h : PlayerHitbox = $hitbox/Thrust
 @onready var big_slash_h: PlayerHitbox = $hitbox/BigSlash
+@onready var luncher_h: PlayerHitbox = $Sprite2D/Luncher
 
 
 
@@ -87,6 +88,7 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2.ZERO
 
 
+
 func dash(delta : float ) : 
 	velocity = velocity.lerp(Vector2.ZERO, 0.75 * delta)
 	move_and_slide()
@@ -98,7 +100,6 @@ func _move_state(input_dir: Vector2, delta: float) -> void:
 
 func _attack_state(delta: float) -> void:
 	attack_velocity = attack_velocity.lerp(Vector2.ZERO, attack_friction * delta)
-
 	velocity = attack_velocity
 	move_and_slide()
 
@@ -167,6 +168,12 @@ func _run_recovery(duration: float) -> void:
 		thrust_h.disable_hitbox()
 	elif current_attack.animation_name  in [&"Heavy1"]:
 		big_slash_h.disable_hitbox()
+	elif current_attack.animation_name in [&"Luncher"] :
+		luncher_h.disable_hitbox()
+		current_action = Action.DASH
+		current_attack = null
+		return
+	
 	can_spin = true
 	var timer := 0.0
 	while timer < duration:
@@ -215,6 +222,9 @@ func _apply_attack_effects() -> void:
 	elif current_attack.animation_name  in [&"Heavy1"]:
 		big_slash_h.rotation = direction.angle()
 		big_slash_h.enable_hitbox()
+	elif current_attack.animation_name in [&"Luncher"] :
+		vertical_velocity = JUMP_FORCE
+		luncher_h.enable_hitbox()
 
 
 func take_damage(amount : int ) :
