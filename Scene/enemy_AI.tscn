@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c2ijjihaf42m5"]
+
+[ext_resource type="Script" path="res://Script/spincomponent.gd" id="1_ecebc"]
+[ext_resource type="Script" uid="uid://bwph2uadlmr0a" path="res://Scene/enemy_ai.gd" id="1_m8431"]
+[ext_resource type="Script" path="res://Script/hurtbox.gd" id="2_m8431"]
+[ext_resource type="Texture2D" uid="uid://swobx6frxop5" path="res://icon.svg" id="3_04kin"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ljux"]
+size = Vector2(111, 98)
+
+[node name="EnemyAi" type="CharacterBody2D" unique_id=1686390776]
+script = ExtResource("1_m8431")
+
+[node name="SpinComponent" type="Node2D" parent="." unique_id=1916445038 node_paths=PackedStringArray("body", "body_sprite")]
+scale = Vector2(0.725, 0.725)
+script = ExtResource("1_ecebc")
+body = NodePath("")
+body_sprite = NodePath("../punching bag")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=475305993]
+scale = Vector2(0.725, 0.725)
+script = ExtResource("2_m8431")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1188477876]
+shape = SubResource("RectangleShape2D_0ljux")
+
+[node name="punching bag" type="Sprite2D" parent="." unique_id=1352605392]
+scale = Vector2(0.628711, 0.53808594)
+texture = ExtResource("3_04kin")
