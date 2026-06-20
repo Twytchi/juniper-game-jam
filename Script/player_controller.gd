@@ -35,8 +35,13 @@ var attack_velocity := Vector2.ZERO
 # Hitbox 
 @onready var slash_simple_h : PlayerHitbox = $hitbox/Slash_simple
 @onready var thrust_h : PlayerHitbox = $hitbox/Thrust
+@onready var big_slash_h: PlayerHitbox = $hitbox/BigSlash
+
+
 
 var can_spin := true 
+var in_windup := false
+
 
 func _process(_delta: float) -> void:
 	sprite.position.y = -height
@@ -62,6 +67,8 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 	if Input.is_action_just_pressed("ui_accept") and height <= 0.0:
+		if current_action in [Action.SPIN, Action.HURT] : 
+			return
 		current_action = Action.DASH
 		for h  in [slash_simple_h, thrust_h] :
 			h.disable_hitbox()
@@ -91,6 +98,7 @@ func _move_state(input_dir: Vector2, delta: float) -> void:
 
 func _attack_state(delta: float) -> void:
 	attack_velocity = attack_velocity.lerp(Vector2.ZERO, attack_friction * delta)
+
 	velocity = attack_velocity
 	move_and_slide()
 
@@ -126,6 +134,7 @@ func start_attack() -> void:
 	
 	attack_velocity = Vector2.ZERO 
 	can_spin = false
+	attack_velocity = velocity
 	#  WINDUP
 	await _wait(current_attack.windup_duration)
 	if current_action not in [Action.HEAVY, Action.LIGHT] : return
@@ -156,12 +165,17 @@ func _run_recovery(duration: float) -> void:
 		slash_simple_h.disable_hitbox()
 	elif current_attack.animation_name  == &"Thrust" :
 		thrust_h.disable_hitbox()
+	elif current_attack.animation_name  in [&"Heavy1"]:
+		big_slash_h.disable_hitbox()
 	can_spin = true
 	var timer := 0.0
 	while timer < duration:
 		
 		if buffered_input != Action.NONE:
-			return # Cancel 
+			if buffered_input == Action.LIGHT:
+				if current_attack.next_light_attack : return
+			elif buffered_input == Action.HEAVY:
+				if  current_attack.next_heavy_attack : return
 		await get_tree().process_frame
 		timer += get_process_delta_time()
 
@@ -198,6 +212,9 @@ func _apply_attack_effects() -> void:
 	elif current_attack.animation_name  in [&"Thrust"]:
 		thrust_h.rotation = direction.angle()
 		thrust_h.enable_hitbox()
+	elif current_attack.animation_name  in [&"Heavy1"]:
+		big_slash_h.rotation = direction.angle()
+		big_slash_h.enable_hitbox()
 
 
 func take_damage(amount : int ) :

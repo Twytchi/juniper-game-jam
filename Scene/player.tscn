@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d12xnvgikvn1y" path="res://Script/player_controller.gd" id="1_y8w33"]
 [ext_resource type="Resource" uid="uid://c5x4xfub375ov" path="res://Ressources/player Attack/Slash_1.tres" id="2_58ae2"]
 [ext_resource type="Texture2D" uid="uid://swobx6frxop5" path="res://icon.svg" id="2_xa75v"]
+[ext_resource type="Resource" uid="uid://cesdse1q8k8b2" path="res://Ressources/player Attack/Big_slash.tres" id="3_p6qlh"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="4_58ae2"]
 [ext_resource type="Script" uid="uid://buhtjxd0xcjed" path="res://Script/hitbox_j.gd" id="5_ivevv"]
 [ext_resource type="Script" uid="uid://cbke8txvrjdgm" path="res://Scene/Missile_box.gd" id="6_r6jsd"]
@@ -16,9 +17,13 @@ size = Vector2(17, 48)
 [sub_resource type="CircleShape2D" id="CircleShape2D_r6jsd"]
 radius = 95.047356
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2sw5t"]
+size = Vector2(105, 206)
+
 [node name="Player" type="CharacterBody2D" unique_id=500224478]
 script = ExtResource("1_y8w33")
 first_attack = ExtResource("2_58ae2")
+first_heavy_attack = ExtResource("3_p6qlh")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1917093323]
 scale = Vector2(0.5, 0.5)
@@ -72,6 +77,22 @@ metadata/_custom_type_script = "uid://buhtjxd0xcjed"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/Missile_attack" unique_id=1003606093]
 position = Vector2(4, -1)
 shape = SubResource("CircleShape2D_r6jsd")
+disabled = true
+
+[node name="BigSlash" type="Area2D" parent="hitbox" unique_id=1382817354]
+script = ExtResource("5_ivevv")
+metadata/_custom_type_script = "uid://buhtjxd0xcjed"
+
+[node name="Sprite2D" type="Sprite2D" parent="hitbox/BigSlash" unique_id=186613384]
+visible = false
+modulate = Color(1, 1, 1, 0.78431374)
+position = Vector2(82.5, -5.500004)
+scale = Vector2(0.6328125, 1.6484374)
+texture = ExtResource("2_xa75v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/BigSlash" unique_id=1302686116]
+position = Vector2(70.5, -5)
+shape = SubResource("RectangleShape2D_2sw5t")
 disabled = true
 
 [connection signal="area_entered" from="hitbox/Missile_attack" to="hitbox/Missile_attack" method="_on_area_entered"]

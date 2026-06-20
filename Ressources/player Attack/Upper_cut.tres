@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AttackData" format=3 uid="uid://0550vbu74ldo"]
+
+[ext_resource type="Script" uid="uid://xoreh2dqf6ec" path="res://Ressources/AttackData.gd" id="1_hha4a"]
+
+[resource]
+script = ExtResource("1_hha4a")
+animation_name = &"Luncher"
+windup_duration = 0.15
+active_duration = 0.27
+recovery_frame = 0.1
+metadata/_custom_type_script = "uid://xoreh2dqf6ec"
