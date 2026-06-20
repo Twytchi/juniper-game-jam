@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 # Statistiques
-@export var speed: float = 350.0
+@export var speed: float = 300.0
 @export var acceleration: float = 15.0
 @export var attack_friction: float = 4.0 
 @export var health: float
@@ -32,6 +32,12 @@ var current_attack: AttackData
 var attack_velocity := Vector2.ZERO 
 
 
+# Hitbox 
+@onready var slash_simple_h : PlayerHitbox = $hitbox/Slash_simple
+@onready var thrust_h : PlayerHitbox = $hitbox/Thrust
+
+var can_spin := true 
+
 func _process(_delta: float) -> void:
 	sprite.position.y = -height
 	var shadow_scale = clamp(1.0 - (height / 200.0), 0.5, 1.0)
@@ -45,14 +51,18 @@ func _physics_process(delta: float) -> void:
 
 	if current_action == Action.NONE:
 		_move_state(input_dir, delta)
+		can_spin = true
 	elif current_action in [Action.LIGHT, Action.HEAVY]: 
 		_attack_state(delta)
 	elif current_action == Action.DASH :
 		dash(delta)
+		can_spin = false
 	
 
 	if Input.is_action_just_pressed("ui_accept") and height <= 0.0:
 		current_action = Action.DASH
+		for h  in [slash_simple_h, thrust_h] :
+			h.disable_hitbox()
 		vertical_velocity = JUMP_FORCE
 		velocity = direction * speed * 1.5
 		current_attack = null
@@ -126,6 +136,7 @@ func start_attack() -> void:
 	if current_action not in [Action.HEAVY, Action.LIGHT] : return
 	
 	# RECOVERY
+	
 	await _run_recovery(current_attack.recovery_frame)
 	if current_action not in [Action.HEAVY, Action.LIGHT] : return
 	
@@ -138,6 +149,12 @@ func _run_active_phase(duration: float) -> void:
 		timer += get_process_delta_time()
 
 func _run_recovery(duration: float) -> void:
+	
+	if current_attack.animation_name  in [&"Slash1", &"Slash2" ]:
+		slash_simple_h.disable_hitbox()
+	elif current_attack.animation_name  == &"Thrust" :
+		thrust_h.disable_hitbox()
+		
 	var timer := 0.0
 	while timer < duration:
 		
@@ -173,7 +190,12 @@ func _wait(duration: float) -> void:
 		await get_tree().create_timer(duration).timeout
 
 func _apply_attack_effects() -> void:
-	print("Impact !")
+	if current_attack.animation_name  in [&"Slash1", &"Slash2" ]:
+		slash_simple_h.rotation = direction.angle()
+		slash_simple_h.enable_hitbox()
+	elif current_attack.animation_name  in [&"Thrust"]:
+		thrust_h.rotation = direction.angle()
+		thrust_h.enable_hitbox()
 
 
 func take_damage(amount : int ) :

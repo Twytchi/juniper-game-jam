@@ -4,6 +4,14 @@
 [ext_resource type="Resource" uid="uid://c5x4xfub375ov" path="res://Ressources/player Attack/Slash_1.tres" id="2_58ae2"]
 [ext_resource type="Texture2D" uid="uid://swobx6frxop5" path="res://icon.svg" id="2_xa75v"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="4_58ae2"]
+[ext_resource type="Script" uid="uid://buhtjxd0xcjed" path="res://Script/hitbox_j.gd" id="5_ivevv"]
+[ext_resource type="Script" uid="uid://cbke8txvrjdgm" path="res://Scene/Missile_box.gd" id="6_r6jsd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6qlh"]
+size = Vector2(47, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6jsd"]
+size = Vector2(17, 48)
 
 [node name="Player" type="CharacterBody2D" unique_id=500224478]
 script = ExtResource("1_y8w33")
@@ -20,3 +28,41 @@ z_index = -1
 position = Vector2(-2, 13)
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("4_58ae2")
+
+[node name="hitbox" type="Node2D" parent="." unique_id=1965024973]
+
+[node name="Thrust" type="Area2D" parent="hitbox" unique_id=2113940022]
+script = ExtResource("5_ivevv")
+metadata/_custom_type_script = "uid://buhtjxd0xcjed"
+
+[node name="Sprite2D" type="Sprite2D" parent="hitbox/Thrust" unique_id=818894718]
+visible = false
+position = Vector2(70, -1)
+rotation = 1.5790132
+scale = Vector2(0.13281238, 0.38281247)
+texture = ExtResource("2_xa75v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/Thrust" unique_id=1112610071]
+position = Vector2(71, -1)
+shape = SubResource("RectangleShape2D_p6qlh")
+disabled = true
+
+[node name="Slash_simple" type="Area2D" parent="hitbox" unique_id=1895130622]
+script = ExtResource("5_ivevv")
+
+[node name="Sprite2D" type="Sprite2D" parent="hitbox/Slash_simple" unique_id=49065693]
+visible = false
+position = Vector2(59, 0)
+scale = Vector2(0.13281238, 0.38281247)
+texture = ExtResource("2_xa75v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/Slash_simple" unique_id=1219278782]
+position = Vector2(58.5, 0)
+shape = SubResource("RectangleShape2D_r6jsd")
+disabled = true
+
+[node name="Missile_attack" type="Area2D" parent="hitbox" unique_id=437431345]
+script = ExtResource("6_r6jsd")
+metadata/_custom_type_script = "uid://buhtjxd0xcjed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/Missile_attack" unique_id=1003606093]
