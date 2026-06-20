@@ -57,7 +57,9 @@ func _physics_process(delta: float) -> void:
 	elif current_action == Action.DASH :
 		dash(delta)
 		can_spin = false
-	
+	elif current_action == Action.SPIN :
+		velocity = velocity.lerp(Vector2.ZERO, delta * 5)
+		move_and_slide()
 
 	if Input.is_action_just_pressed("ui_accept") and height <= 0.0:
 		current_action = Action.DASH
@@ -123,7 +125,7 @@ func start_attack() -> void:
 	
 	
 	attack_velocity = Vector2.ZERO 
-	
+	can_spin = false
 	#  WINDUP
 	await _wait(current_attack.windup_duration)
 	if current_action not in [Action.HEAVY, Action.LIGHT] : return
@@ -154,7 +156,7 @@ func _run_recovery(duration: float) -> void:
 		slash_simple_h.disable_hitbox()
 	elif current_attack.animation_name  == &"Thrust" :
 		thrust_h.disable_hitbox()
-		
+	can_spin = true
 	var timer := 0.0
 	while timer < duration:
 		

@@ -1,7 +1,36 @@
 [gd_scene format=3 uid="uid://j8q1rul27t35"]
 
 [ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="1_vxfbs"]
+[ext_resource type="Texture2D" uid="uid://swobx6frxop5" path="res://icon.svg" id="2_mvnwt"]
+[ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="3_umnua"]
+[ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="4_umnua"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsd3"]
+size = Vector2(111, 98)
 
 [node name="test" type="Node2D" unique_id=1915128990]
 
 [node name="Player" parent="." unique_id=500224478 instance=ExtResource("1_vxfbs")]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=72663155]
+position = Vector2(-231.99998, -5.9999995)
+scale = Vector2(0.725, 0.725)
+
+[node name="punching bag" type="Sprite2D" parent="CharacterBody2D" unique_id=183387043]
+position = Vector2(808, 280.00003)
+scale = Vector2(0.8671875, 0.7421875)
+texture = ExtResource("2_mvnwt")
+
+[node name="SpinComponent" type="Node2D" parent="CharacterBody2D" unique_id=2018577385 node_paths=PackedStringArray("body", "body_sprite")]
+script = ExtResource("3_umnua")
+body = NodePath("..")
+body_sprite = NodePath("../punching bag")
+metadata/_custom_type_script = "uid://da52ihtpjml2f"
+
+[node name="Hurtbox" type="Area2D" parent="CharacterBody2D" unique_id=1606293188]
+position = Vector2(786, 272)
+script = ExtResource("4_umnua")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hurtbox" unique_id=136622278]
+position = Vector2(22.5, 6)
+shape = SubResource("RectangleShape2D_fnsd3")
