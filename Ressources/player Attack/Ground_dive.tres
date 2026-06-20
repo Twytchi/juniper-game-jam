@@ -4,4 +4,9 @@
 
 [resource]
 script = ExtResource("1_741u5")
+animation_name = &"Dive"
+lunge_speed = 0.0
+windup_duration = 0.2
+active_duration = 0.3
+recovery_frame = 0.4
 metadata/_custom_type_script = "uid://xoreh2dqf6ec"

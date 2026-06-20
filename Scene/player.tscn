@@ -46,6 +46,10 @@ visible = false
 position = Vector2(7, 6)
 polygon = PackedVector2Array(-47, -31, 36, -31, -4, -99)
 
+[node name="Dive" type="Area2D" parent="Sprite2D" unique_id=205158859]
+script = ExtResource("5_ivevv")
+metadata/_custom_type_script = "uid://buhtjxd0xcjed"
+
 [node name="Node2D" type="Node2D" parent="." unique_id=150105998]
 
 [node name="Shadow" type="Sprite2D" parent="Node2D" unique_id=2026473405]
@@ -111,5 +115,7 @@ texture = ExtResource("2_xa75v")
 position = Vector2(70.5, -5)
 shape = SubResource("RectangleShape2D_2sw5t")
 disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=365668905]
 
 [connection signal="area_entered" from="hitbox/Missile_attack" to="hitbox/Missile_attack" method="_on_area_entered"]
