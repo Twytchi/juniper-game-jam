@@ -32,15 +32,11 @@ func chase_player():
 	var direction = (player.global_position - global_position).normalized()
 	velocity = direction * speed
 
-
 func idle():
 	velocity = Vector2.ZERO
 
-
 func attack():
 	velocity = Vector2.ZERO
-
-
 
 func die():
 	velocity = Vector2.ZERO

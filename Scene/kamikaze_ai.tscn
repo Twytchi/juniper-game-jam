@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://dljwoierldrq4"]
+
+[ext_resource type="Script" uid="uid://bolhoyrdxot04" path="res://Scene/kamikaze_ai.gd" id="1_6buke"]
+[ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="2_6buke"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ffob"]
+size = Vector2(124, 116)
+
+[sub_resource type="Animation" id="Animation_hompp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.73856604, 0.056141056, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.235, 1.235)]
+}
+
+[sub_resource type="Animation" id="Animation_6buke"]
+resource_name = "explode_charge"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.8751921, 0.07364484, 3.85046e-07, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.235, 1.235)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hompp"]
+_data = {
+&"RESET": SubResource("Animation_hompp"),
+&"explode_charge": SubResource("Animation_6buke")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6buke"]
+size = Vector2(130, 126)
+
+[node name="Kamikaze_AI" type="CharacterBody2D" unique_id=687512682]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_6buke")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=989736975]
+self_modulate = Color(0.73856604, 0.056141056, 0, 1)
+scale = Vector2(1.235, 1.235)
+texture = ExtResource("2_6buke")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1126545201]
+visible = false
+shape = SubResource("RectangleShape2D_5ffob")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1186732942]
+libraries/ = SubResource("AnimationLibrary_hompp")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=200639610]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=901823645]
+shape = SubResource("RectangleShape2D_6buke")
