@@ -39,7 +39,7 @@ func idle():
 
 func attack():
 	velocity = Vector2.ZERO
-	# logique d'attaque ici
+
 
 
 func die():
