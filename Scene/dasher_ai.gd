@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
-var chase_speed = 80
+var chase_speed = 120
 var dash_speed = 400
 var dash_range = 150.0
 var dash_duration = 0.2
