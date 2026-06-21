@@ -2,7 +2,8 @@ extends CharacterBody2D
 class_name EnemyBase
 
 @onready var player = get_tree().get_first_node_in_group("player")
-@onready var hurtbox: Area2D = $Hurtbox
+@onready var hurtbox: Hurtbox = $Hurtbox
+@onready var spin_component: SpinComponent = $SpinComponent
 
 var detection_range = 250.0
 var speed = 80
@@ -32,6 +33,7 @@ var state = State.IDLE
 func _ready():
 	if hurtbox:
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+
 
 
 func _physics_process(delta):
@@ -81,20 +83,22 @@ func recover():
 
 # --- Réception des coups ---
 func _on_hurtbox_area_entered(area):
-	if area.is_in_group("hitbox") and area.has_method("get_damage"):
-		apply_damage(area.get_damage(), area.get_parent())
+	if area is PlayerHitbox:
+		area = area as PlayerHitbox
+		apply_damage(area.get_damage(), area)
 
 
-func apply_damage(amount: int, source: Node = null):
+func apply_damage(attack : AttackData, source: Node2D = null):
 	if is_invincible or state == State.DEAD:
 		return
-
-	current_health -= amount
-
+	if not attack :
+		return
+	current_health -= attack.damage
+	spin_component.add_charge(attack.spin_power)
 	if source:
 		var direction = (global_position - source.global_position).normalized()
-		knockback_velocity = direction * 250.0
-
+		knockback_velocity = direction * attack.knockback
+	
 	hit_flash()
 	start_iframes()
 

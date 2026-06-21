@@ -44,13 +44,14 @@ func explode():
 		return
 	is_exploding = true
 
-	$AnimationPlayer.play("explode_charge") 
-	await $AnimationPlayer.animation_finished
+	#$AnimationPlayer.play("explode_charge") 
+	#await $AnimationPlayer.animation_finished
 
 	var bodies = get_tree().get_nodes_in_group("player")
 	for body in bodies:
 		if global_position.distance_to(body.global_position) <= explosion_radius:
-			body.take_damage(explosion_damage)
+			body = body as Player
+			body.apply_damage(explosion_damage, self)
 
 	state = State.DEAD
 	queue_free()

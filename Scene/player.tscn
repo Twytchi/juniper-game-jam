@@ -1,10 +1,45 @@
 [gd_scene format=3 uid="uid://dmf2vaa260wvp"]
 
 [ext_resource type="Script" uid="uid://d12xnvgikvn1y" path="res://Script/player_controller.gd" id="1_y8w33"]
+[ext_resource type="Resource" uid="uid://c5x4xfub375ov" path="res://Ressources/player Attack/Slash_1.tres" id="2_2sw5t"]
 [ext_resource type="Texture2D" uid="uid://swobx6frxop5" path="res://icon.svg" id="2_xa75v"]
+[ext_resource type="Resource" uid="uid://cesdse1q8k8b2" path="res://Ressources/player Attack/Big_slash.tres" id="3_ij4jb"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="4_58ae2"]
+[ext_resource type="Resource" uid="uid://b7gtwcjadua20" path="res://Ressources/player Attack/Ground_dive.tres" id="4_c68nv"]
+[ext_resource type="Texture2D" uid="uid://bjpp228pgg2vh" path="res://Asset/player asset/idle.png" id="5_ij4jb"]
 [ext_resource type="Script" uid="uid://buhtjxd0xcjed" path="res://Script/hitbox_j.gd" id="5_ivevv"]
+[ext_resource type="Texture2D" uid="uid://dkekcg1r2ywks" path="res://Asset/player asset/c.png" id="6_2dof7"]
 [ext_resource type="Script" uid="uid://cbke8txvrjdgm" path="res://Scene/Missile_box.gd" id="6_r6jsd"]
+[ext_resource type="Texture2D" uid="uid://yr6uds4wtbbg" path="res://Asset/player asset/b.png" id="7_4ao7i"]
+[ext_resource type="Texture2D" uid="uid://dip4v22dcp45y" path="res://Asset/player asset/a.png" id="8_1sypm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c68nv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ij4jb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2dof7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4ao7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1sypm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4ao7i")
+}],
+"loop": true,
+"name": &"run",
+"speed": 6.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ij4jb"]
 size = Vector2(123, 85.5)
@@ -26,26 +61,36 @@ size = Vector2(60, 60)
 
 [node name="Player" type="CharacterBody2D" unique_id=500224478 groups=["player"]]
 script = ExtResource("1_y8w33")
+first_attack = ExtResource("2_2sw5t")
+first_heavy_attack = ExtResource("3_ij4jb")
+dive_attack = ExtResource("4_c68nv")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1917093323]
+[node name="visual" type="Node2D" parent="." unique_id=1985439555]
+position = Vector2(-1, -11)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_xa75v")
 
-[node name="Luncher" type="Area2D" parent="Sprite2D" unique_id=1107107364]
+[node name="anim" type="AnimatedSprite2D" parent="visual" unique_id=469809798]
+position = Vector2(12, -37.999996)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_c68nv")
+animation = &"run"
+frame_progress = 0.6578219
+
+[node name="Luncher" type="Area2D" parent="visual" unique_id=1107107364]
 scale = Vector2(2, 2)
 script = ExtResource("5_ivevv")
 metadata/_custom_type_script = "uid://buhtjxd0xcjed"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Luncher" unique_id=1964061723]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="visual/Luncher" unique_id=1964061723]
 position = Vector2(2, -63)
 shape = SubResource("RectangleShape2D_ij4jb")
 
-[node name="Sprite2D" type="Polygon2D" parent="Sprite2D/Luncher" unique_id=125888151]
+[node name="Sprite2D" type="Polygon2D" parent="visual/Luncher" unique_id=125888151]
 visible = false
 position = Vector2(7, 6)
 polygon = PackedVector2Array(-47, -31, 36, -31, -4, -99)
 
-[node name="Dive" type="Area2D" parent="Sprite2D" unique_id=205158859]
+[node name="Dive" type="Area2D" parent="visual" unique_id=205158859]
 script = ExtResource("5_ivevv")
 metadata/_custom_type_script = "uid://buhtjxd0xcjed"
 
@@ -53,8 +98,8 @@ metadata/_custom_type_script = "uid://buhtjxd0xcjed"
 
 [node name="Shadow" type="Sprite2D" parent="Node2D" unique_id=2026473405]
 z_index = -1
-position = Vector2(-2, 13)
-scale = Vector2(0.13, 0.13)
+position = Vector2(-1, 16)
+scale = Vector2(0.12, 0.12)
 texture = ExtResource("4_58ae2")
 
 [node name="hitbox" type="Node2D" parent="." unique_id=1965024973]
@@ -118,6 +163,7 @@ disabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=365668905]
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=2109857094]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=836682403]
 shape = SubResource("RectangleShape2D_ivevv")

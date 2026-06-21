@@ -5,9 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://dljwoierldrq4" path="res://Scene/kamikaze_ai.tscn" id="4_fnsd3"]
 
 [node name="test" type="Node2D" unique_id=1915128990]
+y_sort_enabled = true
 
 [node name="Player" parent="." unique_id=500224478 instance=ExtResource("1_vxfbs")]
 position = Vector2(135, 182)
+health = 100.0
 
 [node name="Dasher_AI" parent="." unique_id=1315360929 instance=ExtResource("3_umnua")]
 position = Vector2(378, 524)

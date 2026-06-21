@@ -19,7 +19,7 @@ var target_height := 0.0
 var vertical_velocity = 0.0
 
 @onready var shadow :Node2D = $Node2D
-@onready var sprite : Sprite2D = $Sprite2D
+@onready var sprite : Node2D = $visual
 @onready var hurtbox: Area2D = $Hurtbox
 
 
@@ -39,7 +39,8 @@ var attack_velocity := Vector2.ZERO
 @onready var slash_simple_h : PlayerHitbox = $hitbox/Slash_simple
 @onready var thrust_h : PlayerHitbox = $hitbox/Thrust
 @onready var big_slash_h: PlayerHitbox = $hitbox/BigSlash
-@onready var luncher_h: PlayerHitbox = $Sprite2D/Luncher
+@onready var luncher_h: PlayerHitbox = $visual/Luncher
+@onready var anim: AnimatedSprite2D = $visual/anim
 
 
 
@@ -92,6 +93,9 @@ func _physics_process(delta: float) -> void:
 	elif current_action == Action.HURT :
 		_hurt_state(delta)
 
+	if input_dir.x != 0:
+		anim.flip_h = input_dir.x < 0
+
 	if Input.is_action_just_pressed("ui_accept") and height <= 0.0:
 		if current_action in [Action.SPIN, Action.HURT] : 
 			return
@@ -114,7 +118,10 @@ func _physics_process(delta: float) -> void:
 			current_action = Action.NONE
 			velocity = Vector2.ZERO
 
-
+	if height > 0 :
+		is_invincible = true
+	else :
+		is_invincible = false
 
 func dash(delta : float ) : 
 	velocity = velocity.lerp(Vector2.ZERO, 0.75 * delta)
@@ -124,6 +131,11 @@ func dash(delta : float ) :
 func _move_state(input_dir: Vector2, delta: float) -> void:
 	velocity = velocity.lerp(input_dir * speed, acceleration * delta)
 	move_and_slide()
+
+	if input_dir != Vector2.ZERO:
+		anim.play("run")
+	else:
+		anim.play("idle")
 
 func _attack_state(delta: float) -> void:
 	attack_velocity = attack_velocity.lerp(Vector2.ZERO, attack_friction * delta)
