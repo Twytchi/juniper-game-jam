@@ -1,0 +1,127 @@
+extends CharacterBody2D
+class_name EnemyBase
+
+@onready var player = get_tree().get_first_node_in_group("player")
+@onready var hurtbox: Area2D = $Hurtbox
+
+var detection_range = 250.0
+var speed = 80
+
+var max_health = 30
+var current_health = max_health
+var is_invincible = false
+var iframe_duration = 0.3
+
+var knockback_velocity = Vector2.ZERO
+var knockback_friction = 800.0
+
+signal on_death
+
+enum State {
+	IDLE,
+	CHASE,
+	ATTACK,
+	RECOVER,
+	HIT,
+	DEAD
+}
+
+var state = State.IDLE
+
+
+func _ready():
+	if hurtbox:
+		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+
+
+func _physics_process(delta):
+	if knockback_velocity.length() > 1.0:
+		velocity = knockback_velocity
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
+	else:
+		match state:
+			State.IDLE:
+				idle()
+			State.CHASE:
+				chase_player()
+			State.ATTACK:
+				attack()
+			State.RECOVER:
+				recover()
+			State.HIT:
+				pass
+			State.DEAD:
+				velocity = Vector2.ZERO
+
+	move_and_slide()
+
+
+func idle():
+	velocity = Vector2.ZERO
+	if player == null:
+		return
+	if global_position.distance_to(player.global_position) <= detection_range:
+		state = State.CHASE
+
+
+func chase_player():
+	if player == null:
+		return
+	var direction = (player.global_position - global_position).normalized()
+	velocity = direction * speed
+
+
+
+func attack():
+	pass
+
+func recover():
+	pass
+
+
+# --- Réception des coups ---
+func _on_hurtbox_area_entered(area):
+	if area.is_in_group("hitbox") and area.has_method("get_damage"):
+		apply_damage(area.get_damage(), area.get_parent())
+
+
+func apply_damage(amount: int, source: Node = null):
+	if is_invincible or state == State.DEAD:
+		return
+
+	current_health -= amount
+
+	if source:
+		var direction = (global_position - source.global_position).normalized()
+		knockback_velocity = direction * 250.0
+
+	hit_flash()
+	start_iframes()
+
+	if current_health <= 0:
+		die()
+	else:
+		state = State.HIT
+
+
+func start_iframes():
+	is_invincible = true
+	await get_tree().create_timer(iframe_duration).timeout
+	is_invincible = false
+	if state == State.HIT:
+		state = State.CHASE
+
+
+func hit_flash():
+	if has_node("Sprite2D"):
+		var sprite = $Sprite2D
+		sprite.modulate = Color(1, 0.3, 0.3)
+		await get_tree().create_timer(0.1).timeout
+		sprite.modulate = Color(1, 1, 1)
+
+
+
+func die():
+	state = State.DEAD
+	on_death.emit()
+	queue_free()

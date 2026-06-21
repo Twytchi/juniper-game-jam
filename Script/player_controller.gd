@@ -20,6 +20,7 @@ var vertical_velocity = 0.0
 
 @onready var shadow :Node2D = $Node2D
 @onready var sprite : Sprite2D = $Sprite2D
+@onready var hurtbox: Area2D = $Hurtbox
 
 
 
@@ -45,6 +46,22 @@ var attack_velocity := Vector2.ZERO
 var can_spin := true 
 var in_windup := false
 var dive_s = 1.0
+
+# --- Dégâts / combat ---
+var is_invincible := false
+var iframe_duration := 0.5
+var is_dead := false
+
+var knockback_velocity := Vector2.ZERO
+var knockback_friction := 800.0
+
+signal on_death
+
+
+func _ready() -> void:
+	if hurtbox:
+		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+
 
 func _process(_delta: float) -> void:
 	sprite.position.y = -height
@@ -72,6 +89,8 @@ func _physics_process(delta: float) -> void:
 	elif current_action == Action.SPIN :
 		velocity = velocity.lerp(Vector2.ZERO, delta * 5)
 		move_and_slide()
+	elif current_action == Action.HURT :
+		_hurt_state(delta)
 
 	if Input.is_action_just_pressed("ui_accept") and height <= 0.0:
 		if current_action in [Action.SPIN, Action.HURT] : 
@@ -111,6 +130,11 @@ func _attack_state(delta: float) -> void:
 	velocity = attack_velocity
 	move_and_slide()
 
+func _hurt_state(delta: float) -> void:
+	velocity = knockback_velocity
+	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
+	move_and_slide()
+
 # INPUTS 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -120,13 +144,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		handle_attack_input(Action.HEAVY)
 
 func handle_attack_input(input_type: Action) -> void:
+	if current_action == Action.HURT or is_dead:
+		return
 	if current_action == Action.NONE:
-		buffered_input = input_type # On stocke le type de la toute première attaque
+		buffered_input = input_type 
 		start_attack()
 	else:
 		buffered_input = input_type
 
-#     SYSTEME D'ATTAQUE 
+
 
 func start_attack() -> void:
 	if current_attack == null:
@@ -144,7 +170,6 @@ func start_attack() -> void:
 	attack_velocity = Vector2.ZERO 
 	can_spin = false
 	attack_velocity = velocity
-	#  WINDUP
 
 	await _wait(current_attack.windup_duration)
 	if current_action not in [Action.HEAVY, Action.LIGHT] : return
@@ -156,7 +181,6 @@ func start_attack() -> void:
 	await _run_active_phase(current_attack.active_duration)
 	if current_action not in [Action.HEAVY, Action.LIGHT] : return
 	
-	# RECOVERY
 	
 	await _run_recovery(current_attack.recovery_frame)
 	if current_action not in [Action.HEAVY, Action.LIGHT] : return
@@ -224,7 +248,7 @@ func finish_attack() -> void:
 			start_attack()
 			return
 			
-	# Reset total si le combo est fini
+
 	current_action = Action.NONE
 	current_attack = null
 	attack_velocity = Vector2.ZERO
@@ -250,11 +274,56 @@ func _apply_attack_effects() -> void:
 		dive_s = 3.0
 
 
-func take_damage(amount : int ) :
-	pass
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("hitbox") and area.has_method("get_damage"):
+		apply_damage(area.get_damage(), area.get_parent())
 
-func die():
-	pass
+
+func apply_damage(amount: int, source: Node = null) -> void:
+	if is_invincible or is_dead:
+		return
+
+	health -= amount
+
+	for h in [slash_simple_h, thrust_h, big_slash_h, luncher_h]:
+		h.disable_hitbox()
+	current_attack = null
+	buffered_input = Action.NONE
+
+	if source:
+		var dir = (global_position - source.global_position).normalized()
+		knockback_velocity = dir * 300.0
+
+	hit_flash()
+	start_iframes()
+
+	if health <= 0:
+		die()
+	else:
+		current_action = Action.HURT
+
+
+func start_iframes() -> void:
+	is_invincible = true
+	await get_tree().create_timer(iframe_duration).timeout
+	is_invincible = false
+	if current_action == Action.HURT:
+		current_action = Action.NONE
+
+
+func hit_flash() -> void:
+	sprite.modulate = Color(1, 0.3, 0.3)
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate = Color(1, 1, 1)
+
+
+func die() -> void:
+	is_dead = true
+	current_action = Action.HURT
+	velocity = Vector2.ZERO
+	on_death.emit()
+	# logique de mort à compléter : anim, game over, respawn...
+
 
 func jump():
 	pass

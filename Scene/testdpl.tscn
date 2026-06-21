@@ -9,6 +9,7 @@
 [node name="Player" parent="." unique_id=500224478 instance=ExtResource("1_vxfbs")]
 position = Vector2(135, 182)
 first_heavy_attack = null
+dive_attack = null
 
 [node name="Dasher_AI" parent="." unique_id=1315360929 instance=ExtResource("3_umnua")]
 position = Vector2(378, 524)
