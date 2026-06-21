@@ -25,20 +25,9 @@ func attack():
 	else:
 		await get_tree().create_timer(0.5).timeout
 
-<<<<<<< HEAD
 	for body in get_tree().get_nodes_in_group("player"):
 		if global_position.distance_to(body.global_position) <= explosion_radius:
 			if body.has_method("apply_damage"):
 				body.apply_damage(explosion_damage, self)
-=======
-	#$AnimationPlayer.play("explode_charge") 
-	#await $AnimationPlayer.animation_finished
-
-	var bodies = get_tree().get_nodes_in_group("player")
-	for body in bodies:
-		if global_position.distance_to(body.global_position) <= explosion_radius:
-			body = body as Player
-			body.apply_damage(explosion_damage, self)
->>>>>>> 1ad3d0f1dd9ae8e5f9efb5e06cdcf43d7999ce27
 
 	die()
