@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	if is_projectile:
 		handle_projectile_physics(delta)
 
-# 1. ACCUMULATION DE ROTATION
+
 func add_charge(amount: float):
 	if is_spinnable or is_being_spun or is_projectile:
 		return

@@ -10,7 +10,6 @@ animation_name = &"Slash2"
 next_light_attack = ExtResource("1_rir52")
 next_heavy_attack = ExtResource("1_oshvn")
 lunge_speed = 500.0
-windup_duration = 0.1
 active_duration = 0.2
 recovery_frame = 0.1
 metadata/_custom_type_script = "uid://xoreh2dqf6ec"
