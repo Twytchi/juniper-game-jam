@@ -5,11 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://swobx6frxop5" path="res://icon.svg" id="2_xa75v"]
 [ext_resource type="Resource" uid="uid://cesdse1q8k8b2" path="res://Ressources/player Attack/Big_slash.tres" id="3_ij4jb"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="4_58ae2"]
-[ext_resource type="Resource" uid="uid://b7gtwcjadua20" path="res://Ressources/player Attack/Ground_dive.tres" id="4_c68nv"]
+[ext_resource type="Resource" path="res://Ressources/player Attack/Ground_dive.tres" id="4_c68nv"]
 [ext_resource type="Texture2D" uid="uid://bjpp228pgg2vh" path="res://Asset/player asset/idle.png" id="5_ij4jb"]
-[ext_resource type="Script" uid="uid://buhtjxd0xcjed" path="res://Script/hitbox_j.gd" id="5_ivevv"]
+[ext_resource type="Script" path="res://Script/hitbox_j.gd" id="5_ivevv"]
 [ext_resource type="Texture2D" uid="uid://dkekcg1r2ywks" path="res://Asset/player asset/c.png" id="6_2dof7"]
-[ext_resource type="Script" uid="uid://cbke8txvrjdgm" path="res://Scene/Missile_box.gd" id="6_r6jsd"]
+[ext_resource type="Script" path="res://Scene/Missile_box.gd" id="6_r6jsd"]
 [ext_resource type="Texture2D" uid="uid://yr6uds4wtbbg" path="res://Asset/player asset/b.png" id="7_4ao7i"]
 [ext_resource type="Texture2D" uid="uid://dip4v22dcp45y" path="res://Asset/player asset/a.png" id="8_1sypm"]
 
@@ -79,7 +79,6 @@ frame_progress = 0.6578219
 [node name="Luncher" type="Area2D" parent="visual" unique_id=1107107364]
 scale = Vector2(2, 2)
 script = ExtResource("5_ivevv")
-metadata/_custom_type_script = "uid://buhtjxd0xcjed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="visual/Luncher" unique_id=1964061723]
 position = Vector2(2, -63)
@@ -92,7 +91,6 @@ polygon = PackedVector2Array(-47, -31, 36, -31, -4, -99)
 
 [node name="Dive" type="Area2D" parent="visual" unique_id=205158859]
 script = ExtResource("5_ivevv")
-metadata/_custom_type_script = "uid://buhtjxd0xcjed"
 
 [node name="Node2D" type="Node2D" parent="." unique_id=150105998]
 
@@ -106,7 +104,6 @@ texture = ExtResource("4_58ae2")
 
 [node name="Thrust" type="Area2D" parent="hitbox" unique_id=2113940022]
 script = ExtResource("5_ivevv")
-metadata/_custom_type_script = "uid://buhtjxd0xcjed"
 
 [node name="Sprite2D" type="Sprite2D" parent="hitbox/Thrust" unique_id=818894718]
 visible = false
@@ -137,7 +134,6 @@ disabled = true
 [node name="Missile_attack" type="Area2D" parent="hitbox" unique_id=437431345 node_paths=PackedStringArray("player")]
 script = ExtResource("6_r6jsd")
 player = NodePath("../..")
-metadata/_custom_type_script = "uid://buhtjxd0xcjed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/Missile_attack" unique_id=1003606093]
 position = Vector2(4, -1)
@@ -146,7 +142,6 @@ disabled = true
 
 [node name="BigSlash" type="Area2D" parent="hitbox" unique_id=1382817354]
 script = ExtResource("5_ivevv")
-metadata/_custom_type_script = "uid://buhtjxd0xcjed"
 
 [node name="Sprite2D" type="Sprite2D" parent="hitbox/BigSlash" unique_id=186613384]
 visible = false

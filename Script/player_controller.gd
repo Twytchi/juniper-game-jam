@@ -34,6 +34,11 @@ var vertical_velocity = 0.0
 var current_attack: AttackData
 var attack_velocity := Vector2.ZERO 
 
+# mouse button to attack
+var click_attack := false
+var charge_attack :=  false
+var charge_attack_time : float = 0.5
+var charge_attack_hold : float = 0.0
 
 # Hitbox 
 @onready var slash_simple_h : PlayerHitbox = $hitbox/Slash_simple
@@ -118,6 +123,13 @@ func _physics_process(delta: float) -> void:
 			current_action = Action.NONE
 			velocity = Vector2.ZERO
 
+	if click_attack:
+		if click_attack: 
+			charge_attack_hold += delta
+		if charge_attack_hold >= charge_attack_time and not charge_attack:
+			charge_attack = true
+			#charge up function for glow
+
 	if height > 0 :
 		is_invincible = true
 	else :
@@ -150,7 +162,21 @@ func _hurt_state(delta: float) -> void:
 # INPUTS 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("light"): 
+	if event.is_action_pressed("attack"):
+		click_attack = true
+		charge_attack =  true
+		charge_attack_hold = 0.0
+	elif event.is_action_released("attack"):
+		if charge_attack:
+			if charge_attack_hold >= charge_attack_time:
+				handle_attack_input(Action.HEAVY)
+			else:
+				handle_attack_input(Action.LIGHT)
+		click_attack = false
+		charge_attack =  false
+		charge_attack_hold = 0.0
+		
+	elif event.is_action_pressed("light"): 
 		handle_attack_input(Action.LIGHT)
 	elif event.is_action_pressed("heavy"):
 		handle_attack_input(Action.HEAVY)
