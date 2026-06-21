@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bolhoyrdxot04" path="res://Scene/kamikaze_ai.gd" id="1_6buke"]
 [ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="2_6buke"]
+[ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="3_hompp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ffob"]
 size = Vector2(124, 116)
@@ -80,7 +81,9 @@ texture = ExtResource("2_6buke")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1126545201]
 shape = SubResource("RectangleShape2D_5ffob")
 
-[node name="Hurtbox" type="Area2D" parent="." unique_id=200639610]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=315094086]
+script = ExtResource("3_hompp")
+metadata/_custom_type_script = "uid://d3kcc8f64jxxd"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=901823645]
 shape = SubResource("RectangleShape2D_6buke")
