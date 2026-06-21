@@ -14,6 +14,7 @@ script = ExtResource("1_m8431")
 [node name="SpinComponent" type="Node2D" parent="." unique_id=1916445038 node_paths=PackedStringArray("body_sprite")]
 scale = Vector2(0.725, 0.725)
 script = ExtResource("1_ecebc")
+body = NodePath("..")
 body_sprite = NodePath("../punching bag")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=475305993]

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://oub2iknj45xr" path="res://Scene/dasher_ai.gd" id="1_ppukq"]
 [ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="2_ppukq"]
+[ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="3_en4pq"]
+[ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="3_rpor8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fq4oq"]
 size = Vector2(127, 126)
@@ -20,7 +22,16 @@ texture = ExtResource("2_ppukq")
 position = Vector2(-1.5, 0)
 shape = SubResource("RectangleShape2D_fq4oq")
 
-[node name="Hurtbox" type="Area2D" parent="." unique_id=46061126]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=398499760]
+script = ExtResource("3_rpor8")
+metadata/_custom_type_script = "uid://d3kcc8f64jxxd"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=120205585]
 shape = SubResource("RectangleShape2D_ppukq")
+
+[node name="SpinComponent" type="Node2D" parent="." unique_id=1081031418 node_paths=PackedStringArray("body", "body_sprite")]
+script = ExtResource("3_en4pq")
+body = NodePath("..")
+is_spinnable = true
+body_sprite = NodePath("../Sprite2D")
+metadata/_custom_type_script = "uid://da52ihtpjml2f"
