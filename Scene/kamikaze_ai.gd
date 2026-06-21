@@ -20,7 +20,7 @@ func attack():
 	velocity = Vector2.ZERO
 
 	if has_node("AnimationPlayer"):
-		$AnimationPlayer.play("explode_charge")
+		$AnimationPlayer.play("explode")
 		await $AnimationPlayer.animation_finished
 	else:
 		await get_tree().create_timer(0.5).timeout

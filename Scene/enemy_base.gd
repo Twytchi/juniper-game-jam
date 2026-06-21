@@ -2,19 +2,20 @@ extends CharacterBody2D
 class_name EnemyBase
 
 @onready var player = get_tree().get_first_node_in_group("player")
-@onready var hurtbox: Hurtbox = $Hurtbox
-@onready var spin_component: SpinComponent = $SpinComponent
+@onready var hurtbox: Area2D = $Hurtbox
 
-var detection_range = 250.0
-var speed = 80
+@export var detection_range: float = 250.0
+@export var speed: float = 80.0
+@export var max_health: int = 30
 
-var max_health = 30
-var current_health = max_health
-var is_invincible = false
-var iframe_duration = 0.3
+var current_health: int
 
-var knockback_velocity = Vector2.ZERO
-var knockback_friction = 800.0
+var is_invincible := false
+var iframe_duration := 0.3
+var is_dead := false
+
+var knockback_velocity := Vector2.ZERO
+var knockback_friction := 800.0
 
 signal on_death
 
@@ -31,9 +32,9 @@ var state = State.IDLE
 
 
 func _ready():
+	current_health = max_health
 	if hurtbox:
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
-
 
 
 func _physics_process(delta):
@@ -73,7 +74,6 @@ func chase_player():
 	velocity = direction * speed
 
 
-
 func attack():
 	pass
 
@@ -81,24 +81,21 @@ func recover():
 	pass
 
 
-# --- Réception des coups ---
 func _on_hurtbox_area_entered(area):
-	if area is PlayerHitbox:
-		area = area as PlayerHitbox
-		apply_damage(area.get_damage(), area)
+	if area.is_in_group("hitbox") and area.has_method("get_damage"):
+		apply_damage(area.get_damage(), area.get_parent())
 
 
-func apply_damage(attack : AttackData, source: Node2D = null):
+func apply_damage(amount: int, source: Node = null):
 	if is_invincible or state == State.DEAD:
 		return
-	if not attack :
-		return
-	current_health -= attack.damage
-	spin_component.add_charge(attack.spin_power)
+
+	current_health -= amount
+
 	if source:
 		var direction = (global_position - source.global_position).normalized()
-		knockback_velocity = direction * attack.knockback
-	
+		knockback_velocity = direction * 250.0
+
 	hit_flash()
 	start_iframes()
 
@@ -122,7 +119,6 @@ func hit_flash():
 		sprite.modulate = Color(1, 0.3, 0.3)
 		await get_tree().create_timer(0.1).timeout
 		sprite.modulate = Color(1, 1, 1)
-
 
 
 func die():

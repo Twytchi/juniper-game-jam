@@ -14,6 +14,8 @@ size = Vector2(130, 126)
 [node name="Dasher_AI" type="CharacterBody2D" unique_id=1315360929]
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_ppukq")
+detection_range = 500.0
+speed = 120.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2028319693]
 texture = ExtResource("2_ppukq")
