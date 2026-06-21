@@ -1,56 +1,33 @@
-extends CharacterBody2D
+extends "res://Scene/enemy_base.gd"
 
-@onready var player = get_tree().get_first_node_in_group("player")
-
-var speed = 350
-var explode_range = 30.0
+var attack_range = 30.0
 var explosion_damage = 20
 var explosion_radius = 60.0
-
-enum State {
-	CHASE,
-	EXPLODE,
-	DEAD
-}
-
-var state = State.CHASE
-var is_exploding = false
-
-func _physics_process(_delta):
-	match state:
-		State.CHASE:
-			chase_player()
-		State.EXPLODE:
-			velocity = Vector2.ZERO
-		State.DEAD:
-			velocity = Vector2.ZERO
-
-	move_and_slide()
+var is_attacking = false
 
 
 func chase_player():
-	var distance = global_position.distance_to(player.global_position)
+	super.chase_player()
+	if global_position.distance_to(player.global_position) <= attack_range:
+		state = State.ATTACK
 
-	if distance <= explode_range:
-		state = State.EXPLODE
-		explode()
+
+func attack():
+	if is_attacking:
 		return
+	is_attacking = true
 
-	var direction = (player.global_position - global_position).normalized()
-	velocity = direction * speed
+	velocity = Vector2.ZERO
 
-func explode():
-	if is_exploding:
-		return
-	is_exploding = true
+	if has_node("AnimationPlayer"):
+		$AnimationPlayer.play("explode_charge")
+		await $AnimationPlayer.animation_finished
+	else:
+		await get_tree().create_timer(0.5).timeout
 
-	$AnimationPlayer.play("explode_charge") 
-	await $AnimationPlayer.animation_finished
-
-	var bodies = get_tree().get_nodes_in_group("player")
-	for body in bodies:
+	for body in get_tree().get_nodes_in_group("player"):
 		if global_position.distance_to(body.global_position) <= explosion_radius:
-			body.take_damage(explosion_damage)
+			if body.has_method("apply_damage"):
+				body.apply_damage(explosion_damage, self)
 
-	state = State.DEAD
-	queue_free()
+	die()

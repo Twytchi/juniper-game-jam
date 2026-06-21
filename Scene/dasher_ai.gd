@@ -1,58 +1,41 @@
-extends CharacterBody2D
+extends "res://Scene/enemy_base.gd"
 
-@onready var player = get_tree().get_first_node_in_group("player")
-
-var chase_speed = 120
-var dash_speed = 400
+var dash_speed = 400.0
 var dash_range = 150.0
 var dash_duration = 0.2
-var cooldown_duration = 1.0
+var recover_duration = 1.0
 
-enum State {
-	CHASE,
-	DASH,
-	COOLDOWN,
-	DEAD
-}
-
-var state = State.CHASE
-
-
-func _physics_process(_delta):
-	match state:
-		State.CHASE:
-			chase_player()
-		State.DASH:
-			pass  # vitesse déjà fixée dans start_dash()
-		State.COOLDOWN:
-			velocity = Vector2.ZERO
-		State.DEAD:
-			velocity = Vector2.ZERO
-
-	move_and_slide()
+var is_dashing = false
+var is_recovering = false
 
 
 func chase_player():
-	var distance = global_position.distance_to(player.global_position)
+	super.chase_player()
+	if global_position.distance_to(player.global_position) <= dash_range:
+		state = State.ATTACK
 
-	if distance <= dash_range:
-		start_dash()
+
+func attack():
+	if is_dashing:
 		return
+	is_dashing = true
 
-	var direction = (player.global_position - global_position).normalized()
-	velocity = direction * chase_speed
-
-
-func start_dash():
-	state = State.DASH
 	var dash_direction = (player.global_position - global_position).normalized()
 	velocity = dash_direction * dash_speed
 
 	await get_tree().create_timer(dash_duration).timeout
-	start_cooldown()
+
+	is_dashing = false
+	state = State.RECOVER
 
 
-func start_cooldown():
-	state = State.COOLDOWN
-	await get_tree().create_timer(cooldown_duration).timeout
+func recover():
+	velocity = Vector2.ZERO
+	if is_recovering:
+		return
+	is_recovering = true
+
+	await get_tree().create_timer(recover_duration).timeout
+
+	is_recovering = false
 	state = State.CHASE
