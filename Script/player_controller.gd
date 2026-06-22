@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 # Statistiques
-@export var speed: float = 300.0
+@export var speed: float = 400.0
 @export var acceleration: float = 15.0
 @export var attack_friction: float = 4.0 
 @export var health: float
@@ -67,6 +67,10 @@ signal on_death
 func _ready() -> void:
 	if hurtbox:
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+	for  h in   $hitbox.get_children() :
+		if h is PlayerHitbox :
+			h.player_ref = self
+	
 
 
 func _process(_delta: float) -> void:
@@ -123,12 +127,6 @@ func _physics_process(delta: float) -> void:
 			current_action = Action.NONE
 			velocity = Vector2.ZERO
 
-	if click_attack:
-		if click_attack: 
-			charge_attack_hold += delta
-		if charge_attack_hold >= charge_attack_time and not charge_attack:
-			charge_attack = true
-			#charge up function for glow
 
 	if height > 0 :
 		is_invincible = true
@@ -162,21 +160,8 @@ func _hurt_state(delta: float) -> void:
 # INPUTS 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack"):
-		click_attack = true
-		charge_attack =  true
-		charge_attack_hold = 0.0
-	elif event.is_action_released("attack"):
-		if charge_attack:
-			if charge_attack_hold >= charge_attack_time:
-				handle_attack_input(Action.HEAVY)
-			else:
-				handle_attack_input(Action.LIGHT)
-		click_attack = false
-		charge_attack =  false
-		charge_attack_hold = 0.0
-		
-	elif event.is_action_pressed("light"): 
+
+	if event.is_action_pressed("light"): 
 		handle_attack_input(Action.LIGHT)
 	elif event.is_action_pressed("heavy"):
 		handle_attack_input(Action.HEAVY)
@@ -309,7 +294,7 @@ func _apply_attack_effects() -> void:
 		vertical_velocity = JUMP_FORCE
 		luncher_h.enable_hitbox()
 	elif  current_attack.animation_name in [&"Dive"] : 
-		dive_s = 3.0
+		dive_s = 5.0
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:

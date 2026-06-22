@@ -1,4 +1,4 @@
-extends "res://Scene/enemy_base.gd"
+extends EnemyBase
 
 var dash_speed = 400.0
 var dash_range = 150.0
@@ -7,6 +7,9 @@ var recover_duration = 1.0
 
 var is_dashing = false
 var is_recovering = false
+
+func _ready():
+	super._ready()
 
 
 func chase_player():

@@ -8,10 +8,11 @@ class_name EnemyBase
 @export var speed: float = 80.0
 @export var max_health: int = 30
 
-var current_health: int
+var current_health: float
 
 var is_invincible := false
-var iframe_duration := 0.3
+var iframe_duration := 0.0
+
 var is_dead := false
 
 var knockback_velocity := Vector2.ZERO
@@ -35,6 +36,7 @@ func _ready():
 	current_health = max_health
 	if hurtbox:
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+		print(12)
 
 
 func _physics_process(delta):
@@ -82,19 +84,22 @@ func recover():
 
 
 func _on_hurtbox_area_entered(area):
-	if area.is_in_group("hitbox") and area.has_method("get_damage"):
-		apply_damage(area.get_damage(), area.get_parent())
+	if area is PlayerHitbox :
+		area = area as PlayerHitbox
+		apply_damage(area.get_damage(), area)
 
 
-func apply_damage(amount: int, source: Node = null):
+func apply_damage(attaq: AttackData, source: Node2D  = null):
 	if is_invincible or state == State.DEAD:
 		return
-
-	current_health -= amount
+	if not attaq : return
+	current_health -= attaq.damage
 
 	if source:
 		var direction = (global_position - source.global_position).normalized()
-		knockback_velocity = direction * 250.0
+
+		knockback_velocity = direction * attaq.knockback
+
 
 	hit_flash()
 	start_iframes()

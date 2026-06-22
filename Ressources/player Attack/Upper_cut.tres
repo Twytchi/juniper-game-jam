@@ -6,7 +6,7 @@
 script = ExtResource("1_hha4a")
 animation_name = &"Luncher"
 lunge_speed = 700.0
-windup_duration = 0.15
+windup_duration = 0.19
 active_duration = 0.27
 recovery_frame = 0.1
 metadata/_custom_type_script = "uid://xoreh2dqf6ec"

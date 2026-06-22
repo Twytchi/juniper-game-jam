@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://j8q1rul27t35"]
 
 [ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="1_vxfbs"]
-[ext_resource type="PackedScene" path="res://Scene/dasher_ai.tscn" id="3_umnua"]
-[ext_resource type="PackedScene" path="res://Scene/kamikaze_ai.tscn" id="4_fnsd3"]
+[ext_resource type="PackedScene" uid="uid://0gsss83wv40" path="res://Scene/dasher_ai.tscn" id="3_umnua"]
+[ext_resource type="PackedScene" uid="uid://dljwoierldrq4" path="res://Scene/kamikaze_ai.tscn" id="4_fnsd3"]
 
 [node name="test" type="Node2D" unique_id=1915128990]
 y_sort_enabled = true
