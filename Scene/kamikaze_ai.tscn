@@ -72,7 +72,7 @@ _data = {
 &"explode": SubResource("Animation_6buke")
 }
 
-[node name="Kamikaze_AI" type="CharacterBody2D" unique_id=687512682]
+[node name="Kamikaze_AI" type="CharacterBody2D" unique_id=687512682 groups=["enemy"]]
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_6buke")
 detection_range = 800.0

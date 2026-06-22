@@ -11,13 +11,12 @@ size = Vector2(130, 130)
 script = ExtResource("1_kpj7w")
 too_close_range = 300.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1701131854]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1701131854 groups=["enemy"]]
+modulate = Color(0.5064397, 0.5106438, 0.28104842, 1)
 texture = ExtResource("2_o3502")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2105550090]
 shape = SubResource("RectangleShape2D_c2eol")
 
-[node name="SpinComponent" type="Node2D" parent="." unique_id=1993598240 node_paths=PackedStringArray("body", "body_sprite")]
+[node name="SpinComponent" type="Node2D" parent="." unique_id=1993598240]
 script = ExtResource("3_k3ycf")
-body = NodePath("")
-body_sprite = NodePath("")

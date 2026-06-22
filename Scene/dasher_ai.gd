@@ -1,19 +1,18 @@
-extends EnemyBase
+extends "res://Scene/enemy_base.gd"
 
-var dash_speed = 600.0
-var dash_range = 150.0
-var dash_duration = 0.2
-var recover_duration = 0.5
+@export var dash_speed: float = 400.0
+@export var dash_range: float = 150.0
+@export var dash_duration: float = 0.2
+@export var recover_duration: float = 1.0
 
-var is_dashing = false
-var is_recovering = false
-
-func _ready():
-	super._ready()
+var is_dashing := false
+var is_recovering := false
 
 
 func chase_player():
 	super.chase_player()
+	if player == null:
+		return
 	if global_position.distance_to(player.global_position) <= dash_range:
 		state = State.ATTACK
 
@@ -21,8 +20,6 @@ func chase_player():
 func attack():
 	if is_dashing:
 		return
-	velocity = Vector2.ZERO
-	await get_tree().create_timer(0.7).timeout
 	is_dashing = true
 
 	var dash_direction = (player.global_position - global_position).normalized()
@@ -44,7 +41,3 @@ func recover():
 
 	is_recovering = false
 	state = State.CHASE
-
-
-func play_before_atk():
-	pass

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cao8c5f2qpamk"]
+
+[ext_resource type="Script" uid="uid://c77gy871sixvk" path="res://Scene/healer_ai.gd" id="1_n44nn"]
+[ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="1_qphj2"]
+[ext_resource type="Script" path="res://Script/hurtbox.gd" id="2_n44nn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eax3t"]
+size = Vector2(130, 130)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qphj2"]
+size = Vector2(138, 140)
+
+[node name="Healer_ai" type="CharacterBody2D" unique_id=291605962 groups=["enemy"]]
+script = ExtResource("1_n44nn")
+heal_range = null
+heal_amount = null
+heal_countdwon = null
+flee_range = null
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1749174964]
+texture = ExtResource("1_qphj2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1301997282]
+shape = SubResource("RectangleShape2D_eax3t")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=616115879]
+script = ExtResource("2_n44nn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=642821767]
+shape = SubResource("RectangleShape2D_qphj2")

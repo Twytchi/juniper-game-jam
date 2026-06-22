@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://wdhlmtnjwqaq"]
+
+[ext_resource type="Script" uid="uid://bv0tplwii1g6c" path="res://Scene/berserker_ai.gd" id="1_ojwy5"]
+[ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="1_ts1hq"]
+[ext_resource type="Script" path="res://Script/hurtbox.gd" id="2_ojwy5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3jxb"]
+size = Vector2(132, 131)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3etd"]
+size = Vector2(148, 144)
+
+[node name="berserker_ai" type="CharacterBody2D" unique_id=633360464]
+script = ExtResource("1_ojwy5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1303960414]
+modulate = Color(0.68065387, 0.033119217, 0, 1)
+texture = ExtResource("1_ts1hq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1684642529]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_g3jxb")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=730494195]
+script = ExtResource("2_ojwy5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=810187001]
+shape = SubResource("RectangleShape2D_b3etd")
