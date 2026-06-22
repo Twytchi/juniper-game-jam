@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_hha4a")
 animation_name = &"Luncher"
+damage = 1.0
+knockback = 400.0
 lunge_speed = 700.0
 windup_duration = 0.19
 active_duration = 0.27

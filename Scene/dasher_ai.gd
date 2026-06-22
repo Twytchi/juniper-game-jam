@@ -1,9 +1,9 @@
 extends EnemyBase
 
-var dash_speed = 400.0
+var dash_speed = 600.0
 var dash_range = 150.0
 var dash_duration = 0.2
-var recover_duration = 1.0
+var recover_duration = 0.5
 
 var is_dashing = false
 var is_recovering = false
@@ -21,6 +21,8 @@ func chase_player():
 func attack():
 	if is_dashing:
 		return
+	velocity = Vector2.ZERO
+	await get_tree().create_timer(0.7).timeout
 	is_dashing = true
 
 	var dash_direction = (player.global_position - global_position).normalized()
@@ -42,3 +44,7 @@ func recover():
 
 	is_recovering = false
 	state = State.CHASE
+
+
+func play_before_atk():
+	pass

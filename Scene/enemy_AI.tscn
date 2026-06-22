@@ -15,7 +15,7 @@ script = ExtResource("1_m8431")
 [node name="SpinComponent" type="Node2D" parent="." unique_id=1916445038 node_paths=PackedStringArray("body_sprite")]
 scale = Vector2(0.725, 0.725)
 script = ExtResource("1_ecebc")
-body_sprite = NodePath("../punching bag")
+body_sprite = NodePath("../Sprite2D")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=475305993]
 scale = Vector2(0.725, 0.725)
@@ -24,7 +24,7 @@ script = ExtResource("2_m8431")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1188477876]
 shape = SubResource("RectangleShape2D_0ljux")
 
-[node name="punching bag" type="Sprite2D" parent="." unique_id=1352605392]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1352605392]
 scale = Vector2(0.628711, 0.53808594)
 texture = ExtResource("3_04kin")
 

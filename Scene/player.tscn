@@ -41,9 +41,6 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ij4jb"]
-size = Vector2(123, 85.5)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6qlh"]
 size = Vector2(47, 15)
 
@@ -55,6 +52,9 @@ radius = 95.047356
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2sw5t"]
 size = Vector2(105, 206)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ij4jb"]
+size = Vector2(183, 149)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivevv"]
 size = Vector2(60, 60)
@@ -75,19 +75,6 @@ scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_c68nv")
 animation = &"run"
 frame_progress = 0.6578219
-
-[node name="Luncher" type="Area2D" parent="visual" unique_id=1107107364]
-scale = Vector2(2, 2)
-script = ExtResource("5_ivevv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="visual/Luncher" unique_id=1964061723]
-position = Vector2(2, -63)
-shape = SubResource("RectangleShape2D_ij4jb")
-
-[node name="Sprite2D" type="Polygon2D" parent="visual/Luncher" unique_id=125888151]
-visible = false
-position = Vector2(7, 6)
-polygon = PackedVector2Array(-47, -31, 36, -31, -4, -99)
 
 [node name="Dive" type="Area2D" parent="visual" unique_id=205158859]
 script = ExtResource("5_ivevv")
@@ -154,6 +141,21 @@ texture = ExtResource("2_xa75v")
 position = Vector2(70.5, -5)
 shape = SubResource("RectangleShape2D_2sw5t")
 disabled = true
+
+[node name="Luncher" type="Area2D" parent="hitbox" unique_id=1107107364]
+position = Vector2(3.9999995, 38)
+scale = Vector2(0.99999994, 0.99999994)
+script = ExtResource("5_ivevv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/Luncher" unique_id=1964061723]
+position = Vector2(-9.499995, -70.499985)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_ij4jb")
+disabled = true
+
+[node name="Sprite2D" type="Polygon2D" parent="hitbox/Luncher" unique_id=125888151]
+position = Vector2(10.000001, -67)
+polygon = PackedVector2Array(-47, -31, 36, -31, -4, -99)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=365668905]
 

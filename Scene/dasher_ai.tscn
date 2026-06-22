@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="2_ppukq"]
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="3_en4pq"]
 [ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="3_rpor8"]
+[ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="5_gke3p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fq4oq"]
 size = Vector2(60, 60.000004)
@@ -15,7 +16,7 @@ size = Vector2(80, 80)
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_ppukq")
 detection_range = 500.0
-speed = 120.0
+speed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2028319693]
 scale = Vector2(0.5, 0.5)
@@ -37,5 +38,12 @@ shape = SubResource("RectangleShape2D_ppukq")
 [node name="SpinComponent" type="Node2D" parent="." unique_id=1081031418 node_paths=PackedStringArray("body", "body_sprite")]
 script = ExtResource("3_en4pq")
 body = NodePath("..")
-is_spinnable = true
 body_sprite = NodePath("../Sprite2D")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1605523109]
+
+[node name="Shadow" type="Sprite2D" parent="Node2D" unique_id=184581306]
+z_index = -1
+position = Vector2(-1, 16)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("5_gke3p")

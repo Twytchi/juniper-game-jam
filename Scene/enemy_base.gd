@@ -3,6 +3,8 @@ class_name EnemyBase
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var hurtbox: Area2D = $Hurtbox
+@onready var spin_component: SpinComponent = $SpinComponent
+@onready var sprite : Node2D=  $Sprite2D
 
 @export var detection_range: float = 250.0
 @export var speed: float = 80.0
@@ -10,13 +12,19 @@ class_name EnemyBase
 
 var current_health: float
 
+
+var height := 100.0
+
 var is_invincible := false
 var iframe_duration := 0.0
 
 var is_dead := false
+@onready var shadow: Node2D = $Node2D
 
 var knockback_velocity := Vector2.ZERO
 var knockback_friction := 800.0
+const GRAVITY := 900
+var vertical_velocity := 0.0
 
 signal on_death
 
@@ -36,8 +44,11 @@ func _ready():
 	current_health = max_health
 	if hurtbox:
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
-		print(12)
 
+func _process(delta: float) -> void:
+	sprite.position.y = -height
+	var shadow_scale = clamp(1.0 - (height / 200.0), 0.5, 1.0)
+	if shadow : shadow.scale = Vector2(shadow_scale, shadow_scale)
 
 func _physics_process(delta):
 	if knockback_velocity.length() > 1.0:
@@ -57,7 +68,17 @@ func _physics_process(delta):
 				pass
 			State.DEAD:
 				velocity = Vector2.ZERO
-
+	
+	vertical_velocity -= GRAVITY * delta * (1.0 if (vertical_velocity > 0  )else 1.6)
+	height += vertical_velocity * delta
+	
+	if height > 0 :
+		state = State.HIT
+	
+	if height <= 0.0:
+		height = 0.0
+		if state == State.HIT :
+			state = State.IDLE
 	move_and_slide()
 
 
@@ -99,8 +120,10 @@ func apply_damage(attaq: AttackData, source: Node2D  = null):
 		var direction = (global_position - source.global_position).normalized()
 
 		knockback_velocity = direction * attaq.knockback
-
-
+	if attaq.animation_name == &"Luncher":
+		vertical_velocity = 500
+		print("a")
+	#vertical_velocity = 500
 	hit_flash()
 	start_iframes()
 

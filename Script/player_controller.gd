@@ -44,7 +44,7 @@ var charge_attack_hold : float = 0.0
 @onready var slash_simple_h : PlayerHitbox = $hitbox/Slash_simple
 @onready var thrust_h : PlayerHitbox = $hitbox/Thrust
 @onready var big_slash_h: PlayerHitbox = $hitbox/BigSlash
-@onready var luncher_h: PlayerHitbox = $visual/Luncher
+@onready var luncher_h: PlayerHitbox = $hitbox/Luncher
 @onready var anim: AnimatedSprite2D = $visual/anim
 
 
