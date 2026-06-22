@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://drslvp5c2bs2d"]
+
+[ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="1_hevao"]
+[ext_resource type="Script" uid="uid://duwxafhw36kw1" path="res://Scene/arrow.gd" id="1_x000j"]
+[ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="2_xjl78"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjl78"]
+size = Vector2(128, 130)
+
+[node name="Arrow" type="Area2D" unique_id=477611300]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_x000j")
+speed = 700.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1655433611]
+z_index = 1
+texture = ExtResource("1_hevao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=531842916]
+shape = SubResource("RectangleShape2D_xjl78")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=646294005]
+position = Vector2(0, 64)
+
+[node name="Shadow" type="Sprite2D" parent="Node2D" unique_id=710927091]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_xjl78")

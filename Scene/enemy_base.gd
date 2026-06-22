@@ -6,14 +6,14 @@ class_name EnemyBase
 @onready var spin_component: SpinComponent = $SpinComponent
 @onready var sprite : Node2D=  $Sprite2D
 
-@export var detection_range: float = 250.0
+@export var detection_range: float = 500.0
 @export var speed: float = 80.0
 @export var max_health: int = 30
 
 var current_health: float
 
 
-var height := 100.0
+var height := 500.0
 
 var is_invincible := false
 var iframe_duration := 0.0
@@ -45,7 +45,7 @@ func _ready():
 	if hurtbox:
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	sprite.position.y = -height
 	var shadow_scale = clamp(1.0 - (height / 200.0), 0.5, 1.0)
 	if shadow : shadow.scale = Vector2(shadow_scale, shadow_scale)

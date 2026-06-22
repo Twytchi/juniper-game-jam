@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b1hl38ggdlrn3"]
+
+[ext_resource type="Script" uid="uid://c0murjk8lns5x" path="res://archer_ai.gd" id="1_kpj7w"]
+[ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="2_o3502"]
+[ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="3_k3ycf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2eol"]
+size = Vector2(130, 130)
+
+[node name="Archer" type="CharacterBody2D" unique_id=931307868]
+script = ExtResource("1_kpj7w")
+too_close_range = 300.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1701131854]
+texture = ExtResource("2_o3502")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2105550090]
+shape = SubResource("RectangleShape2D_c2eol")
+
+[node name="SpinComponent" type="Node2D" parent="." unique_id=1993598240 node_paths=PackedStringArray("body", "body_sprite")]
+script = ExtResource("3_k3ycf")
+body = NodePath("")
+body_sprite = NodePath("")

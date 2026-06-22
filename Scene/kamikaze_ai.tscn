@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bolhoyrdxot04" path="res://Scene/kamikaze_ai.gd" id="1_6buke"]
 [ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="2_6buke"]
-[ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="3_hompp"]
+[ext_resource type="Script" path="res://Script/hurtbox.gd" id="3_hompp"]
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="4_3d7hi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ffob"]
