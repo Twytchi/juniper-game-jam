@@ -7,6 +7,8 @@ extends "res://Scene/enemy_base.gd"
 var can_shoot := true
 
 
+
+
 func chase_player(delta : float):
 	if player == null:
 		return

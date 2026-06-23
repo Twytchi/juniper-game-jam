@@ -5,15 +5,20 @@
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="3_k3ycf"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="4_k3ycf"]
 [ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="5_2hulq"]
+[ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="6_2hulq"]
+[ext_resource type="Resource" uid="uid://bsoabraammveh" path="res://Ressources/player Attack/Missile_atack.tres" id="7_xx3dv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2eol"]
-size = Vector2(64, 64)
+size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xx3dv"]
 size = Vector2(80, 80)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k3ycf"]
 radius = 56.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xx3dv"]
+radius = 72.0
 
 [node name="Archer" type="CharacterBody2D" unique_id=931307868 node_paths=PackedStringArray("separation_area") groups=["enemy"]]
 collision_layer = 2
@@ -23,22 +28,21 @@ too_close_range = 300.0
 separation_area = NodePath("separation area")
 max_health = 60
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1701131854]
+[node name="Sprite2D" type="Node2D" parent="." unique_id=977367492]
+
+[node name="Sprite2" type="Sprite2D" parent="Sprite2D" unique_id=1701131854]
 modulate = Color(0.5064397, 0.5106438, 0.28104842, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_o3502")
 
-[node name="SpinComponent2" type="Node2D" parent="." unique_id=967227080 node_paths=PackedStringArray("body", "body_sprite")]
-script = ExtResource("3_k3ycf")
-body = NodePath("..")
-body_sprite = NodePath("../Sprite2D")
-metadata/_custom_type_script = "uid://da52ihtpjml2f"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2105550090]
 shape = SubResource("RectangleShape2D_c2eol")
 
-[node name="SpinComponent" type="Node2D" parent="." unique_id=1993598240]
+[node name="SpinComponent" type="Node2D" parent="." unique_id=1993598240 node_paths=PackedStringArray("body", "body_sprite", "hitbox")]
 script = ExtResource("3_k3ycf")
+body = NodePath("..")
+body_sprite = NodePath("../Sprite2D/Sprite2")
+hitbox = NodePath("../EnemyHitbox")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1620651008]
 
@@ -62,3 +66,12 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="separation area" unique_id=241628852]
 shape = SubResource("CircleShape2D_k3ycf")
+
+[node name="EnemyHitbox" type="Area2D" parent="." unique_id=2098099674]
+collision_mask = 2
+script = ExtResource("6_2hulq")
+missile_data = ExtResource("7_xx3dv")
+metadata/_custom_type_script = "uid://hdd4d24onbw6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox" unique_id=1350944135]
+shape = SubResource("CircleShape2D_xx3dv")

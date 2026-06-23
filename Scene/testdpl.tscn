@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://j8q1rul27t35"]
 
 [ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="1_vxfbs"]
-[ext_resource type="PackedScene" uid="uid://0gsss83wv40" path="res://Scene/dasher_ai.tscn" id="3_umnua"]
+[ext_resource type="PackedScene" uid="uid://wdhlmtnjwqaq" path="res://Scene/berserker_ai.tscn" id="4_fnsd3"]
 [ext_resource type="Texture2D" uid="uid://d36latabp0xp4" path="res://Asset/player asset/grass_scene.png" id="4_umnua"]
 [ext_resource type="PackedScene" uid="uid://b1hl38ggdlrn3" path="res://Scene/archer_ai.tscn" id="5_fnsd3"]
 
@@ -20,16 +20,6 @@ z_index = -10
 position = Vector2(627, 356)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_umnua")
-
-[node name="Dasher_AI" parent="." unique_id=1315360929 instance=ExtResource("3_umnua")]
-position = Vector2(378, 524)
-
-[node name="Dasher_AI2" parent="." unique_id=236217101 instance=ExtResource("3_umnua")]
-position = Vector2(633, 630)
-
-[node name="Dasher_AI3" parent="." unique_id=722049291 instance=ExtResource("3_umnua")]
-position = Vector2(922, 470)
-scale = Vector2(1.2, 1.2)
 
 [node name="Archer" parent="." unique_id=931307868 instance=ExtResource("5_fnsd3")]
 position = Vector2(1082, 368)
@@ -56,5 +46,9 @@ position = Vector2(1399, 183.00002)
 rotation = -1.5696902
 shape = SubResource("RectangleShape2D_fnsd3")
 
-[node name="Archer2" parent="." unique_id=1151516860 instance=ExtResource("5_fnsd3")]
-position = Vector2(658, 250)
+[node name="Archer2" parent="." unique_id=1908132287 instance=ExtResource("5_fnsd3")]
+position = Vector2(467, 620)
+
+[node name="berserker_ai" parent="." unique_id=633360464 instance=ExtResource("4_fnsd3")]
+position = Vector2(841, 607)
+attack_range = 250.0

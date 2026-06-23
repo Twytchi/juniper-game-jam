@@ -120,6 +120,6 @@ func stop_projectile():
 		body.set_physics_process(true)
 		if body is EnemyBase:
 			body as EnemyBase
-			body.current_health -= 10
+			body.current_health -= 45
 			body.vertical_velocity = 500
 			hitbox.disable_hitbox()

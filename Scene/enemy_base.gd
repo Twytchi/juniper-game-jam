@@ -27,6 +27,7 @@ var knockback_friction := 800.0
 const GRAVITY := 900
 var vertical_velocity := 0.0
 
+signal height_reached_zero
 signal on_death
 
 enum State {
@@ -51,7 +52,10 @@ func _process(_delta: float) -> void:
 	if hurtbox : hurtbox.position.y = -height
 	var shadow_scale = clamp(1.0 - (height / 200.0), 0.5, 1.0)
 	if shadow : shadow.scale = Vector2(shadow_scale, shadow_scale)
-
+	if height > 0 :
+		sprite.rotation += 10 * _delta 
+	else :
+		sprite.rotation = 0 
 func _physics_process(delta):
 	if knockback_velocity.length() > 1.0:
 		velocity = knockback_velocity
@@ -80,6 +84,7 @@ func _physics_process(delta):
 	
 	if height <= 0.0:
 		height = 0.0
+		height_reached_zero.emit()
 		if state == State.HIT :
 			state = State.IDLE
 	move_and_slide()
@@ -129,7 +134,8 @@ func attack():
 	pass
 
 func recover():
-	pass
+	velocity = Vector2.ZERO
+	
 
 
 func _on_hurtbox_area_entered(area):

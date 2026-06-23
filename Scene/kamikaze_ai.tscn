@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="4_3d7hi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ffob"]
-size = Vector2(60, 60.000004)
+size = Vector2(40.000008, 40.000008)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6buke"]
 size = Vector2(80, 80)
@@ -89,8 +89,8 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_6buke")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1126545201]
-position = Vector2(3.576278e-06, 2.3841853e-06)
-scale = Vector2(0.9999998, 0.9999998)
+position = Vector2(2.9802317e-07, 5.9604633e-07)
+scale = Vector2(0.9999997, 0.9999997)
 shape = SubResource("RectangleShape2D_5ffob")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=315094086]
