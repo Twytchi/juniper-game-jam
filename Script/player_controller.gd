@@ -29,7 +29,7 @@ var vertical_velocity = 0.0
 @export var first_attack: AttackData
 @export var first_heavy_attack: AttackData
 @export var dive_attack : AttackData
-
+@export var spin_attack : AttackData
 
 var current_attack: AttackData
 var attack_velocity := Vector2.ZERO 
@@ -47,6 +47,8 @@ var charge_attack_hold : float = 0.0
 @onready var luncher_h: PlayerHitbox = $hitbox/Luncher
 @onready var anim: AnimatedSprite2D = $visual/anim
 @onready var missile_attack: Missile_box = $hitbox/Missile_attack
+@onready var dive: PlayerHitbox = $visual/Dive
+@onready var spin: PlayerHitbox = $visual/Spin
 
 
 
@@ -71,7 +73,8 @@ func _ready() -> void:
 	for  h in   $hitbox.get_children() :
 		if h is PlayerHitbox :
 			h.player_ref = self
-	
+	dive.player_ref = self
+	spin.player_ref = self
 
 
 func _process(_delta: float) -> void:
@@ -93,14 +96,20 @@ func _physics_process(delta: float) -> void:
 	elif current_action == Action.DASH :
 		dash(delta)
 		can_spin = false
+		anim.play("jump")
 		if Input.is_action_just_pressed("heavy"):
 			current_attack = dive_attack
 			current_action = Action.HEAVY
+			start_attack()
+		elif Input.is_action_just_pressed("light"):
+			current_attack = spin_attack
+			current_action = Action.LIGHT
 			start_attack()
 	elif current_action == Action.SPIN :
 		velocity = velocity.lerp(Vector2.ZERO, delta * 5)
 		move_and_slide()
 	elif current_action == Action.HURT :
+		anim.play("hurt")
 		_hurt_state(delta)
 
 	if input_dir.x != 0:
@@ -117,6 +126,7 @@ func _physics_process(delta: float) -> void:
 		vertical_velocity = JUMP_FORCE
 		velocity = direction * speed * 1.5
 		current_attack = null
+		dive_s = 1.0
 
 	vertical_velocity -= GRAVITY * delta * (1.0 if (vertical_velocity > 0  )else 1.6) * dive_s  
 	height += vertical_velocity * delta
@@ -125,8 +135,12 @@ func _physics_process(delta: float) -> void:
 		height = 0.0
 		vertical_velocity = 0.0
 		if current_action == Action.DASH :
-			current_action = Action.NONE
-			velocity = Vector2.ZERO
+			velocity = velocity.lerp(Vector2.ZERO, delta * 20)
+			anim.play("land")
+			await get_tree().create_timer(0.2).timeout
+			if current_action == Action.DASH and height <= 0 :
+				current_action = Action.NONE
+
 
 
 	if height > 0 :
@@ -195,20 +209,27 @@ func start_attack() -> void:
 	attack_velocity = Vector2.ZERO 
 	can_spin = false
 	attack_velocity = velocity
-
+	anim.play(current_attack.animation_name)
+	
 	await _wait(current_attack.windup_duration)
-	if current_action not in [Action.HEAVY, Action.LIGHT] : return
+	if current_action not in [Action.HEAVY, Action.LIGHT] : 
+		current_attack = null
+		return
 	
 	# ACTIVE
 	_apply_attack_effects()
 	# impulsion
 	attack_velocity = direction * current_attack.lunge_speed 
 	await _run_active_phase(current_attack.active_duration)
-	if current_action not in [Action.HEAVY, Action.LIGHT] : return
+	if current_action not in [Action.HEAVY, Action.LIGHT] : 
+		current_attack = null
+		return
 	
 	
 	await _run_recovery(current_attack.recovery_frame)
-	if current_action not in [Action.HEAVY, Action.LIGHT] : return
+	if current_action not in [Action.HEAVY, Action.LIGHT] :
+		current_attack = null
+		return
 	
 	finish_attack()
 
@@ -243,11 +264,16 @@ func _run_recovery(duration: float) -> void:
 	elif current_attack.animation_name in [&"Dive"] :
 		dive_s = 1.0 
 		velocity = Vector2.ZERO
+		dive.disable_hitbox()
+	elif current_attack.animation_name == &"Spin":
+		spin.disable_hitbox()
+		dive_s = 1.0
 	can_spin = true
 	var timer := 0.0
 	while timer < duration:
 		if missile_attack.is_active :
 			return
+		elif not current_attack: return
 		elif buffered_input != Action.NONE:
 			if buffered_input == Action.LIGHT:
 				if current_attack.next_light_attack : return
@@ -269,7 +295,10 @@ func finish_attack() -> void:
 		
 		var next_action = buffered_input 
 		buffered_input = Action.NONE
-		
+		if  current_attack.animation_name in [&"Spin"] :
+			current_attack = null
+			current_action = Action.DASH
+			return
 		if next_attack:
 			current_attack = next_attack
 			current_action = next_action
@@ -300,7 +329,12 @@ func _apply_attack_effects() -> void:
 		luncher_h.rotation = direction.angle()
 		luncher_h.enable_hitbox()
 	elif  current_attack.animation_name in [&"Dive"] : 
+		dive.enable_hitbox()
 		dive_s = 5.0
+	elif  current_attack.animation_name in [&"Spin"] :
+		velocity.y = 0
+		spin.enable_hitbox()
+		dive_s = 0.5
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
@@ -313,7 +347,7 @@ func apply_damage(amount: float, source: Node = null, force : float = 300.0) -> 
 
 	health -= amount
 
-	for h in [slash_simple_h, thrust_h, big_slash_h, luncher_h]:
+	for h in [slash_simple_h, thrust_h, big_slash_h, luncher_h, dive]:
 		h.disable_hitbox()
 	current_attack = null
 	buffered_input = Action.NONE

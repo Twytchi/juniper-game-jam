@@ -16,5 +16,5 @@ knockback = 400.0
 lunge_speed = 500.0
 windup_duration = 0.1
 active_duration = 0.2
-recovery_frame = 0.1
+recovery_frame = 0.15
 metadata/_custom_type_script = "uid://xoreh2dqf6ec"

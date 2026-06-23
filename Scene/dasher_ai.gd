@@ -50,3 +50,8 @@ func recover():
 
 	is_recovering = false
 	state = State.CHASE
+
+
+func start_iframes():
+	hitbox.disable_hitbox()
+	super.start_iframes()

@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="1_vxfbs"]
 [ext_resource type="PackedScene" uid="uid://0gsss83wv40" path="res://Scene/dasher_ai.tscn" id="3_umnua"]
 [ext_resource type="PackedScene" uid="uid://dljwoierldrq4" path="res://Scene/kamikaze_ai.tscn" id="4_fnsd3"]
+[ext_resource type="Texture2D" uid="uid://d36latabp0xp4" path="res://Asset/player asset/grass_scene.png" id="4_umnua"]
 
 [node name="test" type="Node2D" unique_id=1915128990]
 y_sort_enabled = true
@@ -14,5 +15,17 @@ health = 100.0
 [node name="Dasher_AI" parent="." unique_id=1315360929 instance=ExtResource("3_umnua")]
 position = Vector2(378, 524)
 
+[node name="Dasher_AI2" parent="." unique_id=1076034336 instance=ExtResource("3_umnua")]
+position = Vector2(494, 446)
+
+[node name="Dasher_AI3" parent="." unique_id=363730812 instance=ExtResource("3_umnua")]
+position = Vector2(68.00003, 522)
+
 [node name="Kamikaze_AI" parent="." unique_id=687512682 instance=ExtResource("4_fnsd3")]
 position = Vector2(839, 402)
+
+[node name="SansTitre3720260622164008" type="Sprite2D" parent="." unique_id=795973731]
+z_index = -10
+position = Vector2(627, 356)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_umnua")

@@ -21,6 +21,9 @@ func _physics_process(delta: float) -> void:
 			return
 		is_winding_up = true
 		player.current_action = player.Action.SPIN
+		player.current_attack = null
+		for h  in [player.slash_simple_h, player.thrust_h, player.big_slash_h] :
+				h.disable_hitbox()
 		timer_counter = 0.0
 
 	if Input.is_action_just_released("missile"):
@@ -32,9 +35,6 @@ func _physics_process(delta: float) -> void:
 
 func activate_missile():
 	is_active = true
-	player.current_attack = null
-	for h  in [player.slash_simple_h, player.thrust_h, player.big_slash_h] :
-			h.disable_hitbox()
 	enable_hitbox()
 
 func stop_missile():
@@ -53,5 +53,7 @@ func _on_area_entered(area: Area2D) -> void:
 		for s in  e.get_children() :
 			if s is SpinComponent :
 				missile = s
+				if not missile.is_spinnable :
+					return
 				missile.get_grabbed()
 				break

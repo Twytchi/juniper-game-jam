@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AttackData" format=3 uid="uid://btkkk7bwlgtya"]
+
+[ext_resource type="Resource" uid="uid://b7gtwcjadua20" path="res://Ressources/player Attack/Ground_dive.tres" id="1_lexcw"]
+[ext_resource type="Script" uid="uid://xoreh2dqf6ec" path="res://Ressources/AttackData.gd" id="1_oqkdb"]
+
+[resource]
+script = ExtResource("1_oqkdb")
+animation_name = &"Spin"
+next_heavy_attack = ExtResource("1_lexcw")
+damage = 1.0
+knockback = 200.0
+lunge_speed = 900.0
+windup_duration = 0.1
+active_duration = 0.3
+recovery_frame = 0.15
+metadata/_custom_type_script = "uid://xoreh2dqf6ec"

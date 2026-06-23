@@ -47,6 +47,7 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	sprite.position.y = -height
+	hurtbox.position.y = -height
 	var shadow_scale = clamp(1.0 - (height / 200.0), 0.5, 1.0)
 	if shadow : shadow.scale = Vector2(shadow_scale, shadow_scale)
 
@@ -122,8 +123,8 @@ func apply_damage(attaq: AttackData, source: Node2D  = null):
 		knockback_velocity = direction * attaq.knockback
 	if attaq.animation_name == &"Luncher":
 		vertical_velocity = 500
-		print("a")
-	#vertical_velocity = 500
+	if spin_component :
+		spin_component.add_charge(attaq.spin_power)
 	hit_flash()
 	start_iframes()
 
@@ -139,6 +140,7 @@ func start_iframes():
 	is_invincible = false
 	if state == State.HIT:
 		state = State.CHASE
+
 
 
 func hit_flash():

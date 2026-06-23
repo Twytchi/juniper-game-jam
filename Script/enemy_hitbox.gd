@@ -9,12 +9,12 @@ func _ready() -> void:
 
 func enable_hitbox():
 	monitoring = true
-	monitorable = true 
+	set_deferred("monitorable", true)
 
 
 func disable_hitbox():
 	monitoring = false
-	monitorable = false
+	set_deferred("monitorable", false)
 	visible = false 
 
 func point_at(angle : Vector2 ):

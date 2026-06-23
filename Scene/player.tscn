@@ -6,22 +6,141 @@
 [ext_resource type="Resource" uid="uid://cesdse1q8k8b2" path="res://Ressources/player Attack/Big_slash.tres" id="3_ij4jb"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="4_58ae2"]
 [ext_resource type="Resource" uid="uid://b7gtwcjadua20" path="res://Ressources/player Attack/Ground_dive.tres" id="4_c68nv"]
+[ext_resource type="Resource" uid="uid://btkkk7bwlgtya" path="res://Ressources/player Attack/Spin.tres" id="5_2mxbm"]
+[ext_resource type="Texture2D" uid="uid://205ic30gcg3v" path="res://Asset/player asset/slash1w.png" id="5_fn0wv"]
 [ext_resource type="Texture2D" uid="uid://bjpp228pgg2vh" path="res://Asset/player asset/idle.png" id="5_ij4jb"]
 [ext_resource type="Script" uid="uid://buhtjxd0xcjed" path="res://Script/hitbox_j.gd" id="5_ivevv"]
+[ext_resource type="Texture2D" uid="uid://011axkicymxt" path="res://Asset/player asset/dive.png" id="5_uktg4"]
 [ext_resource type="Texture2D" uid="uid://dkekcg1r2ywks" path="res://Asset/player asset/c.png" id="6_2dof7"]
+[ext_resource type="Texture2D" uid="uid://bd6h54c7c6l2" path="res://Asset/player asset/slash3.png" id="6_eqmt2"]
 [ext_resource type="Script" uid="uid://cbke8txvrjdgm" path="res://Scene/Missile_box.gd" id="6_r6jsd"]
 [ext_resource type="Texture2D" uid="uid://yr6uds4wtbbg" path="res://Asset/player asset/b.png" id="7_4ao7i"]
+[ext_resource type="Texture2D" uid="uid://bqocs46crhjrt" path="res://Asset/player asset/uppwideup.png" id="7_7d6xm"]
+[ext_resource type="Texture2D" uid="uid://dd6j22xgeykkf" path="res://Asset/player asset/slash2.png" id="7_eqmt2"]
 [ext_resource type="Texture2D" uid="uid://dip4v22dcp45y" path="res://Asset/player asset/a.png" id="8_1sypm"]
+[ext_resource type="Texture2D" uid="uid://dkrft6uf3jgxh" path="res://Asset/player asset/up.png" id="8_2sr8w"]
+[ext_resource type="Texture2D" uid="uid://nyxo0ck8sjn7" path="res://Asset/player asset/thustwideup.png" id="8_lgjog"]
+[ext_resource type="Texture2D" uid="uid://d07lhd5f2504v" path="res://Asset/player asset/thrust.png" id="9_lhccw"]
+[ext_resource type="Texture2D" uid="uid://bm3kr00eqgx6g" path="res://Asset/player asset/Sans_titre_35_20260622193241.png" id="12_wfp4b"]
 [ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="13_4ao7i"]
+[ext_resource type="Texture2D" uid="uid://b4y2bs6yx0u61" path="res://Asset/player asset/hurt.png" id="13_jx4b7"]
+[ext_resource type="Texture2D" uid="uid://6ifbadbrdsm3" path="res://Asset/player asset/jump.png" id="14_jx4b7"]
+[ext_resource type="Texture2D" uid="uid://vlkafwukwjwp" path="res://Asset/player asset/land.png" id="15_2mxbm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c68nv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_uktg4")
+}],
+"loop": true,
+"name": &"Dive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("6_eqmt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_eqmt2")
+}],
+"loop": false,
+"name": &"Heavy1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.3,
+"texture": ExtResource("7_7d6xm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2sr8w")
+}],
+"loop": false,
+"name": &"Luncher",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.2,
+"texture": ExtResource("5_fn0wv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_eqmt2")
+}],
+"loop": false,
+"name": &"Slash1",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_eqmt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_eqmt2")
+}],
+"loop": false,
+"name": &"Slash2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_eqmt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_eqmt2")
+}],
+"loop": true,
+"name": &"Slash3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_wfp4b")
+}],
+"loop": true,
+"name": &"Spin",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.4,
+"texture": ExtResource("8_lgjog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_lhccw")
+}],
+"loop": false,
+"name": &"Thrust",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_jx4b7")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("5_ij4jb")
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_jx4b7")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_2mxbm")
+}],
+"loop": true,
+"name": &"land",
 "speed": 5.0
 }, {
 "frames": [{
@@ -41,6 +160,12 @@ animations = [{
 "name": &"run",
 "speed": 6.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jx4b7"]
+radius = 208.1538
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2mxbm"]
+radius = 120.14991
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6qlh"]
 size = Vector2(71.5, 48)
@@ -65,6 +190,7 @@ script = ExtResource("1_y8w33")
 first_attack = ExtResource("2_2sw5t")
 first_heavy_attack = ExtResource("3_ij4jb")
 dive_attack = ExtResource("4_c68nv")
+spin_attack = ExtResource("5_2mxbm")
 
 [node name="visual" type="Node2D" parent="." unique_id=1985439555]
 position = Vector2(-1, -11)
@@ -74,11 +200,26 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(12, -37.999996)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_c68nv")
-animation = &"run"
-frame_progress = 0.6578219
+animation = &"Spin"
 
 [node name="Dive" type="Area2D" parent="visual" unique_id=205158859]
+collision_mask = 2
 script = ExtResource("5_ivevv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="visual/Dive" unique_id=1170905281]
+position = Vector2(8, 22)
+shape = SubResource("CircleShape2D_jx4b7")
+disabled = true
+
+[node name="Spin" type="Area2D" parent="visual" unique_id=149132996]
+position = Vector2(0, -22)
+collision_mask = 2
+script = ExtResource("5_ivevv")
+metadata/_custom_type_script = "uid://buhtjxd0xcjed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="visual/Spin" unique_id=652715629]
+position = Vector2(8, -10)
+shape = SubResource("CircleShape2D_2mxbm")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=150105998]
 

@@ -6,12 +6,12 @@
 
 [resource]
 script = ExtResource("1_r8qte")
-animation_name = &"Slash1"
+animation_name = &"Slash3"
 next_light_attack = ExtResource("1_8t1tn")
 next_heavy_attack = ExtResource("1_ws4vi")
 knockback = 400.0
 lunge_speed = 500.0
 windup_duration = 0.1
 active_duration = 0.2
-recovery_frame = 0.1
+recovery_frame = 0.15
 metadata/_custom_type_script = "uid://xoreh2dqf6ec"
