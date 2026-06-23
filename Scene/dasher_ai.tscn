@@ -3,14 +3,18 @@
 [ext_resource type="Script" uid="uid://oub2iknj45xr" path="res://Scene/dasher_ai.gd" id="1_ppukq"]
 [ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="2_ppukq"]
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="3_en4pq"]
-[ext_resource type="Script" path="res://Script/hurtbox.gd" id="3_rpor8"]
+[ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="3_rpor8"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="5_gke3p"]
+[ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="6_xxlim"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fq4oq"]
 size = Vector2(60, 60.000004)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppukq"]
 size = Vector2(80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_670p6"]
+size = Vector2(50.000023, 90)
 
 [node name="Dasher_AI" type="CharacterBody2D" unique_id=1315360929 groups=["enemy"]]
 scale = Vector2(0.8, 0.8)
@@ -29,6 +33,7 @@ scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_fq4oq")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=398499760]
+collision_layer = 2
 script = ExtResource("3_rpor8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=120205585]
@@ -48,3 +53,12 @@ z_index = -1
 position = Vector2(-1, 16)
 scale = Vector2(0.12, 0.12)
 texture = ExtResource("5_gke3p")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=594922106]
+collision_layer = 2
+script = ExtResource("6_xxlim")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=636527478]
+position = Vector2(34.999985, -4.99999)
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("RectangleShape2D_670p6")

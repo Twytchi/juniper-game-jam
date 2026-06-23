@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="1_vxfbs"]
 [ext_resource type="PackedScene" uid="uid://0gsss83wv40" path="res://Scene/dasher_ai.tscn" id="3_umnua"]
 [ext_resource type="PackedScene" uid="uid://dljwoierldrq4" path="res://Scene/kamikaze_ai.tscn" id="4_fnsd3"]
-[ext_resource type="PackedScene" uid="uid://b1hl38ggdlrn3" path="res://Scene/archer_ai.tscn" id="4_umnua"]
 
 [node name="test" type="Node2D" unique_id=1915128990]
 y_sort_enabled = true
@@ -17,7 +16,3 @@ position = Vector2(378, 524)
 
 [node name="Kamikaze_AI" parent="." unique_id=687512682 instance=ExtResource("4_fnsd3")]
 position = Vector2(839, 402)
-
-[node name="Archer" parent="." unique_id=931307868 instance=ExtResource("4_umnua")]
-position = Vector2(895, 205)
-scale = Vector2(0.8, 0.8)

@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cbke8txvrjdgm" path="res://Scene/Missile_box.gd" id="6_r6jsd"]
 [ext_resource type="Texture2D" uid="uid://yr6uds4wtbbg" path="res://Asset/player asset/b.png" id="7_4ao7i"]
 [ext_resource type="Texture2D" uid="uid://dip4v22dcp45y" path="res://Asset/player asset/a.png" id="8_1sypm"]
+[ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="13_4ao7i"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c68nv"]
 animations = [{
@@ -42,10 +43,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6qlh"]
-size = Vector2(47, 15)
+size = Vector2(71.5, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6jsd"]
-size = Vector2(17, 48)
+size = Vector2(43, 118)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r6jsd"]
 radius = 95.047356
@@ -54,7 +55,7 @@ radius = 95.047356
 size = Vector2(105, 206)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ij4jb"]
-size = Vector2(183, 149)
+size = Vector2(67.999985, 187.99997)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivevv"]
 size = Vector2(60, 60)
@@ -90,6 +91,7 @@ texture = ExtResource("4_58ae2")
 [node name="hitbox" type="Node2D" parent="." unique_id=1965024973]
 
 [node name="Thrust" type="Area2D" parent="hitbox" unique_id=2113940022]
+collision_mask = 2
 script = ExtResource("5_ivevv")
 
 [node name="Sprite2D" type="Sprite2D" parent="hitbox/Thrust" unique_id=818894718]
@@ -100,11 +102,12 @@ scale = Vector2(0.13281238, 0.38281247)
 texture = ExtResource("2_xa75v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/Thrust" unique_id=1112610071]
-position = Vector2(71, -1)
+position = Vector2(83.25, -12)
 shape = SubResource("RectangleShape2D_p6qlh")
 disabled = true
 
 [node name="Slash_simple" type="Area2D" parent="hitbox" unique_id=1895130622]
+collision_mask = 2
 script = ExtResource("5_ivevv")
 
 [node name="Sprite2D" type="Sprite2D" parent="hitbox/Slash_simple" unique_id=49065693]
@@ -114,11 +117,12 @@ scale = Vector2(0.13281238, 0.38281247)
 texture = ExtResource("2_xa75v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/Slash_simple" unique_id=1219278782]
-position = Vector2(58.5, 0)
+position = Vector2(71.5, -11)
 shape = SubResource("RectangleShape2D_r6jsd")
 disabled = true
 
 [node name="Missile_attack" type="Area2D" parent="hitbox" unique_id=437431345 node_paths=PackedStringArray("player")]
+collision_mask = 2
 script = ExtResource("6_r6jsd")
 player = NodePath("../..")
 
@@ -128,6 +132,7 @@ shape = SubResource("CircleShape2D_r6jsd")
 disabled = true
 
 [node name="BigSlash" type="Area2D" parent="hitbox" unique_id=1382817354]
+collision_mask = 2
 script = ExtResource("5_ivevv")
 
 [node name="Sprite2D" type="Sprite2D" parent="hitbox/BigSlash" unique_id=186613384]
@@ -143,24 +148,27 @@ shape = SubResource("RectangleShape2D_2sw5t")
 disabled = true
 
 [node name="Luncher" type="Area2D" parent="hitbox" unique_id=1107107364]
-position = Vector2(3.9999995, 38)
+position = Vector2(2.3841858e-07, 3.8146973e-06)
 scale = Vector2(0.99999994, 0.99999994)
+collision_mask = 2
 script = ExtResource("5_ivevv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/Luncher" unique_id=1964061723]
-position = Vector2(-9.499995, -70.499985)
-scale = Vector2(0.9999999, 0.9999999)
+position = Vector2(53.000004, -9.000008)
+scale = Vector2(0.99999964, 0.99999964)
 shape = SubResource("RectangleShape2D_ij4jb")
 disabled = true
 
 [node name="Sprite2D" type="Polygon2D" parent="hitbox/Luncher" unique_id=125888151]
+visible = false
 position = Vector2(10.000001, -67)
 polygon = PackedVector2Array(-47, -31, 36, -31, -4, -99)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=365668905]
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=2109857094]
-visible = false
+collision_mask = 2
+script = ExtResource("13_4ao7i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=836682403]
 shape = SubResource("RectangleShape2D_ivevv")

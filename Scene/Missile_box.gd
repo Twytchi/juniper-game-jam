@@ -1,4 +1,5 @@
 extends PlayerHitbox
+class_name Missile_box
 
 var timer_counter: float = 0.0
 var is_winding_up: bool = false
@@ -31,6 +32,9 @@ func _physics_process(delta: float) -> void:
 
 func activate_missile():
 	is_active = true
+	player.current_attack = null
+	for h  in [player.slash_simple_h, player.thrust_h, player.big_slash_h] :
+			h.disable_hitbox()
 	enable_hitbox()
 
 func stop_missile():

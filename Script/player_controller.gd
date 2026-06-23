@@ -46,6 +46,7 @@ var charge_attack_hold : float = 0.0
 @onready var big_slash_h: PlayerHitbox = $hitbox/BigSlash
 @onready var luncher_h: PlayerHitbox = $hitbox/Luncher
 @onready var anim: AnimatedSprite2D = $visual/anim
+@onready var missile_attack: Missile_box = $hitbox/Missile_attack
 
 
 
@@ -55,7 +56,7 @@ var dive_s = 1.0
 
 # --- Dégâts / combat ---
 var is_invincible := false
-var iframe_duration := 0.5
+var iframe_duration := 0.6
 var is_dead := false
 
 var knockback_velocity := Vector2.ZERO
@@ -169,6 +170,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func handle_attack_input(input_type: Action) -> void:
 	if current_action == Action.HURT or is_dead:
 		return
+	if missile_attack.is_active : return
 	if current_action == Action.NONE:
 		buffered_input = input_type 
 		start_attack()
@@ -244,18 +246,21 @@ func _run_recovery(duration: float) -> void:
 	can_spin = true
 	var timer := 0.0
 	while timer < duration:
-		
-		if buffered_input != Action.NONE:
+		if missile_attack.is_active :
+			return
+		elif buffered_input != Action.NONE:
 			if buffered_input == Action.LIGHT:
 				if current_attack.next_light_attack : return
 			elif buffered_input == Action.HEAVY:
 				if current_attack :
 					if  current_attack.next_heavy_attack : return
+		
 		await get_tree().process_frame
 		timer += get_process_delta_time()
 
 func finish_attack() -> void:
 	if buffered_input != Action.NONE:
+		if missile_attack.is_active : return
 		var next_attack: AttackData = null
 		if buffered_input == Action.LIGHT:
 			next_attack = current_attack.next_light_attack
@@ -292,17 +297,17 @@ func _apply_attack_effects() -> void:
 		big_slash_h.enable_hitbox()
 	elif current_attack.animation_name in [&"Luncher"] :
 		vertical_velocity = JUMP_FORCE
+		luncher_h.rotation = direction.angle()
 		luncher_h.enable_hitbox()
 	elif  current_attack.animation_name in [&"Dive"] : 
 		dive_s = 5.0
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if area.is_in_group("hitbox") and area.has_method("get_damage"):
-		apply_damage(area.get_damage(), area.get_parent())
+	return
 
 
-func apply_damage(amount: int, source: Node = null) -> void:
+func apply_damage(amount: float, source: Node = null, force : float = 300.0) -> void:
 	if is_invincible or is_dead:
 		return
 
@@ -315,7 +320,7 @@ func apply_damage(amount: int, source: Node = null) -> void:
 
 	if source:
 		var dir = (global_position - source.global_position).normalized()
-		knockback_velocity = dir * 300.0
+		knockback_velocity = dir * force
 
 	hit_flash()
 	start_iframes()

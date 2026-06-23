@@ -1,7 +1,7 @@
 extends "res://Scene/enemy_base.gd"
 
 var attack_range = 30.0
-var explosion_damage = 20
+var explosion_damage = 20.0
 var explosion_radius = 60.0
 var is_attacking = false
 
