@@ -3,6 +3,7 @@ class_name EnemyHitbox
 
 
 var data : Vector2 
+@export var missile_data : AttackData 
 
 func _ready() -> void:
 	area_entered.connect(on_hitbox_area_entered)
@@ -25,3 +26,9 @@ func on_hitbox_area_entered(area : Area2D) :
 		if area.get_parent() is Player :
 			var p : Player = area.get_parent()
 			p.apply_damage(data.x, self, data.y)
+		elif area.get_parent() is EnemyBase :
+			var e : EnemyBase = area.get_parent()
+			if e  == get_parent()  : return
+			if not missile_data : return
+			e.apply_damage(missile_data, self)
+			e.vertical_velocity = 650

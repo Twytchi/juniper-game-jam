@@ -75,6 +75,7 @@ func _physics_process(delta):
 	
 	if height > 0 :
 		state = State.HIT
+		
 	
 	if height <= 0.0:
 		height = 0.0

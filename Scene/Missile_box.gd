@@ -7,6 +7,8 @@ var is_active: bool = false
 const WINDUP_DURATION: float = 0.3
 var missile : SpinComponent
 @export var player : Player
+@onready var point: Marker2D = $Sprite2D/point
+@onready var digger : Polygon2D = $Sprite2D
 
 
 func _physics_process(delta: float) -> void:
@@ -32,6 +34,9 @@ func _physics_process(delta: float) -> void:
 	if is_active : 
 		if missile :
 			missile.charge_spin(delta)
+			missile.body.global_position = point.global_position
+			if player.direction :
+				rotation = lerp(rotation, player.direction.angle(), delta * 10)
 
 func activate_missile():
 	is_active = true
@@ -43,7 +48,7 @@ func stop_missile():
 	timer_counter = 0.0
 	disable_hitbox()
 	if missile : 
-		missile.throw(player.direction)
+		missile.throw(Vector2.RIGHT.rotated(rotation))
 	missile = null 
 	player.current_action = player.Action.NONE
 
@@ -52,8 +57,11 @@ func _on_area_entered(area: Area2D) -> void:
 		var e = area.get_parent() as CharacterBody2D
 		for s in  e.get_children() :
 			if s is SpinComponent :
-				missile = s
-				if not missile.is_spinnable :
+				
+				if not s.is_spinnable :
 					return
+				missile = s
 				missile.get_grabbed()
+				look_at(missile.global_position)
+				missile.body.global_position = point.global_position
 				break

@@ -18,6 +18,12 @@ var current_throw_power := 0.0
 # Gestionnaire de l'animation de flash
 var flash_tween: Tween
 
+@export var hitbox : EnemyHitbox
+
+func _ready() -> void:
+	if hitbox : hitbox.disable_hitbox()
+
+
 func _physics_process(delta: float) -> void:
 	if is_projectile:
 		handle_projectile_physics(delta)
@@ -75,7 +81,7 @@ func get_grabbed():
 	current_throw_power = 500.0 # Puissance de base
 	
 	if body:
-
+		body.velocity = Vector2.ZERO
 		body.set_physics_process(false) 
 
 
@@ -91,6 +97,7 @@ func throw(direction: Vector2):
 	is_being_spun = false
 	is_projectile = true
 	throw_velocity = direction.normalized() * current_throw_power
+	hitbox.enable_hitbox()
 	
 
 func handle_projectile_physics(delta: float):

@@ -3,20 +3,48 @@
 [ext_resource type="Script" uid="uid://c0murjk8lns5x" path="res://archer_ai.gd" id="1_kpj7w"]
 [ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="2_o3502"]
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="3_k3ycf"]
+[ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="4_k3ycf"]
+[ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="5_2hulq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2eol"]
-size = Vector2(130, 130)
+size = Vector2(64, 64)
 
-[node name="Archer" type="CharacterBody2D" unique_id=931307868]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xx3dv"]
+size = Vector2(80, 80)
+
+[node name="Archer" type="CharacterBody2D" unique_id=931307868 groups=["enemy"]]
 script = ExtResource("1_kpj7w")
 too_close_range = 300.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1701131854 groups=["enemy"]]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1701131854]
 modulate = Color(0.5064397, 0.5106438, 0.28104842, 1)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_o3502")
+
+[node name="SpinComponent2" type="Node2D" parent="." unique_id=967227080 node_paths=PackedStringArray("body", "body_sprite")]
+script = ExtResource("3_k3ycf")
+body = NodePath("..")
+body_sprite = NodePath("../Sprite2D")
+metadata/_custom_type_script = "uid://da52ihtpjml2f"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2105550090]
 shape = SubResource("RectangleShape2D_c2eol")
 
 [node name="SpinComponent" type="Node2D" parent="." unique_id=1993598240]
 script = ExtResource("3_k3ycf")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1620651008]
+
+[node name="Shadow" type="Sprite2D" parent="Node2D" unique_id=424175071]
+z_index = -1
+position = Vector2(-1, 16)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("4_k3ycf")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=171939033]
+collision_layer = 2
+script = ExtResource("5_2hulq")
+metadata/_custom_type_script = "uid://d3kcc8f64jxxd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1082656703]
+shape = SubResource("RectangleShape2D_xx3dv")

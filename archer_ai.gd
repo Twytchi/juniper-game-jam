@@ -1,7 +1,8 @@
 extends "res://Scene/enemy_base.gd"
 
 @export var too_close_range: float = 150.0
-@export var shoot_cooldown: float = 2.0
+@export var too_far_range : float = 300
+@export var shoot_cooldown: float = 10.0
 
 var can_shoot := true
 
@@ -13,8 +14,10 @@ func chase_player():
 	var distance = global_position.distance_to(player.global_position)
 	var direction = (player.global_position - global_position).normalized()
 
-	if distance < too_close_range:
+	if distance <= too_close_range:
 		velocity = -direction * speed
+	elif distance >= too_far_range:
+		velocity = direction * speed
 	else:
 		velocity = Vector2.ZERO
 

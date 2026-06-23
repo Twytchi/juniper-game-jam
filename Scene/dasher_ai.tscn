@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="2_ppukq"]
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="3_en4pq"]
 [ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="3_rpor8"]
+[ext_resource type="Resource" uid="uid://bsoabraammveh" path="res://Ressources/player Attack/Missile_atack.tres" id="5_670p6"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="5_gke3p"]
 [ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="6_xxlim"]
 
@@ -15,6 +16,9 @@ size = Vector2(50.000023, 90)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppukq"]
 size = Vector2(80, 80)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxlim"]
+radius = 90.00001
 
 [node name="Dasher_AI" type="CharacterBody2D" unique_id=1315360929 groups=["enemy"]]
 scale = Vector2(0.8, 0.8)
@@ -32,10 +36,11 @@ position = Vector2(3.576278e-06, 1.1920927e-06)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_fq4oq")
 
-[node name="SpinComponent" type="Node2D" parent="." unique_id=1081031418 node_paths=PackedStringArray("body", "body_sprite")]
+[node name="SpinComponent" type="Node2D" parent="." unique_id=1081031418 node_paths=PackedStringArray("body", "body_sprite", "hitbox")]
 script = ExtResource("3_en4pq")
 body = NodePath("..")
 body_sprite = NodePath("../Sprite2D")
+hitbox = NodePath("../MissileHitbox")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1605523109]
 
@@ -63,3 +68,13 @@ script = ExtResource("3_rpor8")
 position = Vector2(-2.3841853e-06, -2.3841853e-06)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_ppukq")
+
+[node name="MissileHitbox" type="Area2D" parent="." unique_id=755920158]
+scale = Vector2(0.99999994, 0.99999994)
+collision_mask = 2
+script = ExtResource("6_xxlim")
+missile_data = ExtResource("5_670p6")
+metadata/_custom_type_script = "uid://hdd4d24onbw6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MissileHitbox" unique_id=1947668534]
+shape = SubResource("CircleShape2D_xxlim")

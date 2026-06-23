@@ -272,6 +272,15 @@ position = Vector2(4, -1)
 shape = SubResource("CircleShape2D_r6jsd")
 disabled = true
 
+[node name="Sprite2D" type="Polygon2D" parent="hitbox/Missile_attack" unique_id=125888151]
+position = Vector2(6, -12.999999)
+rotation = 1.5707964
+scale = Vector2(0.99999994, 0.99999994)
+polygon = PackedVector2Array(-47, -31, 36, -31, -3, -139)
+
+[node name="point" type="Marker2D" parent="hitbox/Missile_attack/Sprite2D" unique_id=1557707104]
+position = Vector2(-3.000007, -138)
+
 [node name="BigSlash" type="Area2D" parent="hitbox" unique_id=1382817354]
 collision_mask = 2
 script = ExtResource("5_ivevv")
@@ -299,11 +308,6 @@ position = Vector2(53.000004, -9.000008)
 scale = Vector2(0.99999964, 0.99999964)
 shape = SubResource("RectangleShape2D_ij4jb")
 disabled = true
-
-[node name="Sprite2D" type="Polygon2D" parent="hitbox/Luncher" unique_id=125888151]
-visible = false
-position = Vector2(10.000001, -67)
-polygon = PackedVector2Array(-47, -31, 36, -31, -4, -99)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=365668905]
 
