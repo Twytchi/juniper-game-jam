@@ -25,6 +25,7 @@ radius = 60.827618
 
 [node name="Dasher_AI" type="CharacterBody2D" unique_id=1315360929 node_paths=PackedStringArray("separation_area") groups=["enemy"]]
 scale = Vector2(0.8, 0.8)
+collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_ppukq")
 dash_range = 200.0
@@ -86,6 +87,8 @@ metadata/_custom_type_script = "uid://hdd4d24onbw6"
 shape = SubResource("CircleShape2D_xxlim")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=861273818]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1221481613]
 shape = SubResource("CircleShape2D_670p6")

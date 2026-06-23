@@ -15,7 +15,7 @@ y_sort_enabled = true
 position = Vector2(135, 182)
 health = 100.0
 
-[node name="SansTitre3720260622164008" type="Sprite2D" parent="." unique_id=795973731]
+[node name="background" type="Sprite2D" parent="." unique_id=795973731]
 z_index = -10
 position = Vector2(627, 356)
 scale = Vector2(0.7, 0.7)
@@ -55,3 +55,6 @@ shape = SubResource("RectangleShape2D_fnsd3")
 position = Vector2(1399, 183.00002)
 rotation = -1.5696902
 shape = SubResource("RectangleShape2D_fnsd3")
+
+[node name="Archer2" parent="." unique_id=1151516860 instance=ExtResource("5_fnsd3")]
+position = Vector2(658, 250)

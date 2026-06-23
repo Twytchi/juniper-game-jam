@@ -110,9 +110,16 @@ func handle_projectile_physics(delta: float):
 
 
 func stop_projectile():
+	set_is_spinnable(false)
 	is_projectile = false
 	spin_charge = 0.0
+	stop_flash_animation()
 	
 	if body:
+		body_sprite.rotation = 0
 		body.set_physics_process(true)
-		body.queue_free()
+		if body is EnemyBase:
+			body as EnemyBase
+			body.current_health -= 10
+			body.vertical_velocity = 500
+			hitbox.disable_hitbox()

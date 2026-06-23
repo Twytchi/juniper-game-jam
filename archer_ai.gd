@@ -29,7 +29,9 @@ func shoot():
 	can_shoot = false
 
 	await get_tree().create_timer(1.0).timeout
-	if state == State.HIT : return
+	if state == State.HIT :
+		can_shoot = true
+		return
 	if player == null or state == State.DEAD:
 		can_shoot = true
 		return
