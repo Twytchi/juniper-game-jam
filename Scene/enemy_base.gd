@@ -47,7 +47,7 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	sprite.position.y = -height
-	hurtbox.position.y = -height
+	if hurtbox : hurtbox.position.y = -height
 	var shadow_scale = clamp(1.0 - (height / 200.0), 0.5, 1.0)
 	if shadow : shadow.scale = Vector2(shadow_scale, shadow_scale)
 

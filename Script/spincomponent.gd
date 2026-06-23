@@ -15,10 +15,49 @@ var is_projectile := false
 var throw_velocity := Vector2.ZERO
 var current_throw_power := 0.0
 
+# Gestionnaire de l'animation de flash
+var flash_tween: Tween
+
 func _physics_process(delta: float) -> void:
 	if is_projectile:
 		handle_projectile_physics(delta)
+	if is_spinnable:
+		pass
 
+
+func set_is_spinnable(value: bool) -> void:
+	if is_spinnable == value:
+		return
+	
+	is_spinnable = value
+	
+
+	if not body_sprite:
+		return
+		
+	if is_spinnable:
+		start_flash_animation()
+	else:
+		stop_flash_animation()
+
+func start_flash_animation() -> void:
+	if flash_tween and flash_tween.is_valid():
+		flash_tween.kill()
+	
+
+	flash_tween = create_tween().set_loops()
+	
+
+	flash_tween.tween_property(body_sprite, "modulate", Color(1, 1, 1, 0.3), 0.2)
+
+	flash_tween.tween_property(body_sprite, "modulate", Color(1, 1, 1, 1), 0.2)
+
+func stop_flash_animation() -> void:
+	if flash_tween and flash_tween.is_valid():
+		flash_tween.kill()
+
+	if body_sprite:
+		body_sprite.modulate = Color(1, 1, 1, 1)
 
 func add_charge(amount: float):
 	if is_spinnable or is_being_spun or is_projectile:
@@ -27,7 +66,7 @@ func add_charge(amount: float):
 	spin_charge += max(0.0, amount - spin_resistance)
 	
 	if spin_charge >= 100.0:
-		is_spinnable = true
+		set_is_spinnable(true)
 
 
 func get_grabbed():

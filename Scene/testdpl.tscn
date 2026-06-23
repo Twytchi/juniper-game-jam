@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://0gsss83wv40" path="res://Scene/dasher_ai.tscn" id="3_umnua"]
 [ext_resource type="PackedScene" uid="uid://dljwoierldrq4" path="res://Scene/kamikaze_ai.tscn" id="4_fnsd3"]
 [ext_resource type="Texture2D" uid="uid://d36latabp0xp4" path="res://Asset/player asset/grass_scene.png" id="4_umnua"]
+[ext_resource type="PackedScene" uid="uid://b1hl38ggdlrn3" path="res://Scene/archer_ai.tscn" id="5_fnsd3"]
 
 [node name="test" type="Node2D" unique_id=1915128990]
 y_sort_enabled = true
@@ -29,3 +30,6 @@ z_index = -10
 position = Vector2(627, 356)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_umnua")
+
+[node name="Archer" parent="." unique_id=931307868 instance=ExtResource("5_fnsd3")]
+position = Vector2(1174, 585)

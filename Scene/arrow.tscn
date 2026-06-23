@@ -9,6 +9,7 @@ size = Vector2(128, 130)
 
 [node name="Arrow" type="Area2D" unique_id=477611300 groups=["enemy"]]
 scale = Vector2(0.2, 0.2)
+collision_layer = 2
 script = ExtResource("1_x000j")
 speed = 700.0
 

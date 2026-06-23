@@ -9,6 +9,7 @@ script = ExtResource("1_r8qte")
 animation_name = &"Slash3"
 next_light_attack = ExtResource("1_8t1tn")
 next_heavy_attack = ExtResource("1_ws4vi")
+spin_power = 5.0
 knockback = 400.0
 lunge_speed = 500.0
 windup_duration = 0.1

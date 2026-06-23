@@ -15,6 +15,7 @@ var is_done := false
 
 func _ready():
 	vertical_velocity = sqrt(2.0 * GRAVITY * arc_height)
+	area_entered.connect(on_hitbox_area_entered)
 
 
 func _physics_process(delta):
@@ -33,9 +34,6 @@ func _physics_process(delta):
 
 	if height <= 0.0:
 		height = 0.0
-		for area in get_overlapping_areas():
-			if area.is_in_group("hurtbox") and area.get_parent().has_method("apply_damage"):
-				area.get_parent().apply_damage(damage, self)
 		_destroy()
 		return
 
@@ -43,7 +41,7 @@ func _physics_process(delta):
 		_destroy()
 
 
-func get_damage() -> int:
+func get_damage() -> float:
 	return damage
 
 
@@ -52,3 +50,9 @@ func _destroy():
 		return
 	is_done = true
 	queue_free()
+
+func on_hitbox_area_entered(area : Area2D) :
+			if area is Hurtbox :
+				if area.get_parent() is Player :
+					var p : Player = area.get_parent()
+					p.apply_damage(damage, self, 400)

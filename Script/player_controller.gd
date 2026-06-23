@@ -77,10 +77,14 @@ func _ready() -> void:
 	spin.player_ref = self
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	sprite.position.y = -height
 	var shadow_scale = clamp(1.0 - (height / 200.0), 0.5, 1.0)
 	shadow.scale = Vector2(shadow_scale, shadow_scale)
+	if anim.animation == &"Spin" :
+		anim.rotation += 20.0 * delta *   (signf(direction.x ) if direction.x != 0.0 else 1.0 )
+	else : 
+		anim.rotation = 0
 
 
 func _physics_process(delta: float) -> void:
