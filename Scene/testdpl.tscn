@@ -3,9 +3,83 @@
 [ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="1_vxfbs"]
 [ext_resource type="PackedScene" uid="uid://bqh2swahs6niy" path="res://Scene/spawn_zone.tscn" id="4_fnsd3"]
 [ext_resource type="Texture2D" uid="uid://d36latabp0xp4" path="res://Asset/player asset/grass_scene.png" id="4_umnua"]
+[ext_resource type="Script" uid="uid://dvqw441xw26cr" path="res://Ressources/Waves/waves_data.gd" id="4_y865s"]
+[ext_resource type="Script" uid="uid://deumf51aa55m8" path="res://Script/wave_entry.gd" id="5_46d5g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsd3"]
 size = Vector2(1376, 202)
+
+[sub_resource type="Resource" id="Resource_emo6r"]
+script = ExtResource("5_46d5g")
+type = 2
+count = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_ola5b"]
+script = ExtResource("5_46d5g")
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_30aa1"]
+script = ExtResource("4_y865s")
+spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_emo6r"), SubResource("Resource_ola5b")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_nnfvd"]
+script = ExtResource("5_46d5g")
+type = 2
+count = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_e7c2o"]
+script = ExtResource("5_46d5g")
+type = 1
+count = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_tm214"]
+script = ExtResource("4_y865s")
+spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_nnfvd"), SubResource("Resource_e7c2o")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_fnsd3"]
+script = ExtResource("5_46d5g")
+type = 3
+count = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_y865s"]
+script = ExtResource("5_46d5g")
+type = 2
+count = 3
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_46d5g"]
+script = ExtResource("4_y865s")
+spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_fnsd3"), SubResource("Resource_y865s")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_68fol"]
+script = ExtResource("5_46d5g")
+type = 1
+count = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_j6feq"]
+script = ExtResource("5_46d5g")
+type = 3
+count = 3
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_kt53c"]
+script = ExtResource("5_46d5g")
+type = 2
+count = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_r5jyb"]
+script = ExtResource("4_y865s")
+spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_68fol"), SubResource("Resource_j6feq"), SubResource("Resource_kt53c")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
 
 [node name="test" type="Node2D" unique_id=1915128990]
 y_sort_enabled = true
@@ -43,4 +117,5 @@ rotation = -1.5696902
 shape = SubResource("RectangleShape2D_fnsd3")
 
 [node name="SpawnZone" parent="." unique_id=1885971783 instance=ExtResource("4_fnsd3")]
-position = Vector2(-143.255, 0)
+position = Vector2(39, 73)
+waves = Array[ExtResource("4_y865s")]([SubResource("Resource_30aa1"), SubResource("Resource_tm214"), SubResource("Resource_46d5g"), SubResource("Resource_r5jyb")])

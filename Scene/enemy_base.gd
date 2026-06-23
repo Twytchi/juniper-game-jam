@@ -11,6 +11,8 @@ class_name EnemyBase
 @export var speed: float = 80.0
 @export var max_health: int = 30
 
+var difficulty_multiplier : float = 1.0
+
 var current_health: float
 
 
