@@ -87,7 +87,7 @@ func attack():
 	velocity = Vector2.ZERO
 
 	# délai avant le coup (télégraphe Phase 2)
-	var windup = 0.3 if not is_enraged else 0.15
+	var windup = 0.3 if not is_enraged else 0.1
 	await get_tree().create_timer(windup).timeout
 
 	if player == null or state != State.ATTACK:
@@ -102,7 +102,7 @@ func attack():
 		is_attacking = false
 		return
 	var distance = global_position.distance_to(player.global_position)
-	if distance <= attack_range * 0.5:
+	if distance <= attack_range * 1.0:
 		if player.has_method("apply_damage"):
 			player.apply_damage(damage, self, 500)
 
