@@ -20,11 +20,17 @@ size = Vector2(80, 80)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxlim"]
 radius = 90.00001
 
-[node name="Dasher_AI" type="CharacterBody2D" unique_id=1315360929 groups=["enemy"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_670p6"]
+radius = 60.827618
+
+[node name="Dasher_AI" type="CharacterBody2D" unique_id=1315360929 node_paths=PackedStringArray("separation_area") groups=["enemy"]]
 scale = Vector2(0.8, 0.8)
+collision_mask = 4
 script = ExtResource("1_ppukq")
 dash_range = 200.0
+separation_area = NodePath("Area2D")
 speed = 200.0
+max_health = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2028319693]
 modulate = Color(1, 0.32941177, 1, 1)
@@ -78,3 +84,8 @@ metadata/_custom_type_script = "uid://hdd4d24onbw6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MissileHitbox" unique_id=1947668534]
 shape = SubResource("CircleShape2D_xxlim")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=861273818]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1221481613]
+shape = SubResource("CircleShape2D_670p6")

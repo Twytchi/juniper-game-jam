@@ -37,6 +37,14 @@ func _physics_process(delta: float) -> void:
 			missile.body.global_position = point.global_position
 			if player.direction :
 				rotation = lerp(rotation, player.direction.angle(), delta * 10)
+			digger.show()
+			var input_dir := Input.get_vector("left", "right", "up", "down")
+			if input_dir != Vector2.ZERO and player.current_action != player.Action.HEAVY:
+				player._move_state(player.direction , delta)
+		else :
+				digger.hide()
+				#if not is_winding_up : stop_missile()
+
 
 func activate_missile():
 	is_active = true
@@ -57,7 +65,7 @@ func _on_area_entered(area: Area2D) -> void:
 		var e = area.get_parent() as CharacterBody2D
 		for s in  e.get_children() :
 			if s is SpinComponent :
-				
+				if missile : return
 				if not s.is_spinnable :
 					return
 				missile = s

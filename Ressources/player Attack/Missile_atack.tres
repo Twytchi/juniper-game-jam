@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_6583v")
-damage = 1.0
-spin_power = 20.0
-knockback = 400.0
+damage = 20.0
+spin_power = 25.0
+knockback = 1000.0
 lunge_speed = 0.0
 metadata/_custom_type_script = "uid://xoreh2dqf6ec"

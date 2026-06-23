@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_ipv2a")
 animation_name = &"Thrust"
+damage = 7.0
+spin_power = 20.0
 knockback = 250.0
 lunge_speed = 1000.0
 windup_duration = 0.15

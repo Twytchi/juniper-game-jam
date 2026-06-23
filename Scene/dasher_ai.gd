@@ -1,8 +1,8 @@
 extends "res://Scene/enemy_base.gd"
 
-@export var dash_speed: float = 500.0
+@export var dash_speed: float = 900.0
 @export var dash_range: float = 400.0
-@export var dash_duration: float = 0.4
+@export var dash_duration: float = 0.3
 @export var recover_duration: float = 1.0
 @export var dash_damage_n_knock := Vector2(1.0, 400.0) #le x cest les dégats les y c le knockback
 
@@ -12,8 +12,8 @@ var is_recovering := false
 @onready var hitbox: EnemyHitbox = $Hitbox
 
 
-func chase_player():
-	super.chase_player()
+func chase_player(delta : float):
+	super.chase_player(delta )
 	if player == null:
 		return
 	if global_position.distance_to(player.global_position) <= dash_range:
@@ -26,7 +26,7 @@ func attack():
 		return
 	is_dashing = true
 	velocity= Vector2.ZERO
-	await  get_tree().create_timer(0.5).timeout
+	await  get_tree().create_timer(1.0).timeout
 
 	var dash_direction = (player.global_position - global_position).normalized()
 	hitbox.look_at(dash_direction)

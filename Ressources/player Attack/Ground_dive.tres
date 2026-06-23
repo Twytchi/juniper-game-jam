@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_741u5")
 animation_name = &"Dive"
+damage = 7.0
+spin_power = 3.0
 knockback = 500.0
 lunge_speed = 0.0
 active_duration = 0.3

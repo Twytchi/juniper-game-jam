@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://d36latabp0xp4" path="res://Asset/player asset/grass_scene.png" id="4_umnua"]
 [ext_resource type="PackedScene" uid="uid://b1hl38ggdlrn3" path="res://Scene/archer_ai.tscn" id="5_fnsd3"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsd3"]
+size = Vector2(1376, 202)
+
 [node name="test" type="Node2D" unique_id=1915128990]
 y_sort_enabled = true
 
@@ -12,14 +15,43 @@ y_sort_enabled = true
 position = Vector2(135, 182)
 health = 100.0
 
-[node name="Dasher_AI" parent="." unique_id=1315360929 instance=ExtResource("3_umnua")]
-position = Vector2(378, 524)
-
 [node name="SansTitre3720260622164008" type="Sprite2D" parent="." unique_id=795973731]
 z_index = -10
 position = Vector2(627, 356)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_umnua")
 
+[node name="Dasher_AI" parent="." unique_id=1315360929 instance=ExtResource("3_umnua")]
+position = Vector2(378, 524)
+
+[node name="Dasher_AI2" parent="." unique_id=236217101 instance=ExtResource("3_umnua")]
+position = Vector2(633, 630)
+
+[node name="Dasher_AI3" parent="." unique_id=722049291 instance=ExtResource("3_umnua")]
+position = Vector2(922, 470)
+scale = Vector2(1.2, 1.2)
+
 [node name="Archer" parent="." unique_id=931307868 instance=ExtResource("5_fnsd3")]
-position = Vector2(999, 542)
+position = Vector2(1082, 368)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=649786150]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=637742372]
+position = Vector2(645, 56)
+shape = SubResource("RectangleShape2D_fnsd3")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=566632498]
+position = Vector2(625, 844)
+shape = SubResource("RectangleShape2D_fnsd3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=573501853]
+position = Vector2(-108, 139.00002)
+rotation = -1.5696902
+shape = SubResource("RectangleShape2D_fnsd3")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=895061327]
+position = Vector2(1399, 183.00002)
+rotation = -1.5696902
+shape = SubResource("RectangleShape2D_fnsd3")

@@ -14,6 +14,7 @@ var is_projectile := false
 # Variables pour le lancer
 var throw_velocity := Vector2.ZERO
 var current_throw_power := 0.0
+@export var spin_thresold := 60.0
 
 # Gestionnaire de l'animation de flash
 var flash_tween: Tween
@@ -71,7 +72,7 @@ func add_charge(amount: float):
 		
 	spin_charge += max(0.0, amount - spin_resistance)
 	
-	if spin_charge >= 100.0:
+	if spin_charge >= spin_thresold:
 		set_is_spinnable(true)
 
 
@@ -98,11 +99,13 @@ func throw(direction: Vector2):
 	is_projectile = true
 	throw_velocity = direction.normalized() * current_throw_power
 	hitbox.enable_hitbox()
-	
+	body.set_collision_layer_value(2, false)
 
 func handle_projectile_physics(delta: float):
 	if not body: return
 	body.velocity = throw_velocity 
+	if body.is_on_wall() or body.is_on_ceiling() or body.is_on_floor() :
+		stop_projectile()
 	body.move_and_slide()
 
 
@@ -112,3 +115,4 @@ func stop_projectile():
 	
 	if body:
 		body.set_physics_process(true)
+		body.queue_free()

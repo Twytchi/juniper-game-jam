@@ -5,6 +5,7 @@ class_name EnemyBase
 @onready var hurtbox: Area2D = $Hurtbox
 @onready var spin_component: SpinComponent = $SpinComponent
 @onready var sprite : Node2D=  $Sprite2D
+@export var  separation_area : Area2D
 
 @export var detection_range: float = 500.0
 @export var speed: float = 80.0
@@ -60,7 +61,7 @@ func _physics_process(delta):
 			State.IDLE:
 				idle()
 			State.CHASE:
-				chase_player()
+				chase_player(delta)
 			State.ATTACK:
 				attack()
 			State.RECOVER:
@@ -92,11 +93,36 @@ func idle():
 		state = State.CHASE
 
 
-func chase_player():
+func chase_player(delta : float):
 	if player == null:
 		return
 	var direction = (player.global_position - global_position).normalized()
-	velocity = direction * speed
+	if not separation_area : 
+		return
+	var separation_vector = calculate_separation_vector()
+	var final_direction = (direction + separation_vector * 100.0 * delta).normalized()
+	var target_velocity = final_direction * speed
+	velocity = velocity.lerp(target_velocity, 15* delta)
+
+
+func calculate_separation_vector() -> Vector2:
+	
+	var separation = Vector2.ZERO
+	var neighbors = separation_area.get_overlapping_bodies()
+	
+	for neighbor in neighbors:
+		if neighbor == self:
+			continue
+			
+
+		var diff = global_position - neighbor.global_position
+
+		var distance = diff.length()
+		
+		if distance > 0:
+			separation += diff.normalized() / distance 
+			
+	return separation.normalized()
 
 
 func attack():

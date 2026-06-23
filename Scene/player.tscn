@@ -182,10 +182,14 @@ size = Vector2(105, 206)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ij4jb"]
 size = Vector2(67.999985, 187.99997)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wfp4b"]
+radius = 25.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivevv"]
 size = Vector2(60, 60)
 
 [node name="Player" type="CharacterBody2D" unique_id=500224478 groups=["player"]]
+collision_mask = 4
 script = ExtResource("1_y8w33")
 first_attack = ExtResource("2_2sw5t")
 first_heavy_attack = ExtResource("3_ij4jb")
@@ -200,7 +204,7 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(12, -37.999996)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_c68nv")
-animation = &"Spin"
+animation = &"hurt"
 
 [node name="Dive" type="Area2D" parent="visual" unique_id=205158859]
 collision_mask = 2
@@ -273,6 +277,7 @@ shape = SubResource("CircleShape2D_r6jsd")
 disabled = true
 
 [node name="Sprite2D" type="Polygon2D" parent="hitbox/Missile_attack" unique_id=125888151]
+visible = false
 position = Vector2(6, -12.999999)
 rotation = 1.5707964
 scale = Vector2(0.99999994, 0.99999994)
@@ -309,7 +314,9 @@ scale = Vector2(0.99999964, 0.99999964)
 shape = SubResource("RectangleShape2D_ij4jb")
 disabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=365668905]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=800940237]
+position = Vector2(8, 0)
+shape = SubResource("CircleShape2D_wfp4b")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=2109857094]
 collision_mask = 2
@@ -317,5 +324,11 @@ script = ExtResource("13_4ao7i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=836682403]
 shape = SubResource("RectangleShape2D_ivevv")
+
+[node name="Label" type="Label" parent="." unique_id=216114942]
+offset_left = -20.0
+offset_top = -100.0
+offset_right = 20.0
+offset_bottom = -77.0
 
 [connection signal="area_entered" from="hitbox/Missile_attack" to="hitbox/Missile_attack" method="_on_area_entered"]

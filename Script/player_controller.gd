@@ -85,7 +85,7 @@ func _process(delta: float) -> void:
 		anim.rotation += 20.0 * delta *   (signf(direction.x ) if direction.x != 0.0 else 1.0 )
 	else : 
 		anim.rotation = 0
-
+	$Label.text = str(health)
 
 func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "up", "down")
@@ -102,9 +102,10 @@ func _physics_process(delta: float) -> void:
 		can_spin = false
 		anim.play("jump")
 		if Input.is_action_just_pressed("heavy"):
-			current_attack = dive_attack
-			current_action = Action.HEAVY
-			start_attack()
+			if not height <= 0 :
+				current_attack = dive_attack
+				current_action = Action.HEAVY
+				start_attack()
 		elif Input.is_action_just_pressed("light"):
 			current_attack = spin_attack
 			current_action = Action.LIGHT
@@ -374,6 +375,9 @@ func start_iframes() -> void:
 	await get_tree().create_timer(iframe_duration).timeout
 	is_invincible = false
 	if current_action == Action.HURT:
+		if missile_attack.is_active : 
+			current_action = Action.SPIN
+			return
 		current_action = Action.NONE
 
 

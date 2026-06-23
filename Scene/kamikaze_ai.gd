@@ -6,8 +6,8 @@ var explosion_radius = 60.0
 var is_attacking = false
 
 
-func chase_player():
-	super.chase_player()
+func chase_player(delta : float):
+	super.chase_player(delta )
 	if global_position.distance_to(player.global_position) <= attack_range:
 		state = State.ATTACK
 

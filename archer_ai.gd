@@ -1,13 +1,13 @@
 extends "res://Scene/enemy_base.gd"
 
 @export var too_close_range: float = 150.0
-@export var too_far_range : float = 300
-@export var shoot_cooldown: float = 10.0
+@export var too_far_range : float = 500
+@export var shoot_cooldown: float = 2.0
 
 var can_shoot := true
 
 
-func chase_player():
+func chase_player(delta : float):
 	if player == null:
 		return
 
@@ -28,8 +28,8 @@ func chase_player():
 func shoot():
 	can_shoot = false
 
-	await get_tree().create_timer(0.4).timeout
-
+	await get_tree().create_timer(1.0).timeout
+	if state == State.HIT : return
 	if player == null or state == State.DEAD:
 		can_shoot = true
 		return
