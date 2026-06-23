@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://j8q1rul27t35"]
 
 [ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="1_vxfbs"]
-[ext_resource type="PackedScene" uid="uid://0gsss83wv40" path="res://Scene/dasher_ai.tscn" id="3_umnua"]
-[ext_resource type="PackedScene" uid="uid://wdhlmtnjwqaq" path="res://Scene/berserker_ai.tscn" id="4_fnsd3"]
+[ext_resource type="PackedScene" uid="uid://bqh2swahs6niy" path="res://Scene/spawn_zone.tscn" id="4_fnsd3"]
 [ext_resource type="Texture2D" uid="uid://d36latabp0xp4" path="res://Asset/player asset/grass_scene.png" id="4_umnua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsd3"]
@@ -12,7 +11,7 @@ size = Vector2(1376, 202)
 y_sort_enabled = true
 
 [node name="Player" parent="." unique_id=500224478 instance=ExtResource("1_vxfbs")]
-position = Vector2(135, 182)
+position = Vector2(580, 433)
 health = 100.0
 
 [node name="background" type="Sprite2D" parent="." unique_id=795973731]
@@ -43,18 +42,5 @@ position = Vector2(1399, 183.00002)
 rotation = -1.5696902
 shape = SubResource("RectangleShape2D_fnsd3")
 
-[node name="berserker_ai" parent="." unique_id=633360464 instance=ExtResource("4_fnsd3")]
-position = Vector2(841, 607)
-attack_range = 250.0
-
-[node name="berserker_ai2" parent="." unique_id=4477185 instance=ExtResource("4_fnsd3")]
-position = Vector2(1109, 370)
-
-[node name="berserker_ai3" parent="." unique_id=1314734501 instance=ExtResource("4_fnsd3")]
-position = Vector2(274, 651)
-
-[node name="Dasher_AI" parent="." unique_id=1315360929 instance=ExtResource("3_umnua")]
-position = Vector2(917, 305)
-
-[node name="Dasher_AI2" parent="." unique_id=409000025 instance=ExtResource("3_umnua")]
-position = Vector2(533, 613)
+[node name="SpawnZone" parent="." unique_id=1885971783 instance=ExtResource("4_fnsd3")]
+position = Vector2(-143.255, 0)

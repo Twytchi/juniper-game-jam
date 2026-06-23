@@ -12,10 +12,6 @@ size = Vector2(138, 140)
 
 [node name="Healer_ai" type="CharacterBody2D" unique_id=291605962 groups=["enemy"]]
 script = ExtResource("1_n44nn")
-heal_range = null
-heal_amount = null
-heal_countdwon = null
-flee_range = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1749174964]
 texture = ExtResource("1_qphj2")

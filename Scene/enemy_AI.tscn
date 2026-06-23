@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="1_ecebc"]
 [ext_resource type="Script" uid="uid://bwph2uadlmr0a" path="res://Scene/enemy_base.gd" id="1_m8431"]
-[ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="2_m8431"]
+[ext_resource type="Script" path="res://Script/hurtbox.gd" id="2_m8431"]
 [ext_resource type="Texture2D" uid="uid://swobx6frxop5" path="res://icon.svg" id="3_04kin"]
 [ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="5_04kin"]
 
