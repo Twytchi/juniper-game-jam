@@ -162,7 +162,9 @@ func _move_state(input_dir: Vector2, delta: float) -> void:
 	velocity = velocity.lerp(input_dir * speed, acceleration * delta)
 	move_and_slide()
 
-	if input_dir != Vector2.ZERO:
+	if current_action == Action.SPIN :
+		anim.play("drill")
+	elif input_dir != Vector2.ZERO:
 		anim.play("run")
 	else:
 		anim.play("idle")
@@ -255,7 +257,7 @@ func _run_active_phase(duration: float) -> void:
 
 func _run_recovery(duration: float) -> void:
 	
-	if current_attack.animation_name  in [&"Slash1", &"Slash2" ]:
+	if current_attack.animation_name  in [&"Slash1", &"Slash2", &"Slash3"  ]:
 		slash_simple_h.disable_hitbox()
 	elif current_attack.animation_name  == &"Thrust" :
 		thrust_h.disable_hitbox()
@@ -320,9 +322,12 @@ func _wait(duration: float) -> void:
 		await get_tree().create_timer(duration).timeout
 
 func _apply_attack_effects() -> void:
-	if current_attack.animation_name  in [&"Slash1", &"Slash2" ]:
+	if current_attack.animation_name  in [&"Slash1", &"Slash2" , &"Slash3"  ]:
 		slash_simple_h.rotation = direction.angle()
 		slash_simple_h.enable_hitbox()
+		slash_simple_h.sprite.flip_v = false
+		if current_attack.animation_name  in [&"Slash2"] :
+			slash_simple_h.sprite.flip_v = true
 	elif current_attack.animation_name  in [&"Thrust"]:
 		thrust_h.rotation = direction.angle()
 		thrust_h.enable_hitbox()

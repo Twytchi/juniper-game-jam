@@ -8,12 +8,13 @@ const WINDUP_DURATION: float = 0.3
 var missile : SpinComponent
 @export var player : Player
 @onready var point: Marker2D = $Sprite2D/point
-@onready var digger : Polygon2D = $Sprite2D
+@onready var digger : Node2D = $Sprite2D
 
 
 func _physics_process(delta: float) -> void:
 	if is_winding_up:
 		timer_counter += delta
+		player.anim.play("drill")
 		if timer_counter >= WINDUP_DURATION:
 			is_winding_up = false
 			activate_missile()
