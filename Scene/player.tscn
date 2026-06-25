@@ -212,10 +212,9 @@ position = Vector2(12, -37.999996)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_c68nv")
 animation = &"Dive"
-frame_progress = 0.57696885
+frame_progress = 0.8776266
 
 [node name="Dive" type="Area2D" parent="visual" unique_id=205158859]
-visible = false
 collision_mask = 2
 script = ExtResource("5_ivevv")
 
@@ -225,12 +224,12 @@ shape = SubResource("CircleShape2D_jx4b7")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="visual/Dive" unique_id=2034370981]
+visible = false
 position = Vector2(36, 50)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("24_c1eh6")
 
 [node name="Spin" type="Area2D" parent="visual" unique_id=149132996]
-visible = false
 position = Vector2(0, -22)
 collision_mask = 2
 script = ExtResource("5_ivevv")

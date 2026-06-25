@@ -130,7 +130,11 @@ func handle_projectile_physics(delta: float):
 	
 	if body.is_on_wall() or body.is_on_ceiling() or body.is_on_floor():
 		stop_projectile()
-
+		if body is EnemyBase:
+			body as EnemyBase
+			if not body.game_camera : return
+			body.game_camera.hit_shake(15.0, 30.0)
+			body.game_camera.hit_stop()
 
 func stop_projectile():
 	set_is_spinnable(false)

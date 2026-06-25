@@ -31,4 +31,8 @@ func on_hitbox_area_entered(area : Area2D) :
 			if e  == get_parent()  : return
 			if not missile_data : return
 			e.apply_damage(missile_data, self)
+			if e.game_camera :
+				e.game_camera.hit_stop(0.35)
+				e.game_camera.hit_shake(9.0,25)
 			e.vertical_velocity = 650
+			ScoreManager.player_missile()

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="5_p6xwm"]
 [ext_resource type="Resource" uid="uid://bsoabraammveh" path="res://Ressources/player Attack/Missile_atack.tres" id="6_g3fuq"]
 [ext_resource type="PackedScene" uid="uid://bos1sj152pmob" path="res://Scene/hit_particle.tscn" id="7_g3fuq"]
+[ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="8_37jb3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ffob"]
 size = Vector2(40.000008, 40.000008)
@@ -82,6 +83,7 @@ radius = 59.999992
 radius = 72.0
 
 [node name="Kamikaze_AI" type="CharacterBody2D" unique_id=687512682 node_paths=PackedStringArray("separation_area") groups=["enemy"]]
+visible = false
 scale = Vector2(0.8, 0.8)
 collision_layer = 2
 collision_mask = 6
@@ -135,3 +137,11 @@ metadata/_custom_type_script = "uid://hdd4d24onbw6"
 shape = SubResource("CircleShape2D_37jb3")
 
 [node name="hit_particle" parent="." unique_id=1085854101 instance=ExtResource("7_g3fuq")]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1313213717]
+
+[node name="Shadow" type="Sprite2D" parent="Node2D" unique_id=1603225884]
+z_index = -1
+position = Vector2(-1, 16)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("8_37jb3")

@@ -33,6 +33,8 @@ var vertical_velocity := 0.0
 signal height_reached_zero
 signal on_death
 
+var game_camera : CameraGame
+
 enum State {
 	IDLE,
 	CHASE,
@@ -164,11 +166,24 @@ func apply_damage(attaq: AttackData, source: Node2D  = null):
 		knockback_velocity = direction * attaq.knockback
 	if attaq.animation_name == &"Luncher":
 		vertical_velocity = 500
+		ScoreManager.player_luncher()
+	if attaq.animation_name in [&"Slash1", &"Slash3"] :
+		ScoreManager.player_did_light_strike()
+	if attaq.animation_name in [&"Slash2", &"Thrust"] :
+		ScoreManager.player_did_light_strike("2")
+	if attaq.animation_name == &"Heavy1":
+		ScoreManager.player_did_heavy_strike()
+	if attaq.animation_name == &"Dive" :
+		ScoreManager.player_dive()
+	if attaq.animation_name == &"Spin" :
+		ScoreManager.player_spin()
 	if spin_component :
 		spin_component.add_charge(attaq.spin_power)
 	hit_flash()
 	shake_sprite()
-
+	game_camera = get_tree().get_first_node_in_group("camera")
+	if game_camera :
+		game_camera.hit_shake(randf_range(4.0, 7.0), 20.0) 
 	start_iframes()
 
 	if current_health <= 0:

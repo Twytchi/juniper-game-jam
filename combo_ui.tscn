@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bl2bu1k80r11i"]
+
+[ext_resource type="Script" uid="uid://cnn6gecvigq2k" path="res://combo_ui.gd" id="1_fomav"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fomav"]
+font_size = 32
+
+[node name="comboUi" type="Control" unique_id=1870541239]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fomav")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1749628339]
+layout_mode = 0
+offset_left = 1086.0
+offset_top = 8.0
+offset_right = 1278.0
+offset_bottom = 269.0
+theme_override_constants/separation = 10
+
+[node name="rank" type="Label" parent="VBoxContainer" unique_id=1084033663]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_fomav")
+
+[node name="score" type="Label" parent="VBoxContainer" unique_id=1655355464]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_fomav")
+
+[node name="mult" type="Label" parent="VBoxContainer" unique_id=1551046188]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_fomav")

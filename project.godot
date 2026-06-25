@@ -15,11 +15,20 @@ run/main_scene="uid://j8q1rul27t35"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ScoreManager="*uid://b1s4ktxn43qmq"
+SoundManager="*uid://whjy8kgbvi6o"
+
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+
+[global_group]
+
+camera=""
 
 [input]
 

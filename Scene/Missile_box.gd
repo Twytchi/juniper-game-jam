@@ -4,7 +4,7 @@ class_name Missile_box
 var timer_counter: float = 0.0
 var is_winding_up: bool = false
 var is_active: bool = false
-const WINDUP_DURATION: float = 0.3
+const WINDUP_DURATION: float = 0.15
 var missile : SpinComponent
 @export var player : Player
 @onready var point: Marker2D = $Sprite2D/point
@@ -28,8 +28,14 @@ func _physics_process(delta: float) -> void:
 		for h  in [player.slash_simple_h, player.thrust_h, player.big_slash_h] :
 				h.disable_hitbox()
 		timer_counter = 0.0
+		var game_camera: CameraGame = get_tree().get_first_node_in_group("camera")
+		player.play_squash_and_stretch(player.sprite,0.2,0.1)
+		if game_camera :
+			game_camera.zoom_to_node(game_camera, 1.07)
+			print(658)
 
 	if Input.is_action_just_released("missile"):
+		
 		stop_missile()
 
 	if is_active : 
@@ -56,9 +62,15 @@ func stop_missile():
 	is_active = false
 	timer_counter = 0.0
 	disable_hitbox()
+	var game_camera : CameraGame = get_tree().get_first_node_in_group("camera")
 	if missile : 
 		missile.throw(Vector2.RIGHT.rotated(rotation))
+		player.play_squash_and_stretch(player.sprite,0.25,0.15)
+
+		if game_camera : 
+			game_camera.hit_shake(10.0,25)
 	missile = null 
+	if game_camera : game_camera.reset_zoom()
 	player.current_action = player.Action.NONE
 
 func _on_area_entered(area: Area2D) -> void:

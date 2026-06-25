@@ -66,6 +66,7 @@ var knockback_friction := 800.0
 
 signal on_death
 
+var game_camera : CameraGame
 
 func _ready() -> void:
 	if hurtbox:
@@ -128,6 +129,7 @@ func _physics_process(delta: float) -> void:
 		current_action = Action.DASH
 		for h  in [slash_simple_h, thrust_h, big_slash_h] :
 			h.disable_hitbox()
+		play_squash_and_stretch(sprite, 0.1, 0.25, true)
 		vertical_velocity = JUMP_FORCE
 		velocity = direction * speed * 1.5
 		current_attack = null
@@ -142,6 +144,7 @@ func _physics_process(delta: float) -> void:
 		if current_action == Action.DASH :
 			velocity = velocity.lerp(Vector2.ZERO, delta * 20)
 			anim.play("land")
+			play_squash_and_stretch(sprite, 0.05, 0.1, false)
 			await get_tree().create_timer(0.2).timeout
 			if current_action == Action.DASH and height <= 0 :
 				current_action = Action.NONE
@@ -263,6 +266,9 @@ func _run_recovery(duration: float) -> void:
 		thrust_h.disable_hitbox()
 	elif current_attack.animation_name  in [&"Heavy1"]:
 		big_slash_h.disable_hitbox()
+		game_camera = get_tree().get_first_node_in_group("camera")
+		if game_camera :
+			game_camera.reset_zoom()
 	elif current_attack.animation_name in [&"Luncher"] :
 		luncher_h.disable_hitbox()
 		current_action = Action.DASH
@@ -334,6 +340,10 @@ func _apply_attack_effects() -> void:
 	elif current_attack.animation_name  in [&"Heavy1"]:
 		big_slash_h.rotation = direction.angle()
 		big_slash_h.enable_hitbox()
+		game_camera = get_tree().get_first_node_in_group("camera")
+		if game_camera :
+			game_camera.hit_shake(7.0, 40.0) 
+			game_camera.zoom_to_node(game_camera, 1.07)
 	elif current_attack.animation_name in [&"Luncher"] :
 		vertical_velocity = JUMP_FORCE
 		luncher_h.rotation = direction.angle()
@@ -341,6 +351,9 @@ func _apply_attack_effects() -> void:
 	elif  current_attack.animation_name in [&"Dive"] : 
 		dive.enable_hitbox()
 		dive_s = 5.0
+		game_camera = get_tree().get_first_node_in_group("camera")
+		if game_camera :
+			game_camera.hit_shake(15.0, 40.0) 
 	elif  current_attack.animation_name in [&"Spin"] :
 		velocity.y = 0
 		spin.enable_hitbox()
@@ -356,6 +369,7 @@ func apply_damage(amount: float, source: Node = null, force : float = 300.0) -> 
 		return
 
 	health -= amount
+	ScoreManager.player_get_hit()
 
 	for h in [slash_simple_h, thrust_h, big_slash_h, luncher_h, dive]:
 		h.disable_hitbox()
@@ -402,3 +416,18 @@ func die() -> void:
 
 func jump():
 	pass
+
+func play_squash_and_stretch(node: Node2D, intensity: float = 0.25, duration: float = 0.15, is_vertical: bool = true) -> void:
+	if not node:
+		return
+		
+	var tween = create_tween()
+	
+	var target_scale: Vector2
+	if is_vertical:
+		target_scale = Vector2(0.5 - intensity, 0.5 + intensity)
+	else:
+		target_scale = Vector2(0.5 + intensity, 0.5 - intensity)
+		
+	tween.tween_property(node, "scale", target_scale, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(node, "scale", Vector2(0.5, 0.5), duration * 1.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
