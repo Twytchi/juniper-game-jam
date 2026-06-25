@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://oiqk6kurwl2p"]
+
+[node name="Chapter selection menu" type="Node2D" unique_id=486163852]
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=29968813]
+offset_left = 143.0
+offset_top = 37.0
+offset_right = 454.0
+offset_bottom = 519.0

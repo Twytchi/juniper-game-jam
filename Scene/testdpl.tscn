@@ -17,100 +17,19 @@ size = Vector2(1376, 573)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsd3"]
 size = Vector2(1376, 192)
 
-[sub_resource type="Resource" id="Resource_ht6sa"]
+[sub_resource type="Resource" id="Resource_46d5g"]
 script = ExtResource("5_46d5g")
-type = 2
-count = 2
+type = 5
 metadata/_custom_type_script = "uid://deumf51aa55m8"
 
-[sub_resource type="Resource" id="Resource_vg4q6"]
-script = ExtResource("4_y865s")
-spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_ht6sa")])
-metadata/_custom_type_script = "uid://dvqw441xw26cr"
-
-[sub_resource type="Resource" id="Resource_nnfvd"]
+[sub_resource type="Resource" id="Resource_68fol"]
 script = ExtResource("5_46d5g")
-type = 2
-count = 2
-metadata/_custom_type_script = "uid://deumf51aa55m8"
-
-[sub_resource type="Resource" id="Resource_e7c2o"]
-script = ExtResource("5_46d5g")
-type = 1
-count = 2
+type = 3
 metadata/_custom_type_script = "uid://deumf51aa55m8"
 
 [sub_resource type="Resource" id="Resource_tm214"]
 script = ExtResource("4_y865s")
-spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_nnfvd"), SubResource("Resource_e7c2o")])
-metadata/_custom_type_script = "uid://dvqw441xw26cr"
-
-[sub_resource type="Resource" id="Resource_fnsd3"]
-script = ExtResource("5_46d5g")
-type = 3
-count = 2
-metadata/_custom_type_script = "uid://deumf51aa55m8"
-
-[sub_resource type="Resource" id="Resource_y865s"]
-script = ExtResource("5_46d5g")
-type = 2
-count = 3
-metadata/_custom_type_script = "uid://deumf51aa55m8"
-
-[sub_resource type="Resource" id="Resource_46d5g"]
-script = ExtResource("4_y865s")
-spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_fnsd3"), SubResource("Resource_y865s")])
-metadata/_custom_type_script = "uid://dvqw441xw26cr"
-
-[sub_resource type="Resource" id="Resource_68fol"]
-script = ExtResource("5_46d5g")
-type = 1
-count = 2
-metadata/_custom_type_script = "uid://deumf51aa55m8"
-
-[sub_resource type="Resource" id="Resource_j6feq"]
-script = ExtResource("5_46d5g")
-type = 3
-count = 3
-metadata/_custom_type_script = "uid://deumf51aa55m8"
-
-[sub_resource type="Resource" id="Resource_kt53c"]
-script = ExtResource("5_46d5g")
-type = 2
-count = 2
-metadata/_custom_type_script = "uid://deumf51aa55m8"
-
-[sub_resource type="Resource" id="Resource_r5jyb"]
-script = ExtResource("4_y865s")
-spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_68fol"), SubResource("Resource_j6feq"), SubResource("Resource_kt53c")])
-metadata/_custom_type_script = "uid://dvqw441xw26cr"
-
-[sub_resource type="Resource" id="Resource_u5ak0"]
-script = ExtResource("5_46d5g")
-count = 3
-metadata/_custom_type_script = "uid://deumf51aa55m8"
-
-[sub_resource type="Resource" id="Resource_b7ihj"]
-script = ExtResource("5_46d5g")
-type = 2
-count = 4
-metadata/_custom_type_script = "uid://deumf51aa55m8"
-
-[sub_resource type="Resource" id="Resource_ms7hw"]
-script = ExtResource("5_46d5g")
-type = 1
-count = 3
-metadata/_custom_type_script = "uid://deumf51aa55m8"
-
-[sub_resource type="Resource" id="Resource_nuytn"]
-script = ExtResource("5_46d5g")
-type = 3
-count = 3
-metadata/_custom_type_script = "uid://deumf51aa55m8"
-
-[sub_resource type="Resource" id="Resource_ngrdj"]
-script = ExtResource("4_y865s")
-spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_u5ak0"), SubResource("Resource_b7ihj"), SubResource("Resource_ms7hw"), SubResource("Resource_nuytn")])
+spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_46d5g"), SubResource("Resource_68fol")])
 metadata/_custom_type_script = "uid://dvqw441xw26cr"
 
 [node name="test" type="Node2D" unique_id=1915128990]
@@ -151,9 +70,17 @@ shape = SubResource("RectangleShape2D_fnsd3")
 
 [node name="SpawnZone" parent="." unique_id=1885971783 instance=ExtResource("4_fnsd3")]
 position = Vector2(39, 73)
-waves = Array[ExtResource("4_y865s")]([SubResource("Resource_vg4q6"), SubResource("Resource_tm214"), SubResource("Resource_46d5g"), SubResource("Resource_r5jyb"), SubResource("Resource_ngrdj")])
+waves = Array[ExtResource("4_y865s")]([SubResource("Resource_tm214")])
+
+[node name="point5" type="Marker2D" parent="SpawnZone" unique_id=2121582116]
+position = Vector2(75, 337)
+
+[node name="point6" type="Marker2D" parent="SpawnZone" unique_id=462725723]
+position = Vector2(1071, 350)
 
 [node name="Camera2D" parent="." unique_id=2048302457 groups=["camera"] instance=ExtResource("6_y865s")]
 position = Vector2(640, 360)
 
 [node name="comboUi" parent="." unique_id=1870541239 instance=ExtResource("7_46d5g")]
+
+[editable path="SpawnZone"]

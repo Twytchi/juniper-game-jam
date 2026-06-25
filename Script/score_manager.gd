@@ -16,7 +16,7 @@ var action_data = {
 	"dive": {"points": 8, "mult_add": 0.1, "reset_mult": false},
 	"spin": {"points": 25, "mult_add": 0.05, "reset_mult": false},
 	"missile": {"points": 30, "mult_add": 0.2, "reset_mult": false},
-	"get_hit": {"points": -20, "mult_add": -0.2, "reset_mult": false}
+	"get_hit": {"points": -20, "mult_add": -0.25, "reset_mult": false}
 }
 
 
@@ -63,6 +63,8 @@ func _process_action(action_name: String):
 	_update_history(action_name)
 	
 	score_updated.emit(score, multiplier)
+	if multiplier <= 1.0 :
+		multiplier = 1.0
 
 func _calculate_spam_modifier(action_name: String) -> float:
 	if action_data[action_name]["points"] < 0:
@@ -76,7 +78,7 @@ func _calculate_spam_modifier(action_name: String) -> float:
 			
 	if action_name == "missile" :
 		return 1.0
-	if count <= 2:
+	elif count <= 2:
 		return 1.0
 	elif count <= 4:
 		return 0.5

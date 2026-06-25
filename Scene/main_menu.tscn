@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bb70i0cf7eyla"]
+
+[ext_resource type="Script" uid="uid://bfas2wyvgxjoq" path="res://Scene/main_menu.gd" id="1_ftydy"]
+
+[node name="Main menu" type="Node2D" unique_id=186063864]
+script = ExtResource("1_ftydy")
+
+[node name="Bouton" type="Node2D" parent="." unique_id=2127691326]
+
+[node name="Play" type="Button" parent="Bouton" unique_id=1105344188]
+offset_left = 1080.0
+offset_top = 263.0
+offset_right = 1188.0
+offset_bottom = 328.0
+text = "Play
+"
+
+[node name="Option" type="Button" parent="Bouton" unique_id=926769996]
+offset_left = 841.0
+offset_top = 606.0
+offset_right = 949.0
+offset_bottom = 671.0
+text = "Option
+"
+
+[node name="Quit" type="Button" parent="Bouton" unique_id=500456651]
+offset_left = 965.0
+offset_top = 436.0
+offset_right = 1073.0
+offset_bottom = 501.0
+text = "quit
+
+"
+
+[connection signal="pressed" from="Bouton/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Bouton/Option" to="." method="_on_option_pressed"]
+[connection signal="pressed" from="Bouton/Quit" to="." method="_on_quit_pressed"]

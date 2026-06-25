@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		var game_camera: CameraGame = get_tree().get_first_node_in_group("camera")
 		player.play_squash_and_stretch(player.sprite,0.2,0.1)
 		if game_camera :
-			game_camera.zoom_to_node(game_camera, 1.07)
+			game_camera.zoom_to_node(game_camera, 1.03)
 			print(658)
 
 	if Input.is_action_just_released("missile"):

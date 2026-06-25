@@ -1,10 +1,12 @@
 extends Area2D
+class_name  SpawnZone
 
 @export var waves: Array[WaveData] = []
 
 var current_wave_index := 0
 var spawn_points := []
 var current_enemies_alive := 0
+signal next_wave
 
 func _ready():
 	body_entered.connect(_on_body_entered)
@@ -19,7 +21,9 @@ func _on_body_entered(body):
 	spawn_wave()
 
 func spawn_wave():
-	if current_wave_index >= waves.size() : return
+	if current_wave_index >= waves.size() :
+		
+		return
 	var wave_data = waves[current_wave_index ]
 	var spawn_idx = 0
 	
@@ -33,8 +37,8 @@ func spawn_wave():
 			var offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
 			enemy.global_position = marker.global_position + offset
 			
-			if "difficulty" in enemy:
-				enemy.difficulty = entry.difficulty
+			if enemy is EnemyBase:
+				enemy.difficulty_multiplier  = entry.difficulty
 				
 			get_parent().call_deferred("add_child", enemy)
 			current_enemies_alive += 1
@@ -46,5 +50,7 @@ func spawn_wave():
 func _on_enemy_died():
 	current_enemies_alive -= 1
 	if current_enemies_alive <= 0:
+		
+		next_wave.emit()
+		await get_tree().create_timer(0.7).timeout
 		spawn_wave()
-	print("123")

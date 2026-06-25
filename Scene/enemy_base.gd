@@ -156,7 +156,7 @@ func apply_damage(attaq: AttackData, source: Node2D  = null):
 		return
 	if not attaq : return
 	current_health -= attaq.damage
-
+	print(2466)
 	if get_node_or_null("hit_particle") : 
 		$hit_particle.emitting = true
 
