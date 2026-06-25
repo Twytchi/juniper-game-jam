@@ -1,27 +1,29 @@
 [gd_scene format=3 uid="uid://j8q1rul27t35"]
 
 [ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="1_vxfbs"]
+[ext_resource type="Texture2D" uid="uid://ds00vjn0irmqn" path="res://Asset/player asset/grass_scen-grai n.png" id="2_fnsd3"]
 [ext_resource type="PackedScene" uid="uid://bqh2swahs6niy" path="res://Scene/spawn_zone.tscn" id="4_fnsd3"]
-[ext_resource type="Texture2D" uid="uid://d36latabp0xp4" path="res://Asset/player asset/grass_scene.png" id="4_umnua"]
 [ext_resource type="Script" uid="uid://dvqw441xw26cr" path="res://Ressources/Waves/waves_data.gd" id="4_y865s"]
 [ext_resource type="Script" uid="uid://deumf51aa55m8" path="res://Script/wave_entry.gd" id="5_46d5g"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsd3"]
-size = Vector2(1376, 202)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y865s"]
+size = Vector2(1376, 623)
 
-[sub_resource type="Resource" id="Resource_emo6r"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46d5g"]
+size = Vector2(1376, 573)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsd3"]
+size = Vector2(1376, 192)
+
+[sub_resource type="Resource" id="Resource_ht6sa"]
 script = ExtResource("5_46d5g")
 type = 2
 count = 2
 metadata/_custom_type_script = "uid://deumf51aa55m8"
 
-[sub_resource type="Resource" id="Resource_ola5b"]
-script = ExtResource("5_46d5g")
-metadata/_custom_type_script = "uid://deumf51aa55m8"
-
-[sub_resource type="Resource" id="Resource_30aa1"]
+[sub_resource type="Resource" id="Resource_vg4q6"]
 script = ExtResource("4_y865s")
-spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_emo6r"), SubResource("Resource_ola5b")])
+spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_ht6sa")])
 metadata/_custom_type_script = "uid://dvqw441xw26cr"
 
 [sub_resource type="Resource" id="Resource_nnfvd"]
@@ -81,30 +83,59 @@ script = ExtResource("4_y865s")
 spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_68fol"), SubResource("Resource_j6feq"), SubResource("Resource_kt53c")])
 metadata/_custom_type_script = "uid://dvqw441xw26cr"
 
+[sub_resource type="Resource" id="Resource_u5ak0"]
+script = ExtResource("5_46d5g")
+count = 3
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_b7ihj"]
+script = ExtResource("5_46d5g")
+type = 2
+count = 4
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_ms7hw"]
+script = ExtResource("5_46d5g")
+type = 1
+count = 3
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_nuytn"]
+script = ExtResource("5_46d5g")
+type = 3
+count = 3
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_ngrdj"]
+script = ExtResource("4_y865s")
+spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_u5ak0"), SubResource("Resource_b7ihj"), SubResource("Resource_ms7hw"), SubResource("Resource_nuytn")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
 [node name="test" type="Node2D" unique_id=1915128990]
 y_sort_enabled = true
 
 [node name="Player" parent="." unique_id=500224478 instance=ExtResource("1_vxfbs")]
 position = Vector2(580, 433)
+scale = Vector2(0.9, 0.9)
 health = 100.0
 
 [node name="background" type="Sprite2D" parent="." unique_id=795973731]
 z_index = -10
 position = Vector2(627, 356)
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("4_umnua")
+texture = ExtResource("2_fnsd3")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=649786150]
 collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=637742372]
-position = Vector2(645, 56)
-shape = SubResource("RectangleShape2D_fnsd3")
+position = Vector2(645, -154.5)
+shape = SubResource("RectangleShape2D_y865s")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=566632498]
-position = Vector2(625, 844)
-shape = SubResource("RectangleShape2D_fnsd3")
+position = Vector2(625, 1029.5)
+shape = SubResource("RectangleShape2D_46d5g")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=573501853]
 position = Vector2(-108, 139.00002)
@@ -118,4 +149,4 @@ shape = SubResource("RectangleShape2D_fnsd3")
 
 [node name="SpawnZone" parent="." unique_id=1885971783 instance=ExtResource("4_fnsd3")]
 position = Vector2(39, 73)
-waves = Array[ExtResource("4_y865s")]([SubResource("Resource_30aa1"), SubResource("Resource_tm214"), SubResource("Resource_46d5g"), SubResource("Resource_r5jyb")])
+waves = Array[ExtResource("4_y865s")]([SubResource("Resource_vg4q6"), SubResource("Resource_tm214"), SubResource("Resource_46d5g"), SubResource("Resource_r5jyb"), SubResource("Resource_ngrdj")])

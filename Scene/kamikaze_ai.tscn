@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="2_6buke"]
 [ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="3_hompp"]
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="4_3d7hi"]
+[ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="5_p6xwm"]
+[ext_resource type="Resource" uid="uid://bsoabraammveh" path="res://Ressources/player Attack/Missile_atack.tres" id="6_g3fuq"]
+[ext_resource type="PackedScene" uid="uid://bos1sj152pmob" path="res://Scene/hit_particle.tscn" id="7_g3fuq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ffob"]
 size = Vector2(40.000008, 40.000008)
@@ -75,6 +78,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_3d7hi"]
 radius = 59.999992
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_37jb3"]
+radius = 72.0
+
 [node name="Kamikaze_AI" type="CharacterBody2D" unique_id=687512682 node_paths=PackedStringArray("separation_area") groups=["enemy"]]
 scale = Vector2(0.8, 0.8)
 collision_layer = 2
@@ -105,10 +111,11 @@ shape = SubResource("RectangleShape2D_6buke")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1281628990]
 libraries/ = SubResource("AnimationLibrary_hompp")
 
-[node name="SpinComponent" type="Node2D" parent="." unique_id=290911472 node_paths=PackedStringArray("body", "body_sprite")]
+[node name="SpinComponent" type="Node2D" parent="." unique_id=290911472 node_paths=PackedStringArray("body", "body_sprite", "hitbox")]
 script = ExtResource("4_3d7hi")
 body = NodePath("..")
 body_sprite = NodePath("../Sprite2D")
+hitbox = NodePath("../EnemyHitbox")
 metadata/_custom_type_script = "uid://da52ihtpjml2f"
 
 [node name="separation" type="Area2D" parent="." unique_id=870999704]
@@ -117,3 +124,14 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="separation" unique_id=1549115154]
 shape = SubResource("CircleShape2D_3d7hi")
+
+[node name="EnemyHitbox" type="Area2D" parent="." unique_id=721193110]
+collision_mask = 2
+script = ExtResource("5_p6xwm")
+missile_data = ExtResource("6_g3fuq")
+metadata/_custom_type_script = "uid://hdd4d24onbw6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox" unique_id=82826041]
+shape = SubResource("CircleShape2D_37jb3")
+
+[node name="hit_particle" parent="." unique_id=1085854101 instance=ExtResource("7_g3fuq")]

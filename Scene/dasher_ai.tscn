@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://bsoabraammveh" path="res://Ressources/player Attack/Missile_atack.tres" id="5_670p6"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="5_gke3p"]
 [ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="6_xxlim"]
+[ext_resource type="PackedScene" uid="uid://bos1sj152pmob" path="res://Scene/hit_particle.tscn" id="8_qy33t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fq4oq"]
 size = Vector2(40.000008, 40.000008)
@@ -94,3 +95,5 @@ shape = SubResource("CircleShape2D_670p6")
 modulate = Color(1, 0.32941177, 1, 1)
 scale = Vector2(0.49999997, 0.49999997)
 texture = ExtResource("2_ppukq")
+
+[node name="hit_particle" parent="." unique_id=1085854101 instance=ExtResource("8_qy33t")]

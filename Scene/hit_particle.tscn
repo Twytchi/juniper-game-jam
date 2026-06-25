@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bos1sj152pmob"]
+
+[ext_resource type="Texture2D" uid="uid://t1eobduvkrey" path="res://Asset/effect/star.png" id="1_fkmbx"]
+
+[sub_resource type="Gradient" id="Gradient_6ahve"]
+colors = PackedColorArray(1, 0.2425499, 0.21126139, 1, 1, 1, 1, 0.30980393)
+
+[node name="hit_particle" type="CPUParticles2D" unique_id=1085854101]
+emitting = false
+amount = 6
+texture = ExtResource("1_fkmbx")
+lifetime = 0.55
+one_shot = true
+speed_scale = 1.46
+explosiveness = 1.0
+randomness = 0.09
+lifetime_randomness = 0.08
+emission_shape = 1
+emission_sphere_radius = 20.47
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 126.0
+initial_velocity_max = 150.0
+angular_velocity_min = 22.0
+angular_velocity_max = 180.0
+scale_amount_min = 0.1
+scale_amount_max = 0.16
+color_ramp = SubResource("Gradient_6ahve")

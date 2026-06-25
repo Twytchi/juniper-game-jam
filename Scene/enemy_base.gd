@@ -15,6 +15,7 @@ var difficulty_multiplier : float = 1.0
 
 var current_health: float
 
+var s_base_pos : Vector2
 
 var height := 500.0
 
@@ -48,6 +49,8 @@ func _ready():
 	current_health = max_health
 	if hurtbox:
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+	if sprite.get_child(0) : 
+		s_base_pos = sprite.get_child(0).position
 
 func _process(_delta: float) -> void:
 	sprite.position.y = -height
@@ -152,6 +155,9 @@ func apply_damage(attaq: AttackData, source: Node2D  = null):
 	if not attaq : return
 	current_health -= attaq.damage
 
+	if get_node_or_null("hit_particle") : 
+		$hit_particle.emitting = true
+
 	if source:
 		var direction = (global_position - source.global_position).normalized()
 
@@ -161,6 +167,8 @@ func apply_damage(attaq: AttackData, source: Node2D  = null):
 	if spin_component :
 		spin_component.add_charge(attaq.spin_power)
 	hit_flash()
+	shake_sprite()
+
 	start_iframes()
 
 	if current_health <= 0:
@@ -177,11 +185,30 @@ func start_iframes():
 		state = State.CHASE
 
 
+func shake_sprite(duration: float = 0.4, intensity: float = 12.0, shakes: int = 8):
+	var sprite_t = sprite.get_child(0)
+	if not sprite_t : return
+	sprite_t.position = s_base_pos
+	var tween = create_tween()
+	var time_per_shake = duration / float(shakes)
+	
+	for i in range(shakes):
+		var current_intensity = intensity * (1.0 - float(i) / float(shakes))
+		var random_offset = Vector2(
+			randf_range(-current_intensity, current_intensity),
+			randf_range(-current_intensity, current_intensity)
+		)
+		tween.tween_property(sprite_t, "position", s_base_pos+ random_offset, time_per_shake)
+	tween.tween_property(sprite_t, "position", s_base_pos, time_per_shake)
+
 
 func hit_flash():
 	if has_node("Sprite2D"):
 		var sprite = $Sprite2D
-		sprite.modulate = Color(1, 0.3, 0.3)
+		if randf() > 0.5 :
+			sprite.modulate = Color(1, 0.3, 0.3)
+		else : 
+			sprite.modulate = Color(0.872, 0.465, 0.0, 1.0)
 		await get_tree().create_timer(0.1).timeout
 		sprite.modulate = Color(1, 1, 1)
 
@@ -190,3 +217,13 @@ func die():
 	state = State.DEAD
 	on_death.emit()
 	queue_free()
+
+
+func check_if_inside_wall() -> bool:
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsShapeQueryParameters2D.new()
+	query.shape = $CollisionShape2D.shape
+	query.transform = global_transform 
+	query.collision_mask = 3
+	var results = space_state.intersect_shape(query)
+	return results.size() > 0

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://d12xnvgikvn1y" path="res://Script/player_controller.gd" id="1_y8w33"]
 [ext_resource type="Resource" uid="uid://c5x4xfub375ov" path="res://Ressources/player Attack/Slash_1.tres" id="2_2sw5t"]
-[ext_resource type="Texture2D" uid="uid://swobx6frxop5" path="res://icon.svg" id="2_xa75v"]
 [ext_resource type="Resource" uid="uid://cesdse1q8k8b2" path="res://Ressources/player Attack/Big_slash.tres" id="3_ij4jb"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="4_58ae2"]
 [ext_resource type="Resource" uid="uid://b7gtwcjadua20" path="res://Ressources/player Attack/Ground_dive.tres" id="4_c68nv"]
@@ -27,9 +26,11 @@
 [ext_resource type="Texture2D" uid="uid://6ifbadbrdsm3" path="res://Asset/player asset/jump.png" id="14_jx4b7"]
 [ext_resource type="Texture2D" uid="uid://c68jvuk50y7dw" path="res://Asset/player asset/Sans_titre_35_20260624093550.png" id="15_2gnqs"]
 [ext_resource type="Texture2D" uid="uid://vlkafwukwjwp" path="res://Asset/player asset/land.png" id="15_2mxbm"]
-[ext_resource type="Texture2D" uid="uid://xp2tqtqgeooq" path="res://Asset/player asset/slash_20260624095831.png" id="24_6xvy4"]
-[ext_resource type="Texture2D" uid="uid://dl7c3127lv3cp" path="res://Asset/player asset/slash_20260624095559.png" id="24_8jg3e"]
-[ext_resource type="Texture2D" uid="uid://g2e32wo1niuh" path="res://Asset/player asset/slash_20260624094756.png" id="28_c1eh6"]
+[ext_resource type="Texture2D" uid="uid://4l0eugfwwmfr" path="res://Asset/effect/slash_20260624221639.png" id="24_c1eh6"]
+[ext_resource type="Texture2D" uid="uid://wkxeisyvgcm2" path="res://Asset/effect/slash_20260624221504.png" id="25_2gnqs"]
+[ext_resource type="Texture2D" uid="uid://cpeucfx0bm326" path="res://Asset/effect/slash_20260624221222.png" id="26_c1eh6"]
+[ext_resource type="Texture2D" uid="uid://cxbs8gjfaqf6v" path="res://Asset/effect/slash_20260624221319.png" id="28_2gnqs"]
+[ext_resource type="Texture2D" uid="uid://cl7boep2qgpl1" path="res://Asset/effect/slash_20260624221751.png" id="29_c1eh6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c68nv"]
 animations = [{
@@ -164,7 +165,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 6.0
+"speed": 9.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jx4b7"]
@@ -174,13 +175,13 @@ radius = 208.1538
 radius = 120.14991
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6qlh"]
-size = Vector2(81.75, 48)
+size = Vector2(96.875, 59)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6jsd"]
 size = Vector2(63, 126)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r6jsd"]
-radius = 155.00322
+radius = 169.01186
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2sw5t"]
 size = Vector2(105, 206)
@@ -203,16 +204,18 @@ dive_attack = ExtResource("4_c68nv")
 spin_attack = ExtResource("5_2mxbm")
 
 [node name="visual" type="Node2D" parent="." unique_id=1985439555]
-position = Vector2(-1, -11)
+position = Vector2(-1, 0)
 scale = Vector2(0.5, 0.5)
 
 [node name="anim" type="AnimatedSprite2D" parent="visual" unique_id=469809798]
 position = Vector2(12, -37.999996)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_c68nv")
-animation = &"drill"
+animation = &"Dive"
+frame_progress = 0.57696885
 
 [node name="Dive" type="Area2D" parent="visual" unique_id=205158859]
+visible = false
 collision_mask = 2
 script = ExtResource("5_ivevv")
 
@@ -221,7 +224,13 @@ position = Vector2(8, 22)
 shape = SubResource("CircleShape2D_jx4b7")
 disabled = true
 
+[node name="Sprite2D" type="Sprite2D" parent="visual/Dive" unique_id=2034370981]
+position = Vector2(36, 50)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("24_c1eh6")
+
 [node name="Spin" type="Area2D" parent="visual" unique_id=149132996]
+visible = false
 position = Vector2(0, -22)
 collision_mask = 2
 script = ExtResource("5_ivevv")
@@ -248,12 +257,13 @@ script = ExtResource("5_ivevv")
 
 [node name="Sprite2D" type="Sprite2D" parent="hitbox/Thrust" unique_id=818894718]
 visible = false
-position = Vector2(65, -6)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("24_6xvy4")
+modulate = Color(1, 1, 1, 0.94509804)
+position = Vector2(60, 10)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("25_2gnqs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/Thrust" unique_id=1112610071]
-position = Vector2(79, -6)
+position = Vector2(80.5625, 5.5)
 shape = SubResource("RectangleShape2D_p6qlh")
 disabled = true
 
@@ -264,9 +274,9 @@ script = ExtResource("5_ivevv")
 
 [node name="Sprite2D" type="Sprite2D" parent="hitbox/Slash_simple" unique_id=49065693]
 visible = false
-position = Vector2(57, -1)
+position = Vector2(54, 10)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("24_8jg3e")
+texture = ExtResource("26_c1eh6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/Slash_simple" unique_id=1219278782]
 position = Vector2(72, -6)
@@ -274,22 +284,23 @@ shape = SubResource("RectangleShape2D_r6jsd")
 disabled = true
 
 [node name="Missile_attack" type="Area2D" parent="hitbox" unique_id=437431345 node_paths=PackedStringArray("player")]
-position = Vector2(15, -29)
+position = Vector2(18, -30)
 collision_mask = 2
 script = ExtResource("6_r6jsd")
 player = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/Missile_attack" unique_id=1003606093]
-position = Vector2(1, 1)
+position = Vector2(1.9073486e-06, 15.999998)
+rotation = 0.012008879
 shape = SubResource("CircleShape2D_r6jsd")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="hitbox/Missile_attack" unique_id=2067819002]
 visible = false
-position = Vector2(71, 3)
+position = Vector2(69, 11)
 rotation = 1.5707964
 scale = Vector2(0.27, 0.27)
-texture = ExtResource("28_c1eh6")
+texture = ExtResource("28_2gnqs")
 
 [node name="point" type="Marker2D" parent="hitbox/Missile_attack/Sprite2D" unique_id=1557707104]
 position = Vector2(-10.00001, -233.33333)
@@ -300,13 +311,13 @@ script = ExtResource("5_ivevv")
 
 [node name="Sprite2D" type="Sprite2D" parent="hitbox/BigSlash" unique_id=186613384]
 visible = false
-modulate = Color(1, 1, 1, 0.78431374)
-position = Vector2(82.5, -5.500004)
-scale = Vector2(0.6328125, 1.6484374)
-texture = ExtResource("2_xa75v")
+modulate = Color(1, 1, 1, 0.94509804)
+position = Vector2(56, -4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("29_c1eh6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/BigSlash" unique_id=1302686116]
-position = Vector2(70.5, -5)
+position = Vector2(69, -6)
 shape = SubResource("RectangleShape2D_2sw5t")
 disabled = true
 
@@ -323,10 +334,12 @@ shape = SubResource("RectangleShape2D_ij4jb")
 disabled = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=800940237]
+visible = false
 position = Vector2(8, 0)
 shape = SubResource("CircleShape2D_wfp4b")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=2109857094]
+visible = false
 collision_mask = 2
 script = ExtResource("13_4ao7i")
 

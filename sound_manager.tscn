@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://whjy8kgbvi6o"]
 
 [ext_resource type="Script" uid="uid://dp666ki87315m" path="res://Script/sound_manager.gd" id="1_g5net"]
+[ext_resource type="PackedScene" uid="uid://b1hl38ggdlrn3" path="res://Scene/archer_ai.tscn" id="2_22ksp"]
+[ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="3_ndygv"]
 
 [node name="SoundManager" type="Node2D" unique_id=167281559]
 script = ExtResource("1_g5net")
@@ -8,3 +10,9 @@ script = ExtResource("1_g5net")
 [node name="Musique" type="AudioStreamPlayer" parent="." unique_id=1195336343]
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="." unique_id=49847210]
+
+[node name="Archer" parent="." unique_id=931307868 instance=ExtResource("2_22ksp")]
+position = Vector2(773, 346)
+
+[node name="Player" parent="." unique_id=500224478 instance=ExtResource("3_ndygv")]
+position = Vector2(156, 336)

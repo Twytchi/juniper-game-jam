@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="5_2hulq"]
 [ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="6_2hulq"]
 [ext_resource type="Resource" uid="uid://bsoabraammveh" path="res://Ressources/player Attack/Missile_atack.tres" id="7_xx3dv"]
+[ext_resource type="PackedScene" uid="uid://bos1sj152pmob" path="res://Scene/hit_particle.tscn" id="8_qwq2l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2eol"]
 size = Vector2(32, 32)
@@ -75,3 +76,5 @@ metadata/_custom_type_script = "uid://hdd4d24onbw6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox" unique_id=1350944135]
 shape = SubResource("CircleShape2D_xx3dv")
+
+[node name="hit_particle" parent="." unique_id=1085854101 instance=ExtResource("8_qwq2l")]

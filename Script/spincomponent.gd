@@ -92,7 +92,7 @@ func charge_spin(delta: float):
 	
 		current_throw_power = min(current_throw_power + 1000.0 * delta, max_throw_speed)
 	if body_sprite :
-		body_sprite.rotation += delta * current_throw_power / 100 
+		body_sprite.rotation += delta * current_throw_power / 80
 
 func throw(direction: Vector2):
 	is_being_spun = false
@@ -103,10 +103,33 @@ func throw(direction: Vector2):
 
 func handle_projectile_physics(delta: float):
 	if not body: return
+	
 	body.velocity = throw_velocity 
-	if body.is_on_wall() or body.is_on_ceiling() or body.is_on_floor() :
-		stop_projectile()
+	body_sprite.rotation += delta * current_throw_power / 80
+	
+	var test_collision = body.move_and_collide(Vector2.ZERO, true)
+	
+	if test_collision:
+		var space_state = get_world_2d().direct_space_state
+		var query = PhysicsShapeQueryParameters2D.new()
+		query.shape = body.get_node("CollisionShape2D").shape
+		query.transform = global_transform
+		query.collision_mask = 3
+		query.exclude = [self] 
+		
+		var rest_info = space_state.get_rest_info(query)
+		
+		if rest_info.size() > 0:
+			print(435)
+			var separation_vector = rest_info.linear_velocity * rest_info.collision_deepness
+			global_position += separation_vector
+			stop_projectile()
+			return 
+
 	body.move_and_slide()
+	
+	if body.is_on_wall() or body.is_on_ceiling() or body.is_on_floor():
+		stop_projectile()
 
 
 func stop_projectile():
