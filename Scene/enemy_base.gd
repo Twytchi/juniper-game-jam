@@ -53,6 +53,8 @@ func _ready():
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 	if sprite.get_child(0) : 
 		s_base_pos = sprite.get_child(0).position
+	
+	scale  = scale * difficulty_multiplier
 
 func _process(_delta: float) -> void:
 	sprite.position.y = -height

@@ -9,6 +9,7 @@ func _ready():
 
 	if difficulty_multiplier == 0.0:
 		spin_component.add_charge(100.0)
+		scale = Vector2(1.0,1.0)
 
 	pick_new_direction()
 

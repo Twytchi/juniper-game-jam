@@ -1,13 +1,19 @@
 [gd_scene format=3 uid="uid://0gsss83wv40"]
 
 [ext_resource type="Script" uid="uid://oub2iknj45xr" path="res://Scene/dasher_ai.gd" id="1_ppukq"]
-[ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="2_ppukq"]
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="3_en4pq"]
 [ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="3_rpor8"]
 [ext_resource type="Resource" uid="uid://bsoabraammveh" path="res://Ressources/player Attack/Missile_atack.tres" id="5_670p6"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="5_gke3p"]
 [ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="6_xxlim"]
+[ext_resource type="Texture2D" uid="uid://bocue71sp71di" path="res://Asset/enemy/dash_charge_idle00.png" id="7_uvf5k"]
+[ext_resource type="Texture2D" uid="uid://cstlr2wupavjv" path="res://Asset/enemy/dash_charge_idle01.png" id="8_fqofi"]
 [ext_resource type="PackedScene" uid="uid://bos1sj152pmob" path="res://Scene/hit_particle.tscn" id="8_qy33t"]
+[ext_resource type="Texture2D" uid="uid://jtkqrqr5rtjn" path="res://Asset/enemy/dash_charge_run00.png" id="9_b7gun"]
+[ext_resource type="Texture2D" uid="uid://b3m64hiuvyx88" path="res://Asset/enemy/dash_charge_run01.png" id="10_xj1g2"]
+[ext_resource type="Texture2D" uid="uid://fwi6m5mwxqyy" path="res://Asset/enemy/dash_idle.png" id="11_rnt5u"]
+[ext_resource type="Texture2D" uid="uid://bc8x04gnd835m" path="res://Asset/enemy/dash_run00.png" id="12_mh0o0"]
+[ext_resource type="Texture2D" uid="uid://cf48ujgn5lqju" path="res://Asset/enemy/dash_run01.png" id="13_p8gb6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fq4oq"]
 size = Vector2(40.000008, 40.000008)
@@ -23,6 +29,50 @@ radius = 90.00001
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_670p6"]
 radius = 60.827618
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r0m1w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_uvf5k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fqofi")
+}],
+"loop": true,
+"name": &"charge",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_b7gun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_xj1g2")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_rnt5u")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_mh0o0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_p8gb6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
 
 [node name="Dasher_AI" type="CharacterBody2D" unique_id=1315360929 node_paths=PackedStringArray("separation_area") groups=["enemy"]]
 scale = Vector2(0.8, 0.8)
@@ -91,9 +141,11 @@ shape = SubResource("CircleShape2D_670p6")
 
 [node name="Sprite2D" type="Node2D" parent="." unique_id=1383645909]
 
-[node name="Sprite2" type="Sprite2D" parent="Sprite2D" unique_id=2028319693]
-modulate = Color(1, 0.32941177, 1, 1)
-scale = Vector2(0.49999997, 0.49999997)
-texture = ExtResource("2_ppukq")
+[node name="Sprite2" type="AnimatedSprite2D" parent="Sprite2D" unique_id=1188211828]
+position = Vector2(0, -30)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_r0m1w")
+animation = &"idle"
+frame_progress = 0.56381714
 
 [node name="hit_particle" parent="." unique_id=1085854101 instance=ExtResource("8_qy33t")]

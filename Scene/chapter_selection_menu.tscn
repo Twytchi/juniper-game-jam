@@ -1,9 +1,82 @@
 [gd_scene format=3 uid="uid://oiqk6kurwl2p"]
 
-[node name="Chapter selection menu" type="Node2D" unique_id=486163852]
+[ext_resource type="Texture2D" uid="uid://c7jtkggg5ba6o" path="res://Asset/enemy/Sans_titre_38_20260625151816.png" id="1_5y8bw"]
+[ext_resource type="Script" uid="uid://rwy4aas2eaei" path="res://Scene/chapter_selection_menu.gd" id="1_ohrlm"]
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=29968813]
-offset_left = 143.0
+[node name="Chapter selection menu" type="Node2D" unique_id=486163852]
+script = ExtResource("1_ohrlm")
+
+[node name="Button" type="Node2D" parent="." unique_id=452337438]
+
+[node name="TextureButton" type="TextureButton" parent="Button" unique_id=29968813]
+offset_left = 26.0
+offset_top = 178.0
+offset_right = 326.0
+offset_bottom = 478.0
+texture_normal = ExtResource("1_5y8bw")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureButton3" type="TextureButton" parent="Button" unique_id=1989069447]
+offset_left = 349.0
 offset_top = 37.0
-offset_right = 454.0
-offset_bottom = 519.0
+offset_right = 649.0
+offset_bottom = 337.0
+texture_normal = ExtResource("1_5y8bw")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureButton2" type="TextureButton" parent="Button" unique_id=745563184]
+offset_left = 657.0
+offset_top = 260.0
+offset_right = 957.0
+offset_bottom = 560.0
+texture_normal = ExtResource("1_5y8bw")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureButton4" type="TextureButton" parent="Button" unique_id=975636991]
+offset_left = 990.0
+offset_top = 73.0
+offset_right = 1290.0
+offset_bottom = 373.0
+texture_normal = ExtResource("1_5y8bw")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="text" type="Node2D" parent="." unique_id=373731886]
+
+[node name="Label" type="Label" parent="text" unique_id=713775387]
+offset_left = 136.0
+offset_top = 276.0
+offset_right = 176.0
+offset_bottom = 299.0
+text = "Tuto"
+
+[node name="Label2" type="Label" parent="text" unique_id=1234563783]
+offset_left = 492.0
+offset_top = 153.0
+offset_right = 532.0
+offset_bottom = 176.0
+text = "2"
+
+[node name="Label3" type="Label" parent="text" unique_id=1685003200]
+offset_left = 758.0
+offset_top = 382.0
+offset_right = 798.0
+offset_bottom = 405.0
+text = "3"
+
+[node name="Label4" type="Label" parent="text" unique_id=1232331908]
+offset_left = 1103.0
+offset_top = 196.0
+offset_right = 1143.0
+offset_bottom = 219.0
+text = "4"
+
+[node name="Label5" type="Label" parent="text" unique_id=496249795]
+offset_left = 600.0
+offset_top = 633.0
+offset_right = 724.0
+offset_bottom = 656.0
+text = "Select a chapter"

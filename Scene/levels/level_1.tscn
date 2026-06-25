@@ -23,7 +23,6 @@ size = Vector2(1376, 220.50587)
 
 [sub_resource type="Resource" id="Resource_46d5g"]
 script = ExtResource("5_veuv8")
-type = 5
 metadata/_custom_type_script = "uid://deumf51aa55m8"
 
 [sub_resource type="Resource" id="Resource_uiqb7"]
@@ -42,9 +41,14 @@ type = 5
 count = 3
 metadata/_custom_type_script = "uid://deumf51aa55m8"
 
+[sub_resource type="Resource" id="Resource_15jri"]
+script = ExtResource("5_veuv8")
+type = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
 [sub_resource type="Resource" id="Resource_r3him"]
 script = ExtResource("4_64kyw")
-spawns = Array[ExtResource("5_veuv8")]([SubResource("Resource_aqehm")])
+spawns = Array[ExtResource("5_veuv8")]([SubResource("Resource_aqehm"), SubResource("Resource_15jri")])
 metadata/_custom_type_script = "uid://dvqw441xw26cr"
 
 [sub_resource type="Resource" id="Resource_64kyw"]

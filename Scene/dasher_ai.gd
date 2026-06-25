@@ -10,7 +10,17 @@ var is_dashing := false
 var is_recovering := false
 
 @onready var hitbox: EnemyHitbox = $Hitbox
+@onready var anim : AnimatedSprite2D = $Sprite2D/Sprite2
 
+
+func _ready():
+	super._ready() 
+	dash_duration *= difficulty_multiplier
+	recover_duration = 1.0 - (difficulty_multiplier - 1.2)
+
+func _process(_delta: float) -> void:
+	super._process(_delta)
+	anim.flip_h = (velocity.x > 0  )
 
 func chase_player(delta : float):
 	super.chase_player(delta )
@@ -19,6 +29,7 @@ func chase_player(delta : float):
 	if global_position.distance_to(player.global_position) <= dash_range:
 		state = State.ATTACK
 	hitbox.data = dash_damage_n_knock
+	anim.play("walk")
 
 
 func attack():
@@ -26,13 +37,14 @@ func attack():
 		return
 	is_dashing = true
 	velocity= Vector2.ZERO
+	anim.play("charge")
 	await  get_tree().create_timer(1.0).timeout
 
 	var dash_direction = (player.global_position - global_position).normalized()
 	hitbox.look_at(dash_direction)
 	hitbox.enable_hitbox()
 	velocity = dash_direction * dash_speed
-
+	anim.play("dash")
 	await get_tree().create_timer(dash_duration).timeout
 
 	is_dashing = false
@@ -45,7 +57,7 @@ func recover():
 	if is_recovering:
 		return
 	is_recovering = true
-
+	anim.play("idle")
 	await get_tree().create_timer(recover_duration).timeout
 
 	is_recovering = false

@@ -5,6 +5,12 @@ var explosion_damage = 20.0
 var explosion_radius = 60.0
 var is_attacking = false
 
+@onready var anim : AnimatedSprite2D = $Sprite2D/Sprite2
+
+func _ready():
+	super._ready()
+	anim.play("idle")
+
 
 func chase_player(delta : float):
 	super.chase_player(delta )
@@ -16,7 +22,7 @@ func attack():
 	if is_attacking:
 		return
 	is_attacking = true
-
+	anim.play("attack")
 	velocity = Vector2.ZERO
 
 	if has_node("AnimationPlayer"):

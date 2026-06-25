@@ -48,6 +48,12 @@ func shoot():
 	arrow.global_position = global_position
 	arrow.direction = (player.global_position - global_position).normalized()
 	get_parent().add_child(arrow)
+	if difficulty_multiplier > 1.1 :
+		var arrow2 = preload("res://Scene/Arrow.tscn").instantiate()
+		arrow2.global_position = global_position
+		arrow2.direction = (player.global_position - global_position).normalized()
+		await get_tree().create_timer(0.1).timeout
+		get_parent().add_child(arrow2)
 	anim.play("idle")
 
 	await get_tree().create_timer(shoot_cooldown).timeout
