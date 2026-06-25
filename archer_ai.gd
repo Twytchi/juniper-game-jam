@@ -5,7 +5,13 @@ extends "res://Scene/enemy_base.gd"
 @export var shoot_cooldown: float = 2.0
 
 var can_shoot := true
+@onready var anim : AnimatedSprite2D = $Sprite2D/Sprite2
 
+
+
+func hit_flash():
+	super.hit_flash()
+	anim.play("hit")
 
 
 
@@ -29,7 +35,7 @@ func chase_player(delta : float):
 
 func shoot():
 	can_shoot = false
-
+	anim.play("shoot")
 	await get_tree().create_timer(1.0).timeout
 	if state == State.HIT :
 		can_shoot = true
@@ -42,6 +48,7 @@ func shoot():
 	arrow.global_position = global_position
 	arrow.direction = (player.global_position - global_position).normalized()
 	get_parent().add_child(arrow)
+	anim.play("idle")
 
 	await get_tree().create_timer(shoot_cooldown).timeout
 	can_shoot = true

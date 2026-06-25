@@ -26,9 +26,14 @@ script = ExtResource("5_veuv8")
 type = 5
 metadata/_custom_type_script = "uid://deumf51aa55m8"
 
+[sub_resource type="Resource" id="Resource_uiqb7"]
+script = ExtResource("5_veuv8")
+type = 1
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
 [sub_resource type="Resource" id="Resource_tm214"]
 script = ExtResource("4_64kyw")
-spawns = Array[ExtResource("5_veuv8")]([SubResource("Resource_46d5g")])
+spawns = Array[ExtResource("5_veuv8")]([SubResource("Resource_46d5g"), SubResource("Resource_uiqb7")])
 metadata/_custom_type_script = "uid://dvqw441xw26cr"
 
 [sub_resource type="Resource" id="Resource_aqehm"]

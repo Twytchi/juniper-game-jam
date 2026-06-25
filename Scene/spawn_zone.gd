@@ -52,5 +52,4 @@ func _on_enemy_died():
 	if current_enemies_alive <= 0:
 		
 		next_wave.emit()
-		await get_tree().create_timer(0.7).timeout
 		spawn_wave()

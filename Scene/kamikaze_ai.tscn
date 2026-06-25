@@ -1,13 +1,24 @@
 [gd_scene format=3 uid="uid://dljwoierldrq4"]
 
 [ext_resource type="Script" uid="uid://bolhoyrdxot04" path="res://Scene/kamikaze_ai.gd" id="1_6buke"]
-[ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="2_6buke"]
+[ext_resource type="Texture2D" uid="uid://crc04oeuuhnah" path="res://Asset/enemy/zerk_idle_rest.png" id="2_37jb3"]
 [ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="3_hompp"]
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="4_3d7hi"]
 [ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="5_p6xwm"]
 [ext_resource type="Resource" uid="uid://bsoabraammveh" path="res://Ressources/player Attack/Missile_atack.tres" id="6_g3fuq"]
 [ext_resource type="PackedScene" uid="uid://bos1sj152pmob" path="res://Scene/hit_particle.tscn" id="7_g3fuq"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="8_37jb3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t0rrs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_37jb3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ffob"]
 size = Vector2(40.000008, 40.000008)
@@ -20,7 +31,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/path = NodePath("Sprite2D/Sprite2:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -48,7 +59,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/path = NodePath("Sprite2D/Sprite2:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +94,6 @@ radius = 59.999992
 radius = 72.0
 
 [node name="Kamikaze_AI" type="CharacterBody2D" unique_id=687512682 node_paths=PackedStringArray("separation_area") groups=["enemy"]]
-visible = false
 scale = Vector2(0.8, 0.8)
 collision_layer = 2
 collision_mask = 6
@@ -92,9 +102,14 @@ separation_area = NodePath("separation")
 detection_range = 800.0
 speed = 280.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=989736975]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_6buke")
+[node name="Sprite2D" type="Node2D" parent="." unique_id=370713994]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Sprite2" type="AnimatedSprite2D" parent="Sprite2D" unique_id=150130809]
+position = Vector2(0, -40)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_t0rrs")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1126545201]
 position = Vector2(2.9802317e-07, 5.9604633e-07)
@@ -116,7 +131,7 @@ libraries/ = SubResource("AnimationLibrary_hompp")
 [node name="SpinComponent" type="Node2D" parent="." unique_id=290911472 node_paths=PackedStringArray("body", "body_sprite", "hitbox")]
 script = ExtResource("4_3d7hi")
 body = NodePath("..")
-body_sprite = NodePath("../Sprite2D")
+body_sprite = NodePath("")
 hitbox = NodePath("../EnemyHitbox")
 metadata/_custom_type_script = "uid://da52ihtpjml2f"
 
