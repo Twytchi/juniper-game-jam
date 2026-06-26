@@ -117,6 +117,7 @@ offset_top = 78.00001
 offset_right = 1541.0
 offset_bottom = 590.0
 scale = Vector2(0.495, 0.495)
+mouse_filter = 2
 texture = ExtResource("3_yok32")
 
 [node name="TextureRect2" type="TextureRect" parent="Bouton" unique_id=688926759]
@@ -126,6 +127,7 @@ offset_top = 236.0
 offset_right = 1282.0
 offset_bottom = 748.0
 scale = Vector2(0.495, 0.495)
+mouse_filter = 2
 texture = ExtResource("3_yok32")
 
 [node name="TextureRect3" type="TextureRect" parent="Bouton" unique_id=617570032]
@@ -135,6 +137,7 @@ offset_top = 471.00003
 offset_right = 1194.0
 offset_bottom = 983.0
 scale = Vector2(0.495, 0.495)
+mouse_filter = 2
 texture = ExtResource("3_yok32")
 
 [node name="visu1" type="Node2D" parent="." unique_id=1285216239]
