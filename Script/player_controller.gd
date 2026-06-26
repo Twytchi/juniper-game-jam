@@ -23,6 +23,11 @@ var vertical_velocity = 0.0
 @onready var hurtbox: Area2D = $Hurtbox
 
 
+var woosh_sounds : Array[AudioStream] = [
+	preload("res://Asset/sfx/floraphonic-swing-whoosh-weapon-3-189823.mp3"),
+	preload("res://Asset/sfx/floraphonic-swing-whoosh-weapon-1-189819.mp3"),
+	preload("res://Asset/sfx/floraphonic-swing-whoosh-5-198498.mp3")
+]
 
 
 # Attack
@@ -92,7 +97,10 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	if input_dir != Vector2.ZERO:
 		direction = input_dir
-
+	
+	if current_action != Action.NONE:
+		$footstep.stop()
+	
 	if current_action == Action.NONE:
 		_move_state(input_dir, delta)
 		can_spin = true
@@ -169,8 +177,10 @@ func _move_state(input_dir: Vector2, delta: float) -> void:
 		anim.play("drill")
 	elif input_dir != Vector2.ZERO:
 		anim.play("run")
+		if not  $footstep.is_playing() : $footstep.play()
 	else:
 		anim.play("idle")
+		$footstep.stop()
 
 func _attack_state(delta: float) -> void:
 	attack_velocity = attack_velocity.lerp(Vector2.ZERO, attack_friction * delta)
@@ -220,7 +230,7 @@ func start_attack() -> void:
 	can_spin = false
 	attack_velocity = velocity
 	anim.play(current_attack.animation_name)
-	
+	SoundManager.jouer_sfx(woosh_sounds[randi_range(0,2)])
 	await _wait(current_attack.windup_duration)
 	if current_action not in [Action.HEAVY, Action.LIGHT] : 
 		current_attack = null

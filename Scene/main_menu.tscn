@@ -69,27 +69,27 @@ script = ExtResource("1_ftydy")
 [node name="Bouton" type="Node2D" parent="." unique_id=2127691326]
 
 [node name="Play" type="Button" parent="Bouton" unique_id=1105344188]
-offset_left = 987.0
-offset_top = 258.0
-offset_right = 1095.0
-offset_bottom = 323.0
+offset_left = 1085.0
+offset_top = 205.0
+offset_right = 1193.0
+offset_bottom = 270.0
 text = "Play
 "
 
 [node name="Quit" type="Button" parent="Bouton" unique_id=500456651]
-offset_left = 761.0
-offset_top = 553.0
-offset_right = 869.0
-offset_bottom = 618.0
+offset_left = 752.0
+offset_top = 480.0
+offset_right = 860.0
+offset_bottom = 545.0
 text = "quit
 
 "
 
 [node name="Option" type="Button" parent="Bouton" unique_id=926769996]
-offset_left = 851.0
-offset_top = 397.0
-offset_right = 959.0
-offset_bottom = 462.0
+offset_left = 863.0
+offset_top = 323.0
+offset_right = 971.0
+offset_bottom = 388.0
 text = "Option
 "
 

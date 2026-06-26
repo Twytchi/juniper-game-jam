@@ -47,13 +47,12 @@ func _on_quit_pressed() -> void:
 func change_fond_pers():
 	c_paronama = (c_paronama + 1) % color1.size()
 	
-	# --- SÉQUENCE DE FADE VIA TWEEN ---
+
 	var tween = create_tween()
 	
-	# 1. Disparition (0.4 seconde)
+
 	tween.tween_property(visu_2, "modulate:a", 0.0, 0.4)
-	
-	# 2. On change les textures et positions SANS que le joueur le voie
+
 	tween.tween_callback(func():
 		perso.play(color1[c_paronama])
 		fond.play(color2[c_paronama])
@@ -65,7 +64,7 @@ func change_fond_pers():
 		fond.position.x = fond_start_x
 	)
 	
-	# 3. Apparition (0.4 seconde)
+
 	tween.tween_property(visu_2, "modulate:a", 1.0, 0.4)
 
 func _on_timer_timeout() -> void:

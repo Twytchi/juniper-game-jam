@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://cpeucfx0bm326" path="res://Asset/effect/slash_20260624221222.png" id="26_c1eh6"]
 [ext_resource type="Texture2D" uid="uid://cxbs8gjfaqf6v" path="res://Asset/effect/slash_20260624221319.png" id="28_2gnqs"]
 [ext_resource type="Texture2D" uid="uid://cl7boep2qgpl1" path="res://Asset/effect/slash_20260624221751.png" id="29_c1eh6"]
+[ext_resource type="AudioStream" uid="uid://ct17slbrepv6j" path="res://Asset/sfx/freesound_community-running-in-grass-6237.mp3" id="32_ddib3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c68nv"]
 animations = [{
@@ -348,5 +349,10 @@ offset_left = -20.0
 offset_top = -100.0
 offset_right = 20.0
 offset_bottom = -77.0
+
+[node name="footstep" type="AudioStreamPlayer" parent="." unique_id=1393372632]
+stream = ExtResource("32_ddib3")
+volume_db = 24.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="hitbox/Missile_attack" to="hitbox/Missile_attack" method="_on_area_entered"]
