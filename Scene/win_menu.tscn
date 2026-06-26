@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bakcvyw4av474" path="res://Asset/ui/Sans_titre_28_20260625212601.png" id="1_spyja"]
 [ext_resource type="Script" uid="uid://cfeai15utsyed" path="res://Scene/win_menu.gd" id="1_xogkx"]
+[ext_resource type="FontFile" uid="uid://5ayvxpkiidhx" path="res://Asset/ui/fonts/PirataOne-Regular.ttf" id="3_0qji5"]
+[ext_resource type="Texture2D" uid="uid://c7jtkggg5ba6o" path="res://Asset/enemy/Sans_titre_38_20260625151816.png" id="4_cbbwp"]
 
 [node name="WinMenu" type="Node2D" unique_id=1389202007]
 script = ExtResource("1_xogkx")
@@ -20,3 +22,26 @@ color = Color(0.94908446, 0.9669406, 0.9347955, 1)
 position = Vector2(328, 384)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_spyja")
+
+[node name="Button" type="Node2D" parent="." unique_id=2008970725]
+position = Vector2(847, 280)
+
+[node name="Continue" type="Button" parent="Button" unique_id=1866558091]
+z_index = 1
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(0.20392157, 0.40784314, 0.9529412, 1)
+theme_override_fonts/font = ExtResource("3_0qji5")
+theme_override_font_sizes/font_size = 55
+text = "Continue"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="Button" unique_id=1488027890]
+offset_left = -71.0
+offset_top = -127.0
+offset_right = 441.0
+offset_bottom = 385.0
+scale = Vector2(0.745, 0.745)
+texture = ExtResource("4_cbbwp")
+
+[connection signal="pressed" from="Button/Continue" to="." method="_on_continue_pressed"]
