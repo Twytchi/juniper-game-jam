@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwx4lvo4mnsh2"
-path="res://.godot/imported/zerk_idle_detect.png-24e53e19491b6d25c808dcf87f998469.ctex"
+uid="uid://o57vwyt6nrtp"
+path="res://.godot/imported/kama_idle_rest.png-1d144b378dc103b62f0e485f41a94e8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/enemy/zerk_idle_detect.png"
-dest_files=["res://.godot/imported/zerk_idle_detect.png-24e53e19491b6d25c808dcf87f998469.ctex"]
+source_file="res://Asset/enemy/kama_idle_rest.png"
+dest_files=["res://.godot/imported/kama_idle_rest.png-1d144b378dc103b62f0e485f41a94e8a.ctex"]
 
 [params]
 

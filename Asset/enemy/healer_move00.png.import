@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crc04oeuuhnah"
-path="res://.godot/imported/zerk_idle_rest.png-c39cfb75b7689e12630da2ce7f18281d.ctex"
+uid="uid://de3gmkffemi7j"
+path="res://.godot/imported/healer_move00.png-90285727fc4f446c02e9109f9d2f46ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/enemy/zerk_idle_rest.png"
-dest_files=["res://.godot/imported/zerk_idle_rest.png-c39cfb75b7689e12630da2ce7f18281d.ctex"]
+source_file="res://Asset/enemy/healer_move00.png"
+dest_files=["res://.godot/imported/healer_move00.png-90285727fc4f446c02e9109f9d2f46ad.ctex"]
 
 [params]
 
