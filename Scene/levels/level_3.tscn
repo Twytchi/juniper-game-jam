@@ -1,13 +1,10 @@
 [gd_scene format=3 uid="uid://5ao0e8v8j5e5"]
 
 [ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="1_mt52b"]
-[ext_resource type="Texture2D" uid="uid://dids2ga7bsyf" path="res://Asset/effect/sky_layer.png" id="2_f75w7"]
-[ext_resource type="Texture2D" uid="uid://reqow757he8k" path="res://Asset/effect/back_building_veg.png" id="3_58ty5"]
+[ext_resource type="Texture2D" uid="uid://drca573jnyrnr" path="res://Asset/effect/Sans_titre_40_20260626145344.png" id="2_wlwae"]
 [ext_resource type="Script" uid="uid://dvqw441xw26cr" path="res://Ressources/Waves/waves_data.gd" id="4_f75w7"]
-[ext_resource type="Texture2D" uid="uid://bmnm27qysru1v" path="res://Asset/effect/mid_building_veg.png" id="4_vkcvd"]
 [ext_resource type="Script" uid="uid://deumf51aa55m8" path="res://Script/wave_entry.gd" id="5_58ty5"]
-[ext_resource type="Texture2D" uid="uid://njj4ecl01oyi" path="res://Asset/effect/front_building_veg.png" id="5_g2h4w"]
-[ext_resource type="Texture2D" uid="uid://dvkr7aq2c1fde" path="res://Asset/effect/ground.png" id="6_0sv5e"]
+[ext_resource type="Texture2D" uid="uid://8l7iy47khyju" path="res://Asset/effect/Sans_titre_40_20260626145845.png" id="6_58ty5"]
 [ext_resource type="PackedScene" uid="uid://vffr187x1riv" path="res://Scene/camera_2d.tscn" id="6_vkcvd"]
 [ext_resource type="PackedScene" uid="uid://bl2bu1k80r11i" path="res://combo_ui.tscn" id="7_g2h4w"]
 [ext_resource type="Script" uid="uid://dnoagq2homw7s" path="res://Scene/spawn_zone.gd" id="9_4us6h"]
@@ -19,10 +16,10 @@ size = Vector2(1599, 942)
 size = Vector2(1687, 515)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsd3"]
-size = Vector2(1376, 41.99228)
+size = Vector2(1680.9861, 749.6465)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqehm"]
-size = Vector2(1376, 57.49391)
+size = Vector2(1751.7206, 596.0217)
 
 [sub_resource type="Resource" id="Resource_58ty5"]
 script = ExtResource("5_58ty5")
@@ -177,22 +174,6 @@ z_index = -10
 position = Vector2(627, 356)
 scale = Vector2(0.7, 0.7)
 
-[node name="Sprite2D" type="Sprite2D" parent="background" unique_id=1246245602]
-position = Vector2(28.571428, -228.57144)
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("2_f75w7")
-
-[node name="Parallax2D" type="Parallax2D" parent="background" unique_id=1571343910]
-scale = Vector2(0.99999994, 0.99999994)
-scroll_offset = Vector2(-40, 77.14286)
-repeat_size = Vector2(1920, 0)
-repeat_times = 2
-
-[node name="BackBuildingVeg" type="Sprite2D" parent="background/Parallax2D" unique_id=1482382212]
-position = Vector2(-10.000061, -161.42871)
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("3_58ty5")
-
 [node name="Parallax2D2" type="Parallax2D" parent="background" unique_id=1788722557]
 scale = Vector2(0.99999994, 0.99999994)
 scroll_offset = Vector2(-39.999878, 77.14286)
@@ -202,22 +183,12 @@ repeat_times = 2
 [node name="MidBuildingVeg" type="Sprite2D" parent="background/Parallax2D2" unique_id=923497065]
 position = Vector2(45.714233, -281.42865)
 scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("4_vkcvd")
-
-[node name="Parallax2D3" type="Parallax2D" parent="background" unique_id=1796711368]
-scale = Vector2(0.99999994, 0.99999994)
-scroll_offset = Vector2(-40, 77.14286)
-repeat_size = Vector2(1920, 0)
-repeat_times = 2
-
-[node name="FrontBuildingVeg" type="Sprite2D" parent="background/Parallax2D3" unique_id=1426189463]
-position = Vector2(24.285645, -318.5715)
-texture = ExtResource("5_g2h4w")
+texture = ExtResource("2_wlwae")
 
 [node name="Ground" type="Sprite2D" parent="background" unique_id=131304955]
 position = Vector2(-25.714283, -30.00001)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("6_0sv5e")
+texture = ExtResource("6_58ty5")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=649786150]
 collision_layer = 4
@@ -232,12 +203,12 @@ position = Vector2(633, 1049)
 shape = SubResource("RectangleShape2D_46d5g")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=573501853]
-position = Vector2(-183.00381, 138.91705)
+position = Vector2(-533.80963, 295.50327)
 rotation = -1.5696902
 shape = SubResource("RectangleShape2D_fnsd3")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=895061327]
-position = Vector2(1470.7513, 183.07938)
+position = Vector2(1739.8074, 371.2374)
 rotation = -1.5696902
 shape = SubResource("RectangleShape2D_aqehm")
 

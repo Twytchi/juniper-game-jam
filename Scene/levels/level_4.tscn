@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cqmmub5rtdtab"]
 
 [ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="1_q5cd4"]
-[ext_resource type="Texture2D" uid="uid://ds00vjn0irmqn" path="res://Asset/player asset/grass_scen-grai n.png" id="2_1xeid"]
+[ext_resource type="Texture2D" uid="uid://c13ijssojnwax" path="res://Asset/effect/Sans_titre_40_20260626144417.png" id="2_q5cd4"]
 [ext_resource type="PackedScene" uid="uid://bqh2swahs6niy" path="res://Scene/spawn_zone.tscn" id="3_y3jtb"]
 [ext_resource type="Script" uid="uid://dvqw441xw26cr" path="res://Ressources/Waves/waves_data.gd" id="4_xmfy5"]
 [ext_resource type="Script" uid="uid://deumf51aa55m8" path="res://Script/wave_entry.gd" id="5_e3tn5"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bl2bu1k80r11i" path="res://combo_ui.tscn" id="7_3s5ty"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y865s"]
-size = Vector2(1376, 623)
+size = Vector2(1376, 738)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46d5g"]
 size = Vector2(2309, 609)
@@ -185,16 +185,16 @@ health = 100.0
 
 [node name="background" type="Sprite2D" parent="." unique_id=795973731]
 z_index = -10
-position = Vector2(627, 356)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_1xeid")
+position = Vector2(637, 369)
+scale = Vector2(0.71, 0.71)
+texture = ExtResource("2_q5cd4")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=649786150]
 collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=637742372]
-position = Vector2(645, -154.5)
+position = Vector2(645, -97)
 shape = SubResource("RectangleShape2D_y865s")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=566632498]
@@ -212,7 +212,7 @@ rotation = -1.5696902
 shape = SubResource("RectangleShape2D_aqehm")
 
 [node name="SpawnZone" parent="." unique_id=1885971783 instance=ExtResource("3_y3jtb")]
-position = Vector2(39, 73)
+position = Vector2(21, 164)
 waves = Array[ExtResource("4_xmfy5")]([SubResource("Resource_1xeid"), SubResource("Resource_xtfjb"), SubResource("Resource_tu37r"), SubResource("Resource_klrom"), SubResource("Resource_si6hc"), SubResource("Resource_d30y1"), SubResource("Resource_7jgmh"), SubResource("Resource_ajg8t"), SubResource("Resource_vekhd"), SubResource("Resource_rv7aw"), SubResource("Resource_dbllj")])
 
 [node name="point1" parent="SpawnZone" index="1" unique_id=1093720794]
@@ -232,6 +232,7 @@ position = Vector2(1071, 350)
 
 [node name="Camera2D" parent="." unique_id=2048302457 groups=["camera"] instance=ExtResource("6_xtfjb")]
 position = Vector2(640, 360)
+zoom = Vector2(0.95, 0.95)
 
 [node name="comboUi" parent="." unique_id=1870541239 instance=ExtResource("7_3s5ty")]
 
