@@ -25,7 +25,9 @@ var vertical_velocity = 0.0
 
 var woosh_sounds : Array[AudioStream] = [
 	preload("res://Asset/sfx/floraphonic-swing-whoosh-weapon-3-189823.mp3"),
-	preload("res://Asset/sfx/floraphonic-swing-whoosh-weapon-1-189819.mp3"),
+	preload("res://Asset/sfx/sword-slash-1.mp3"),
+	preload("res://Asset/sfx/sword-slash-4.mp3"),
+	preload("res://Asset/sfx/zapsplat_warfare_sword_swing_fast_whoosh_metal_004.mp3"),
 	preload("res://Asset/sfx/floraphonic-swing-whoosh-5-198498.mp3")
 ]
 
@@ -230,7 +232,7 @@ func start_attack() -> void:
 	can_spin = false
 	attack_velocity = velocity
 	anim.play(current_attack.animation_name)
-	SoundManager.jouer_sfx(woosh_sounds[randi_range(0,2)])
+	SoundManager.jouer_sfx(woosh_sounds[randi_range(0,4)])
 	await _wait(current_attack.windup_duration)
 	if current_action not in [Action.HEAVY, Action.LIGHT] : 
 		current_attack = null

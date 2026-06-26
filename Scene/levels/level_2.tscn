@@ -12,13 +12,13 @@
 size = Vector2(1376, 623)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46d5g"]
-size = Vector2(1376, 573)
+size = Vector2(2309, 609)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsd3"]
-size = Vector2(1376, 200.99661)
+size = Vector2(1376, 554.99194)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqehm"]
-size = Vector2(1376, 220.50587)
+size = Vector2(1376, 863.047)
 
 [sub_resource type="Resource" id="Resource_xdkip"]
 script = ExtResource("5_g86sj")
@@ -162,16 +162,16 @@ position = Vector2(645, -154.5)
 shape = SubResource("RectangleShape2D_y865s")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=566632498]
-position = Vector2(625, 1029.5)
+position = Vector2(786.5, 1011.5)
 shape = SubResource("RectangleShape2D_46d5g")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=573501853]
-position = Vector2(-103.50169, 139.00499)
+position = Vector2(-280.49927, 138.80922)
 rotation = -1.5696902
 shape = SubResource("RectangleShape2D_fnsd3")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=895061327]
-position = Vector2(1389.2454, 182.98923)
+position = Vector2(1710.5157, 183.34459)
 rotation = -1.5696902
 shape = SubResource("RectangleShape2D_aqehm")
 

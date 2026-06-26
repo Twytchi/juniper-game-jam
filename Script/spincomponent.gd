@@ -21,6 +21,9 @@ var flash_tween: Tween
 
 @export var hitbox : EnemyHitbox
 
+
+var explosion_sfx := preload("res://Asset/sfx/explosion-2.mp3")
+
 func _ready() -> void:
 	if hitbox : hitbox.disable_hitbox()
 
@@ -95,6 +98,7 @@ func charge_spin(delta: float):
 		body_sprite.rotation += delta * current_throw_power / 80
 
 func throw(direction: Vector2):
+	SoundManager.jouer_sfx(explosion_sfx, true)
 	is_being_spun = false
 	is_projectile = true
 	throw_velocity = direction.normalized() * current_throw_power
@@ -120,9 +124,7 @@ func handle_projectile_physics(delta: float):
 		var rest_info = space_state.get_rest_info(query)
 		
 		if rest_info.size() > 0:
-			print(435)
-			var separation_vector = rest_info.linear_velocity * rest_info.collision_deepness
-			global_position += separation_vector
+			body.queue_free()
 			stop_projectile()
 			return 
 
@@ -141,7 +143,7 @@ func stop_projectile():
 	is_projectile = false
 	spin_charge = 0.0
 	stop_flash_animation()
-	
+	SoundManager.jouer_sfx(explosion_sfx, true)
 	if body:
 		body_sprite.rotation = 0
 		body.set_physics_process(true)

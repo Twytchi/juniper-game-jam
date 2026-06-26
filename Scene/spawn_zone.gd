@@ -22,6 +22,7 @@ func _on_body_entered(body):
 
 func spawn_wave():
 	if current_wave_index >= waves.size() :
+		if not  get_tree() : return
 		await get_tree().create_timer(2.0).timeout
 		get_tree().change_scene_to_file("res://Scene/win_menu.tscn")
 		return

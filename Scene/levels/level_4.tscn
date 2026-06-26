@@ -1,0 +1,238 @@
+[gd_scene format=3 uid="uid://cqmmub5rtdtab"]
+
+[ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="1_q5cd4"]
+[ext_resource type="Texture2D" uid="uid://ds00vjn0irmqn" path="res://Asset/player asset/grass_scen-grai n.png" id="2_1xeid"]
+[ext_resource type="PackedScene" uid="uid://bqh2swahs6niy" path="res://Scene/spawn_zone.tscn" id="3_y3jtb"]
+[ext_resource type="Script" uid="uid://dvqw441xw26cr" path="res://Ressources/Waves/waves_data.gd" id="4_xmfy5"]
+[ext_resource type="Script" uid="uid://deumf51aa55m8" path="res://Script/wave_entry.gd" id="5_e3tn5"]
+[ext_resource type="PackedScene" uid="uid://vffr187x1riv" path="res://Scene/camera_2d.tscn" id="6_xtfjb"]
+[ext_resource type="PackedScene" uid="uid://bl2bu1k80r11i" path="res://combo_ui.tscn" id="7_3s5ty"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y865s"]
+size = Vector2(1376, 623)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46d5g"]
+size = Vector2(2309, 609)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsd3"]
+size = Vector2(1376, 554.99194)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqehm"]
+size = Vector2(1376, 863.047)
+
+[sub_resource type="Resource" id="Resource_q5cd4"]
+script = ExtResource("5_e3tn5")
+type = 3
+count = 3
+difficulty = 1.6
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_1xeid"]
+script = ExtResource("4_xmfy5")
+spawns = Array[ExtResource("5_e3tn5")]([SubResource("Resource_q5cd4")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_y3jtb"]
+script = ExtResource("5_e3tn5")
+type = 2
+count = 3
+difficulty = 1.8
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_xmfy5"]
+script = ExtResource("5_e3tn5")
+type = 3
+count = 2
+difficulty = 0.7
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_e3tn5"]
+script = ExtResource("5_e3tn5")
+type = 1
+count = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_xtfjb"]
+script = ExtResource("4_xmfy5")
+spawns = Array[ExtResource("5_e3tn5")]([SubResource("Resource_y3jtb"), SubResource("Resource_xmfy5"), SubResource("Resource_e3tn5")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_3s5ty"]
+script = ExtResource("5_e3tn5")
+count = 10
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_tu37r"]
+script = ExtResource("4_xmfy5")
+spawns = Array[ExtResource("5_e3tn5")]([SubResource("Resource_3s5ty")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_cx8ko"]
+script = ExtResource("5_e3tn5")
+type = 2
+difficulty = 2.3
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_qyvgr"]
+script = ExtResource("5_e3tn5")
+type = 3
+difficulty = 2.5
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_klrom"]
+script = ExtResource("4_xmfy5")
+spawns = Array[ExtResource("5_e3tn5")]([SubResource("Resource_cx8ko"), SubResource("Resource_qyvgr")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_0lgjn"]
+script = ExtResource("5_e3tn5")
+type = 7
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_si6hc"]
+script = ExtResource("4_xmfy5")
+spawns = Array[ExtResource("5_e3tn5")]([SubResource("Resource_0lgjn")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_r8yw8"]
+script = ExtResource("5_e3tn5")
+type = 1
+difficulty = 3.0
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_d30y1"]
+script = ExtResource("4_xmfy5")
+spawns = Array[ExtResource("5_e3tn5")]([SubResource("Resource_r8yw8")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_45j2k"]
+script = ExtResource("5_e3tn5")
+type = 2
+count = 8
+difficulty = 1.9
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_7jgmh"]
+script = ExtResource("4_xmfy5")
+spawns = Array[ExtResource("5_e3tn5")]([SubResource("Resource_45j2k")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_ajg8t"]
+script = ExtResource("4_xmfy5")
+spawns = Array[ExtResource("5_e3tn5")]([SubResource("Resource_0lgjn")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_1fugj"]
+script = ExtResource("5_e3tn5")
+type = 3
+count = 3
+difficulty = 1.7
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_fipt8"]
+script = ExtResource("5_e3tn5")
+type = 2
+count = 3
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_gcfim"]
+script = ExtResource("5_e3tn5")
+count = 2
+difficulty = 2.0
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_umye8"]
+script = ExtResource("5_e3tn5")
+type = 1
+count = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_vekhd"]
+script = ExtResource("4_xmfy5")
+spawns = Array[ExtResource("5_e3tn5")]([SubResource("Resource_1fugj"), SubResource("Resource_fipt8"), SubResource("Resource_gcfim"), SubResource("Resource_umye8")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_0cchi"]
+script = ExtResource("5_e3tn5")
+type = 7
+count = 3
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_rv7aw"]
+script = ExtResource("4_xmfy5")
+spawns = Array[ExtResource("5_e3tn5")]([SubResource("Resource_0cchi")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_h31q4"]
+script = ExtResource("5_e3tn5")
+type = 6
+count = 2
+difficulty = 1.5
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_dbllj"]
+script = ExtResource("4_xmfy5")
+spawns = Array[ExtResource("5_e3tn5")]([SubResource("Resource_h31q4")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[node name="tutorial" type="Node2D" unique_id=1915128990]
+y_sort_enabled = true
+
+[node name="Player" parent="." unique_id=500224478 instance=ExtResource("1_q5cd4")]
+position = Vector2(580, 433)
+scale = Vector2(0.9, 0.9)
+health = 100.0
+
+[node name="background" type="Sprite2D" parent="." unique_id=795973731]
+z_index = -10
+position = Vector2(627, 356)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_1xeid")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=649786150]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=637742372]
+position = Vector2(645, -154.5)
+shape = SubResource("RectangleShape2D_y865s")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=566632498]
+position = Vector2(786.5, 1011.5)
+shape = SubResource("RectangleShape2D_46d5g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=573501853]
+position = Vector2(-280.49927, 138.80922)
+rotation = -1.5696902
+shape = SubResource("RectangleShape2D_fnsd3")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=895061327]
+position = Vector2(1710.5157, 183.34459)
+rotation = -1.5696902
+shape = SubResource("RectangleShape2D_aqehm")
+
+[node name="SpawnZone" parent="." unique_id=1885971783 instance=ExtResource("3_y3jtb")]
+position = Vector2(39, 73)
+waves = Array[ExtResource("4_xmfy5")]([SubResource("Resource_1xeid"), SubResource("Resource_xtfjb"), SubResource("Resource_tu37r"), SubResource("Resource_klrom"), SubResource("Resource_si6hc"), SubResource("Resource_d30y1"), SubResource("Resource_7jgmh"), SubResource("Resource_ajg8t"), SubResource("Resource_vekhd"), SubResource("Resource_rv7aw"), SubResource("Resource_dbllj")])
+
+[node name="point1" parent="SpawnZone" index="1" unique_id=1093720794]
+position = Vector2(811, 337)
+
+[node name="point2" parent="SpawnZone" index="2" unique_id=1837466723]
+position = Vector2(322, 228)
+
+[node name="point3" parent="SpawnZone" index="3" unique_id=893368944]
+position = Vector2(306, 498)
+
+[node name="point5" type="Marker2D" parent="SpawnZone" unique_id=2121582116]
+position = Vector2(75, 337)
+
+[node name="point6" type="Marker2D" parent="SpawnZone" unique_id=462725723]
+position = Vector2(1071, 350)
+
+[node name="Camera2D" parent="." unique_id=2048302457 groups=["camera"] instance=ExtResource("6_xtfjb")]
+position = Vector2(640, 360)
+
+[node name="comboUi" parent="." unique_id=1870541239 instance=ExtResource("7_3s5ty")]
+
+[editable path="SpawnZone"]

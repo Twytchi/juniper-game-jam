@@ -28,6 +28,8 @@ var a_direction : Vector2
 
 func _ready():
 	super._ready() 
+	SoundManager.musique_player.stream = SoundManager.boss_music 
+	SoundManager.musique_player.play()
 
 func _process(delta: float) -> void:
 	super._process(delta)

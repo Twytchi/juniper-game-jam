@@ -19,6 +19,28 @@ var s_base_pos : Vector2
 
 var height := 500.0
 
+var hit_sfx :Array[AudioStream]= [
+	preload("res://Asset/sfx/sound_hit1.wav"),
+	preload("res://Asset/sfx/Boom30.wav"),
+	preload("res://Asset/sfx/hitt/tm2_slash000.wav"),
+	preload("res://Asset/sfx/hitt/tm2_hit004.wav"),
+	preload("res://Asset/sfx/hitt/tm2_hit005.wav")
+	
+	
+]
+
+var metal_hit : Array[AudioStream]= [
+	preload("res://Asset/sfx/metal-online-audio-converter.mp3"),
+	preload("res://Asset/sfx/metal04gr-converted.mp3"),
+]
+
+var thump_sfx : Array[AudioStream]= [
+	preload("res://Asset/sfx/louder-thump.mp3"),
+	preload("res://Asset/sfx/380643__jameswrowles__thump-5.wav")
+	
+]
+
+
 var is_invincible := false
 @export var iframe_duration := 0.0
 
@@ -220,8 +242,12 @@ func shake_sprite(duration: float = 0.4, intensity: float = 12.0, shakes: int = 
 
 
 func hit_flash():
+	SoundManager.jouer_sfx(hit_sfx[randi_range(0, 4)], true)
+	SoundManager.jouer_sfx(metal_hit[randi_range(0, 1)])
+	SoundManager.jouer_sfx(thump_sfx[randi_range(0, 1)])
 	if has_node("Sprite2D"):
 		var sprite = $Sprite2D
+		
 		if randf() > 0.5 :
 			sprite.modulate = Color(1, 0.3, 0.3)
 		else : 
