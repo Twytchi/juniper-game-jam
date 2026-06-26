@@ -37,14 +37,14 @@ spawns = Array[ExtResource("3_30aa1")]([SubResource("Resource_nnfvd"), SubResour
 metadata/_custom_type_script = "uid://dvqw441xw26cr"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76go3"]
-size = Vector2(220, 762)
+size = Vector2(220, 476)
 
 [node name="SpawnZone" type="Area2D" unique_id=1885971783]
 script = ExtResource("1_jbtq4")
 waves = Array[ExtResource("2_sflwu")]([SubResource("Resource_30aa1"), SubResource("Resource_ud7tx")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=569951674]
-position = Vector2(595, 359)
+position = Vector2(595, 313)
 shape = SubResource("RectangleShape2D_76go3")
 
 [node name="point1" type="Marker2D" parent="." unique_id=1093720794]

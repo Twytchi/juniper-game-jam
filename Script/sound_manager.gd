@@ -6,6 +6,11 @@ var volume_sfx : float = 1.0
 @onready var musique_player : AudioStreamPlayer = $Musique
 @onready var sfx_player : AudioStreamPlayer = $SFXPlayer
 
+var menu_music : AudioStream = preload("res://Asset/music/MENU ROCK MOUAIS OK MAIS BON.ogg")
+var music_combat : AudioStream = preload("res://Asset/music/Drill&aLeg.mp3")
+var boss_music : AudioStream = preload("res://Asset/music/We'reBigAndMean.mp3")
+
+
 func _ready() -> void:
 		sfx_player.bus = "SFX"
 		musique_player.bus = "Music"

@@ -17,10 +17,13 @@ func _ready() -> void:
 			
 			level_num += 1
 
+
 func _on_level_button_pressed(level_index: int) -> void:
 	var full_path = level_scene_path + str(level_index) + ".tscn"
 	
 	if ResourceLoader.exists(full_path):
+		SoundManager.musique_player.stream = SoundManager.music_combat
+		SoundManager.musique_player.play()
 		get_tree().change_scene_to_file(full_path)
 	else:
 		print("Erreur : La scène n'existe pas -> ", full_path)

@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://b60kqcijw2c3h"]
+
+[ext_resource type="Script" uid="uid://bd25qxskiqydc" path="res://Script/boss.gd" id="1_gejhf"]
+[ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="2_vdbhc"]
+[ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="3_dsvvb"]
+[ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="4_goecs"]
+[ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="5_5pg6p"]
+[ext_resource type="Resource" uid="uid://bsoabraammveh" path="res://Ressources/player Attack/Missile_atack.tres" id="6_8d6ba"]
+[ext_resource type="Texture2D" uid="uid://bocue71sp71di" path="res://Asset/enemy/dash_charge_idle00.png" id="7_ekacm"]
+[ext_resource type="Texture2D" uid="uid://cstlr2wupavjv" path="res://Asset/enemy/dash_charge_idle01.png" id="8_4v65d"]
+[ext_resource type="Texture2D" uid="uid://jtkqrqr5rtjn" path="res://Asset/enemy/dash_charge_run00.png" id="9_ndueg"]
+[ext_resource type="Texture2D" uid="uid://b3m64hiuvyx88" path="res://Asset/enemy/dash_charge_run01.png" id="10_gtald"]
+[ext_resource type="Texture2D" uid="uid://fwi6m5mwxqyy" path="res://Asset/enemy/dash_idle.png" id="11_1pydd"]
+[ext_resource type="Texture2D" uid="uid://bc8x04gnd835m" path="res://Asset/enemy/dash_run00.png" id="12_xcskf"]
+[ext_resource type="Texture2D" uid="uid://cf48ujgn5lqju" path="res://Asset/enemy/dash_run01.png" id="13_dnpl2"]
+[ext_resource type="PackedScene" uid="uid://bos1sj152pmob" path="res://Scene/hit_particle.tscn" id="14_hj7lo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fq4oq"]
+size = Vector2(40.000008, 40.000008)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_670p6"]
+size = Vector2(50.000023, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppukq"]
+size = Vector2(80, 80)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxlim"]
+radius = 90.00001
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_670p6"]
+radius = 60.827618
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r0m1w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ekacm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4v65d")
+}],
+"loop": true,
+"name": &"charge",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ndueg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gtald")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_1pydd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_xcskf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_dnpl2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[node name="Boss" type="CharacterBody2D" unique_id=1315360929 node_paths=PackedStringArray("separation_area") groups=["enemy"]]
+scale = Vector2(0.8, 0.8)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_gejhf")
+dash_duration = 0.4
+shoot_cooldown = 0.6
+enraged_speed = 300.0
+separation_area = NodePath("Area2D")
+detection_range = 1000.0
+speed = 200.0
+max_health = 300
+iframe_duration = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1577805832]
+position = Vector2(-2.9802317e-07, -2.9802317e-07)
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("RectangleShape2D_fq4oq")
+
+[node name="SpinComponent" type="Node2D" parent="." unique_id=1081031418 node_paths=PackedStringArray("body", "body_sprite", "hitbox")]
+script = ExtResource("2_vdbhc")
+body = NodePath("..")
+body_sprite = NodePath("../Sprite2D/Sprite2")
+spin_thresold = 90.0
+hitbox = NodePath("../MissileHitbox")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1605523109]
+
+[node name="Shadow" type="Sprite2D" parent="Node2D" unique_id=184581306]
+z_index = -1
+position = Vector2(-1, 16)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("3_dsvvb")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=594922106]
+collision_layer = 2
+script = ExtResource("4_goecs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=636527478]
+position = Vector2(34.999985, -4.99999)
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("RectangleShape2D_670p6")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=398499760]
+scale = Vector2(0.9999998, 0.9999998)
+collision_layer = 2
+script = ExtResource("5_5pg6p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=120205585]
+position = Vector2(-2.3841853e-06, -2.3841853e-06)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_ppukq")
+
+[node name="MissileHitbox" type="Area2D" parent="." unique_id=755920158]
+scale = Vector2(0.99999994, 0.99999994)
+collision_mask = 2
+script = ExtResource("4_goecs")
+missile_data = ExtResource("6_8d6ba")
+metadata/_custom_type_script = "uid://hdd4d24onbw6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MissileHitbox" unique_id=1947668534]
+shape = SubResource("CircleShape2D_xxlim")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=861273818]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1221481613]
+shape = SubResource("CircleShape2D_670p6")
+
+[node name="Sprite2D" type="Node2D" parent="." unique_id=1383645909]
+
+[node name="Sprite2" type="AnimatedSprite2D" parent="Sprite2D" unique_id=1188211828]
+position = Vector2(0, -30)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_r0m1w")
+animation = &"idle"
+frame_progress = 0.56381714
+
+[node name="hit_particle" parent="." unique_id=1085854101 instance=ExtResource("14_hj7lo")]

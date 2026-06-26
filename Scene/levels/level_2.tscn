@@ -64,7 +64,7 @@ metadata/_custom_type_script = "uid://deumf51aa55m8"
 [sub_resource type="Resource" id="Resource_hecgb"]
 script = ExtResource("5_g86sj")
 type = 2
-difficulty = 1.1
+difficulty = 1.2
 metadata/_custom_type_script = "uid://deumf51aa55m8"
 
 [sub_resource type="Resource" id="Resource_e6tq2"]
@@ -101,6 +101,42 @@ metadata/_custom_type_script = "uid://deumf51aa55m8"
 [sub_resource type="Resource" id="Resource_67btf"]
 script = ExtResource("4_v36x8")
 spawns = Array[ExtResource("5_g86sj")]([SubResource("Resource_d0yhf"), SubResource("Resource_ms22s"), SubResource("Resource_ylrwl")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_ywtrv"]
+script = ExtResource("5_g86sj")
+type = 2
+difficulty = 2.0
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_moobg"]
+script = ExtResource("5_g86sj")
+type = 5
+count = 5
+difficulty = 0.0
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_7quai"]
+script = ExtResource("4_v36x8")
+spawns = Array[ExtResource("5_g86sj")]([SubResource("Resource_ywtrv"), SubResource("Resource_moobg")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_j458e"]
+script = ExtResource("5_g86sj")
+type = 2
+count = 2
+difficulty = 2.0
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_4auba"]
+script = ExtResource("5_g86sj")
+type = 1
+difficulty = 0.5
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_27nux"]
+script = ExtResource("4_v36x8")
+spawns = Array[ExtResource("5_g86sj")]([SubResource("Resource_j458e"), SubResource("Resource_4auba")])
 metadata/_custom_type_script = "uid://dvqw441xw26cr"
 
 [node name="tutorial" type="Node2D" unique_id=1915128990]
@@ -141,7 +177,7 @@ shape = SubResource("RectangleShape2D_aqehm")
 
 [node name="SpawnZone" parent="." unique_id=1885971783 instance=ExtResource("3_j4fo4")]
 position = Vector2(39, 73)
-waves = Array[ExtResource("4_v36x8")]([SubResource("Resource_8i6uh"), SubResource("Resource_j4fo4"), SubResource("Resource_v36x8"), SubResource("Resource_e6tq2"), SubResource("Resource_p5y0w"), SubResource("Resource_67btf")])
+waves = Array[ExtResource("4_v36x8")]([SubResource("Resource_8i6uh"), SubResource("Resource_j4fo4"), SubResource("Resource_v36x8"), SubResource("Resource_e6tq2"), SubResource("Resource_p5y0w"), SubResource("Resource_67btf"), SubResource("Resource_7quai"), SubResource("Resource_27nux")])
 
 [node name="point1" parent="SpawnZone" index="1" unique_id=1093720794]
 position = Vector2(811, 337)

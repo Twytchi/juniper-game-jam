@@ -20,7 +20,7 @@ var s_base_pos : Vector2
 var height := 500.0
 
 var is_invincible := false
-var iframe_duration := 0.0
+@export var iframe_duration := 0.0
 
 var is_dead := false
 @onready var shadow: Node2D = $Node2D

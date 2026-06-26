@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://clkv2tbhkp5b"
+path="res://.godot/imported/MENU ROCK MOUAIS OK MAIS BON.ogg-9d175856ce10732243a323fa7e34e380.oggvorbisstr"
+
+[deps]
+
+source_file="res://Asset/music/MENU ROCK MOUAIS OK MAIS BON.ogg"
+dest_files=["res://.godot/imported/MENU ROCK MOUAIS OK MAIS BON.ogg-9d175856ce10732243a323fa7e34e380.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

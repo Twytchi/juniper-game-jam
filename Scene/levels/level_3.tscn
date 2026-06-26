@@ -1,0 +1,273 @@
+[gd_scene format=3 uid="uid://5ao0e8v8j5e5"]
+
+[ext_resource type="PackedScene" uid="uid://dmf2vaa260wvp" path="res://Scene/player.tscn" id="1_mt52b"]
+[ext_resource type="Texture2D" uid="uid://dids2ga7bsyf" path="res://Asset/effect/sky_layer.png" id="2_f75w7"]
+[ext_resource type="Texture2D" uid="uid://reqow757he8k" path="res://Asset/effect/back_building_veg.png" id="3_58ty5"]
+[ext_resource type="Script" uid="uid://dvqw441xw26cr" path="res://Ressources/Waves/waves_data.gd" id="4_f75w7"]
+[ext_resource type="Texture2D" uid="uid://bmnm27qysru1v" path="res://Asset/effect/mid_building_veg.png" id="4_vkcvd"]
+[ext_resource type="Script" uid="uid://deumf51aa55m8" path="res://Script/wave_entry.gd" id="5_58ty5"]
+[ext_resource type="Texture2D" uid="uid://njj4ecl01oyi" path="res://Asset/effect/front_building_veg.png" id="5_g2h4w"]
+[ext_resource type="Texture2D" uid="uid://dvkr7aq2c1fde" path="res://Asset/effect/ground.png" id="6_0sv5e"]
+[ext_resource type="PackedScene" uid="uid://vffr187x1riv" path="res://Scene/camera_2d.tscn" id="6_vkcvd"]
+[ext_resource type="PackedScene" uid="uid://bl2bu1k80r11i" path="res://combo_ui.tscn" id="7_g2h4w"]
+[ext_resource type="Script" uid="uid://dnoagq2homw7s" path="res://Scene/spawn_zone.gd" id="9_4us6h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y865s"]
+size = Vector2(1599, 942)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46d5g"]
+size = Vector2(1512, 515)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsd3"]
+size = Vector2(1376, 41.99228)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqehm"]
+size = Vector2(1376, 57.49391)
+
+[sub_resource type="Resource" id="Resource_58ty5"]
+script = ExtResource("5_58ty5")
+count = 3
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_rclu0"]
+script = ExtResource("4_f75w7")
+spawns = Array[ExtResource("5_58ty5")]([SubResource("Resource_58ty5")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_vkcvd"]
+script = ExtResource("5_58ty5")
+type = 2
+count = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_g2h4w"]
+script = ExtResource("5_58ty5")
+type = 1
+count = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_0sv5e"]
+script = ExtResource("4_f75w7")
+spawns = Array[ExtResource("5_58ty5")]([SubResource("Resource_vkcvd"), SubResource("Resource_g2h4w")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_y5fgp"]
+script = ExtResource("5_58ty5")
+type = 3
+count = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_7hcc0"]
+script = ExtResource("4_f75w7")
+spawns = Array[ExtResource("5_58ty5")]([SubResource("Resource_y5fgp")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_v8c6t"]
+script = ExtResource("5_58ty5")
+type = 3
+count = 3
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_qx8ix"]
+script = ExtResource("5_58ty5")
+type = 1
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_8osc3"]
+script = ExtResource("4_f75w7")
+spawns = Array[ExtResource("5_58ty5")]([SubResource("Resource_v8c6t"), SubResource("Resource_qx8ix")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_wa4rr"]
+script = ExtResource("5_58ty5")
+type = 5
+count = 5
+difficulty = 0.0
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_7kh6p"]
+script = ExtResource("4_f75w7")
+spawns = Array[ExtResource("5_58ty5")]([SubResource("Resource_wa4rr")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_pc5n3"]
+script = ExtResource("5_58ty5")
+type = 2
+difficulty = 1.5
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_muu7f"]
+script = ExtResource("5_58ty5")
+type = 1
+difficulty = 1.3
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_x4itn"]
+script = ExtResource("5_58ty5")
+type = 3
+count = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_on1jb"]
+script = ExtResource("4_f75w7")
+spawns = Array[ExtResource("5_58ty5")]([SubResource("Resource_pc5n3"), SubResource("Resource_muu7f"), SubResource("Resource_x4itn")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_xvuf6"]
+script = ExtResource("5_58ty5")
+type = 1
+count = 3
+difficulty = 0.7
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_sd6nl"]
+script = ExtResource("4_f75w7")
+spawns = Array[ExtResource("5_58ty5")]([SubResource("Resource_xvuf6")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_cpf4i"]
+script = ExtResource("5_58ty5")
+type = 2
+count = 6
+difficulty = 0.5
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_dhbl4"]
+script = ExtResource("4_f75w7")
+spawns = Array[ExtResource("5_58ty5")]([SubResource("Resource_cpf4i")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="Resource" id="Resource_10yb4"]
+script = ExtResource("5_58ty5")
+type = 3
+count = 2
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_6s0po"]
+script = ExtResource("5_58ty5")
+type = 3
+difficulty = 1.5
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_6c8qc"]
+script = ExtResource("5_58ty5")
+type = 2
+count = 3
+difficulty = 0.6
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_qotwr"]
+script = ExtResource("4_f75w7")
+spawns = Array[ExtResource("5_58ty5")]([SubResource("Resource_10yb4"), SubResource("Resource_6s0po"), SubResource("Resource_6c8qc")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f75w7"]
+size = Vector2(305, 355)
+
+[node name="tutorial" type="Node2D" unique_id=1915128990]
+y_sort_enabled = true
+
+[node name="Player" parent="." unique_id=500224478 instance=ExtResource("1_mt52b")]
+position = Vector2(354, 575)
+scale = Vector2(0.9, 0.9)
+health = 100.0
+
+[node name="background" type="Node2D" parent="." unique_id=1628019237]
+z_index = -10
+position = Vector2(627, 356)
+scale = Vector2(0.7, 0.7)
+
+[node name="Sprite2D" type="Sprite2D" parent="background" unique_id=1246245602]
+position = Vector2(28.571428, -228.57144)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_f75w7")
+
+[node name="Parallax2D" type="Parallax2D" parent="background" unique_id=1571343910]
+scale = Vector2(0.99999994, 0.99999994)
+scroll_offset = Vector2(-40, 77.14286)
+repeat_size = Vector2(1920, 0)
+repeat_times = 2
+
+[node name="BackBuildingVeg" type="Sprite2D" parent="background/Parallax2D" unique_id=1482382212]
+position = Vector2(-10.000061, -161.42871)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_58ty5")
+
+[node name="Parallax2D2" type="Parallax2D" parent="background" unique_id=1788722557]
+scale = Vector2(0.99999994, 0.99999994)
+scroll_offset = Vector2(-39.999878, 77.14286)
+repeat_size = Vector2(1280, 0)
+repeat_times = 2
+
+[node name="MidBuildingVeg" type="Sprite2D" parent="background/Parallax2D2" unique_id=923497065]
+position = Vector2(45.714233, -281.42865)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("4_vkcvd")
+
+[node name="Parallax2D3" type="Parallax2D" parent="background" unique_id=1796711368]
+scale = Vector2(0.99999994, 0.99999994)
+scroll_offset = Vector2(-40, 77.14286)
+repeat_size = Vector2(1920, 0)
+repeat_times = 2
+
+[node name="FrontBuildingVeg" type="Sprite2D" parent="background/Parallax2D3" unique_id=1426189463]
+position = Vector2(24.285645, -318.5715)
+texture = ExtResource("5_g2h4w")
+
+[node name="Ground" type="Sprite2D" parent="background" unique_id=131304955]
+position = Vector2(-25.714283, -30.00001)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("6_0sv5e")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=649786150]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=637742372]
+position = Vector2(633.5, 5)
+shape = SubResource("RectangleShape2D_y865s")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=566632498]
+position = Vector2(693, 1058.5)
+shape = SubResource("RectangleShape2D_46d5g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=573501853]
+position = Vector2(-183.00381, 138.91705)
+rotation = -1.5696902
+shape = SubResource("RectangleShape2D_fnsd3")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=895061327]
+position = Vector2(1470.7513, 183.07938)
+rotation = -1.5696902
+shape = SubResource("RectangleShape2D_aqehm")
+
+[node name="comboUi" parent="." unique_id=1870541239 instance=ExtResource("7_g2h4w")]
+
+[node name="Camera2D" parent="." unique_id=2048302457 groups=["camera"] instance=ExtResource("6_vkcvd")]
+position = Vector2(640, 360)
+zoom = Vector2(0.8, 0.8)
+
+[node name="SpawnZone" type="Area2D" parent="." unique_id=1805930283]
+position = Vector2(602, 578)
+script = ExtResource("9_4us6h")
+waves = Array[ExtResource("4_f75w7")]([SubResource("Resource_rclu0"), SubResource("Resource_0sv5e"), SubResource("Resource_7hcc0"), SubResource("Resource_8osc3"), SubResource("Resource_7kh6p"), SubResource("Resource_on1jb"), SubResource("Resource_sd6nl"), SubResource("Resource_dhbl4"), SubResource("Resource_qotwr")])
+metadata/_custom_type_script = "uid://dnoagq2homw7s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnZone" unique_id=202092641]
+position = Vector2(82.5, 46.5)
+shape = SubResource("RectangleShape2D_f75w7")
+
+[node name="Marker2D" type="Marker2D" parent="SpawnZone" unique_id=975577648]
+position = Vector2(-504, -31)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnZone" unique_id=727892002]
+position = Vector2(488, 4)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnZone" unique_id=450548433]
+position = Vector2(442, 143)
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnZone" unique_id=873763730]
+position = Vector2(735, 118)
+
+[node name="Marker2D5" type="Marker2D" parent="SpawnZone" unique_id=911497050]
+position = Vector2(-421, 147)

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dljwoierldrq4"]
 
 [ext_resource type="Script" uid="uid://bolhoyrdxot04" path="res://Scene/kamikaze_ai.gd" id="1_6buke"]
-[ext_resource type="Texture2D" uid="uid://crc04oeuuhnah" path="res://Asset/enemy/zerk_idle_rest.png" id="2_37jb3"]
-[ext_resource type="Texture2D" uid="uid://dwx4lvo4mnsh2" path="res://Asset/enemy/zerk_idle_detect.png" id="2_t0rrs"]
+[ext_resource type="Texture2D" uid="uid://bgf8kqhq3jd3y" path="res://Asset/enemy/kama_idle_detect.png" id="2_t0rrs"]
 [ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="3_hompp"]
+[ext_resource type="Texture2D" uid="uid://o57vwyt6nrtp" path="res://Asset/enemy/kama_idle_rest.png" id="3_spl7u"]
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="4_3d7hi"]
 [ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="5_p6xwm"]
 [ext_resource type="Resource" uid="uid://bsoabraammveh" path="res://Ressources/player Attack/Missile_atack.tres" id="6_g3fuq"]
@@ -22,7 +22,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_37jb3")
+"texture": ExtResource("3_spl7u")
 }],
 "loop": true,
 "name": &"idle",
@@ -118,7 +118,7 @@ scale = Vector2(0.99999994, 0.99999994)
 position = Vector2(0, -20.000002)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_t0rrs")
-animation = &"idle"
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1126545201]
 position = Vector2(2.9802317e-07, 5.9604633e-07)

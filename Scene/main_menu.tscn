@@ -1,6 +1,67 @@
 [gd_scene format=3 uid="uid://bb70i0cf7eyla"]
 
 [ext_resource type="Script" uid="uid://bfas2wyvgxjoq" path="res://Scene/main_menu.gd" id="1_ftydy"]
+[ext_resource type="Texture2D" uid="uid://x4v1ww5ubkg8" path="res://Asset/ui/Sans_titre_28_20260625213913.png" id="2_87ipw"]
+[ext_resource type="Texture2D" uid="uid://mpv6wh34s31o" path="res://Asset/ui/Sans_titre_28_20260625203029.png" id="3_s2f1d"]
+[ext_resource type="Texture2D" uid="uid://d3lawl4trnfcr" path="res://Asset/ui/Sans_titre_28_20260625204844.png" id="4_ejkra"]
+[ext_resource type="Texture2D" uid="uid://dymspa8l5tanf" path="res://Asset/ui/Sans_titre_28_20260625203045.png" id="5_yok32"]
+[ext_resource type="Texture2D" uid="uid://b8wb2cjgey7eh" path="res://Asset/ui/Sans_titre_28_20260625204853.png" id="6_klvvj"]
+[ext_resource type="Texture2D" uid="uid://dvrkrvgbyjn3r" path="res://Asset/ui/Sans_titre_28_20260625203042.png" id="7_47k5r"]
+[ext_resource type="Texture2D" uid="uid://devuulunyr4jc" path="res://Asset/ui/Sans_titre_28_20260625204832.png" id="8_hag5k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ckpx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_s2f1d")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ejkra")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_yok32")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_shpw1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_klvvj")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_47k5r")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_hag5k")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
 
 [node name="Main menu" type="Node2D" unique_id=186063864]
 script = ExtResource("1_ftydy")
@@ -8,30 +69,67 @@ script = ExtResource("1_ftydy")
 [node name="Bouton" type="Node2D" parent="." unique_id=2127691326]
 
 [node name="Play" type="Button" parent="Bouton" unique_id=1105344188]
-offset_left = 1080.0
-offset_top = 263.0
-offset_right = 1188.0
-offset_bottom = 328.0
+offset_left = 987.0
+offset_top = 258.0
+offset_right = 1095.0
+offset_bottom = 323.0
 text = "Play
 "
 
 [node name="Quit" type="Button" parent="Bouton" unique_id=500456651]
-offset_left = 794.0
-offset_top = 599.0
-offset_right = 902.0
-offset_bottom = 664.0
+offset_left = 761.0
+offset_top = 553.0
+offset_right = 869.0
+offset_bottom = 618.0
 text = "quit
 
 "
 
 [node name="Option" type="Button" parent="Bouton" unique_id=926769996]
-offset_left = 921.0
-offset_top = 431.0
-offset_right = 1029.0
-offset_bottom = 496.0
+offset_left = 851.0
+offset_top = 397.0
+offset_right = 959.0
+offset_bottom = 462.0
 text = "Option
 "
+
+[node name="visu1" type="Node2D" parent="." unique_id=1285216239]
+
+[node name="Wheel" type="Sprite2D" parent="visu1" unique_id=751209010]
+z_index = -1
+position = Vector2(1187, 589)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_87ipw")
+
+[node name="ColorRect" type="ColorRect" parent="visu1" unique_id=959716211]
+z_index = -7
+offset_left = -55.0
+offset_top = -59.0
+offset_right = 1371.0
+offset_bottom = 814.0
+mouse_filter = 2
+color = Color(0.94908446, 0.9669406, 0.9347955, 1)
+
+[node name="visu2" type="Node2D" parent="." unique_id=543434660]
+
+[node name="perso" type="AnimatedSprite2D" parent="visu2" unique_id=2089777770]
+position = Vector2(321, 403)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_4ckpx")
+animation = &"green"
+
+[node name="fond" type="AnimatedSprite2D" parent="visu2" unique_id=68506398]
+z_index = -1
+position = Vector2(280, 400)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_shpw1")
+animation = &"blue"
+
+[node name="Timer" type="Timer" parent="visu2" unique_id=283175052]
+wait_time = 10.0
+autostart = true
 
 [connection signal="pressed" from="Bouton/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Bouton/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Bouton/Option" to="." method="_on_option_pressed"]
+[connection signal="timeout" from="visu2/Timer" to="." method="_on_timer_timeout"]
