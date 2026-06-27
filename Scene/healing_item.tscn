@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bmf58f1df3xvx"]
 
 [ext_resource type="Script" uid="uid://dffeof8qi8o15" path="res://healing_item.gd" id="1_gmci6"]
-[ext_resource type="Texture2D" uid="uid://t1eobduvkrey" path="res://Asset/effect/star.png" id="2_dg55t"]
+[ext_resource type="Texture2D" uid="uid://ds8p8c115x4or" path="res://Asset/effect/slash_20260626193904.png" id="2_dg55t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dg55t"]
 radius = 82.76472
@@ -10,6 +10,7 @@ radius = 82.76472
 script = ExtResource("1_gmci6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=397607167]
+position = Vector2(-2, 27)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_dg55t")
 

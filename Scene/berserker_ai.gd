@@ -9,6 +9,10 @@ var damage : float = 5.0
 var is_enraged := false
 var is_attacking := false
 
+
+@onready var anim : AnimatedSprite2D = $Sprite2D/Sprite
+
+
 var a_direction : Vector2
 func _ready():
 	super._ready()
@@ -16,6 +20,9 @@ func _ready():
 
 
 func _physics_process(delta):
+	if is_dead :
+		state =State.DEAD
+	
 	if knockback_velocity.length() > 1.0:
 		velocity = knockback_velocity
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
@@ -23,6 +30,7 @@ func _physics_process(delta):
 		match state:
 			State.IDLE:
 				idle()
+				anim.play("idle")
 			State.CHASE:
 				chase_player(delta)
 			State.ATTACK:
@@ -31,6 +39,7 @@ func _physics_process(delta):
 				recover()
 			State.HIT:
 				pass
+				anim.play("hit")
 			State.DEAD:
 				velocity = Vector2.ZERO
 	
@@ -67,7 +76,7 @@ func chase_player(delta : float):
 		return
 
 	_check_enrage()
-
+	anim.play("run")
 	if global_position.distance_to(player.global_position) <= attack_range:
 		state = State.ATTACK
 
@@ -95,6 +104,7 @@ func attack():
 		return
 
 	# dégâts au contact si toujours à portée
+	anim.play("jump")
 	vertical_velocity = 400 
 	a_direction = (player.global_position - global_position).normalized()
 	await height_reached_zero
@@ -109,6 +119,17 @@ func attack():
 	state = State.RECOVER
 
 
+func die():
+	state = State.DEAD
+	anim.play("dead")
+	on_death.emit()
+	vertical_velocity = 400
+	await height_reached_zero
+	anim.play("boom")
+	await get_tree().create_timer(0.2).timeout
+	queue_free()
+
+
 func recover():
 	velocity = Vector2.ZERO
 	if is_attacking == false:
@@ -119,3 +140,5 @@ func recover():
 
 	is_attacking = false
 	state = State.CHASE
+	
+	anim.play("idle")

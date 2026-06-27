@@ -12,7 +12,6 @@ var is_recovering := false
 @onready var hitbox: EnemyHitbox = $Hitbox
 @onready var anim : AnimatedSprite2D = $Sprite2D/Sprite2
 
-
 func _ready():
 	super._ready() 
 	dash_duration *= difficulty_multiplier
@@ -63,6 +62,17 @@ func recover():
 	is_recovering = false
 	state = State.CHASE
 
+
+func die():
+	state = State.DEAD
+	on_death.emit()
+	is_dashing = false
+	is_recovering = false
+	vertical_velocity = 400
+	await height_reached_zero
+	anim.play("boom")
+	await get_tree().create_timer(0.2).timeout
+	queue_free()
 
 func start_iframes():
 	hitbox.disable_hitbox()

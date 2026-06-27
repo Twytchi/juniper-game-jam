@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0murjk8lns5x" path="res://archer_ai.gd" id="1_kpj7w"]
 [ext_resource type="Texture2D" uid="uid://bprfwonl1pt8d" path="res://Asset/enemy/Sans_titre_38_20260625143323.png" id="2_1djwh"]
+[ext_resource type="Texture2D" uid="uid://c27gfn0dhvckv" path="res://Asset/effect/Sans_titre_41_20260626174424.png" id="2_jrbts"]
 [ext_resource type="Texture2D" uid="uid://edntftn8vd4r" path="res://Asset/enemy/Sans_titre_38_20260625143209.png" id="2_qwq2l"]
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="3_k3ycf"]
 [ext_resource type="Texture2D" uid="uid://bd34cl1j5glm6" path="res://Asset/enemy/archer_attack00.png" id="4_jrbts"]
@@ -13,6 +14,14 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7ld60"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jrbts")
+}],
+"loop": true,
+"name": &"boom",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_1djwh")
@@ -64,7 +73,8 @@ max_health = 70
 position = Vector2(3, -16)
 scale = Vector2(0.23, 0.23)
 sprite_frames = SubResource("SpriteFrames_7ld60")
-animation = &"hit"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2105550090]
 shape = SubResource("RectangleShape2D_c2eol")

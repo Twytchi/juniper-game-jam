@@ -87,6 +87,16 @@ script = ExtResource("4_f75w7")
 spawns = Array[ExtResource("5_58ty5")]([SubResource("Resource_wa4rr")])
 metadata/_custom_type_script = "uid://dvqw441xw26cr"
 
+[sub_resource type="Resource" id="Resource_wlwae"]
+script = ExtResource("5_58ty5")
+type = 7
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_4us6h"]
+script = ExtResource("4_f75w7")
+spawns = Array[ExtResource("5_58ty5")]([SubResource("Resource_wlwae")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
 [sub_resource type="Resource" id="Resource_pc5n3"]
 script = ExtResource("5_58ty5")
 type = 2
@@ -221,7 +231,7 @@ zoom = Vector2(0.8, 0.8)
 [node name="SpawnZone" type="Area2D" parent="." unique_id=1805930283]
 position = Vector2(602, 578)
 script = ExtResource("9_4us6h")
-waves = Array[ExtResource("4_f75w7")]([SubResource("Resource_rclu0"), SubResource("Resource_0sv5e"), SubResource("Resource_7hcc0"), SubResource("Resource_8osc3"), SubResource("Resource_7kh6p"), SubResource("Resource_on1jb"), SubResource("Resource_sd6nl"), SubResource("Resource_dhbl4"), SubResource("Resource_qotwr")])
+waves = Array[ExtResource("4_f75w7")]([SubResource("Resource_rclu0"), SubResource("Resource_0sv5e"), SubResource("Resource_7hcc0"), SubResource("Resource_8osc3"), SubResource("Resource_7kh6p"), SubResource("Resource_4us6h"), SubResource("Resource_on1jb"), SubResource("Resource_sd6nl"), SubResource("Resource_dhbl4"), SubResource("Resource_qotwr")])
 metadata/_custom_type_script = "uid://dnoagq2homw7s"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnZone" unique_id=202092641]

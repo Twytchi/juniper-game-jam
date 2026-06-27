@@ -6,13 +6,10 @@
 [ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="4_goecs"]
 [ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="5_5pg6p"]
 [ext_resource type="Resource" uid="uid://bsoabraammveh" path="res://Ressources/player Attack/Missile_atack.tres" id="6_8d6ba"]
-[ext_resource type="Texture2D" uid="uid://bocue71sp71di" path="res://Asset/enemy/dash_charge_idle00.png" id="7_ekacm"]
-[ext_resource type="Texture2D" uid="uid://cstlr2wupavjv" path="res://Asset/enemy/dash_charge_idle01.png" id="8_4v65d"]
-[ext_resource type="Texture2D" uid="uid://jtkqrqr5rtjn" path="res://Asset/enemy/dash_charge_run00.png" id="9_ndueg"]
-[ext_resource type="Texture2D" uid="uid://b3m64hiuvyx88" path="res://Asset/enemy/dash_charge_run01.png" id="10_gtald"]
-[ext_resource type="Texture2D" uid="uid://fwi6m5mwxqyy" path="res://Asset/enemy/dash_idle.png" id="11_1pydd"]
-[ext_resource type="Texture2D" uid="uid://bc8x04gnd835m" path="res://Asset/enemy/dash_run00.png" id="12_xcskf"]
-[ext_resource type="Texture2D" uid="uid://cf48ujgn5lqju" path="res://Asset/enemy/dash_run01.png" id="13_dnpl2"]
+[ext_resource type="Texture2D" uid="uid://c27gfn0dhvckv" path="res://Asset/effect/Sans_titre_41_20260626174424.png" id="7_tmjf1"]
+[ext_resource type="Texture2D" uid="uid://2m5opuelj0xy" path="res://Asset/enemy/Sans_titre_38_20260626173956.png" id="9_tmjf1"]
+[ext_resource type="Texture2D" uid="uid://dqoam2cx1bmu1" path="res://Asset/enemy/Sans_titre_38_20260626170619.png" id="10_544c6"]
+[ext_resource type="Texture2D" uid="uid://ceh0fdaqqn1hl" path="res://Asset/enemy/Sans_titre_38_20260626170354.png" id="10_t6xga"]
 [ext_resource type="PackedScene" uid="uid://bos1sj152pmob" path="res://Scene/hit_particle.tscn" id="14_hj7lo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fq4oq"]
@@ -34,10 +31,15 @@ radius = 60.827618
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_ekacm")
+"texture": ExtResource("7_tmjf1")
+}],
+"loop": true,
+"name": &"boom",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_4v65d")
+"texture": ExtResource("10_t6xga")
 }],
 "loop": true,
 "name": &"charge",
@@ -45,10 +47,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_ndueg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_gtald")
+"texture": ExtResource("9_tmjf1")
 }],
 "loop": true,
 "name": &"dash",
@@ -56,7 +55,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_1pydd")
+"texture": ExtResource("10_t6xga")
 }],
 "loop": true,
 "name": &"idle",
@@ -64,10 +63,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("12_xcskf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_dnpl2")
+"texture": ExtResource("10_544c6")
 }],
 "loop": true,
 "name": &"walk",
@@ -84,8 +80,8 @@ shoot_cooldown = 0.6
 enraged_speed = 300.0
 separation_area = NodePath("Area2D")
 detection_range = 1000.0
-speed = 200.0
-max_health = 300
+speed = 300.0
+max_health = 350
 iframe_duration = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1577805832]
@@ -147,10 +143,9 @@ shape = SubResource("CircleShape2D_670p6")
 [node name="Sprite2D" type="Node2D" parent="." unique_id=1383645909]
 
 [node name="Sprite2" type="AnimatedSprite2D" parent="Sprite2D" unique_id=1188211828]
-position = Vector2(0, -30)
-scale = Vector2(0.3, 0.3)
+position = Vector2(0, -50)
+scale = Vector2(0.28, 0.28)
 sprite_frames = SubResource("SpriteFrames_r0m1w")
-animation = &"idle"
-frame_progress = 0.56381714
+animation = &"walk"
 
 [node name="hit_particle" parent="." unique_id=1085854101 instance=ExtResource("14_hj7lo")]

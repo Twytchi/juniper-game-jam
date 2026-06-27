@@ -44,12 +44,12 @@ func shoot():
 		can_shoot = true
 		return
 
-	var arrow = preload("res://Scene/Arrow.tscn").instantiate()
+	var arrow = preload("res://Scene/arrow.tscn").instantiate()
 	arrow.global_position = global_position
 	arrow.direction = (player.global_position - global_position).normalized()
 	get_parent().add_child(arrow)
 	if difficulty_multiplier > 1.1 :
-		var arrow2 = preload("res://Scene/Arrow.tscn").instantiate()
+		var arrow2 = preload("res://Scene/arrow.tscn").instantiate()
 		arrow2.global_position = global_position
 		arrow2.direction = (player.global_position - global_position).normalized()
 		await get_tree().create_timer(0.1).timeout
@@ -58,3 +58,13 @@ func shoot():
 
 	await get_tree().create_timer(shoot_cooldown).timeout
 	can_shoot = true
+
+
+func die():
+	state = State.DEAD
+	on_death.emit()
+	vertical_velocity = 400
+	await height_reached_zero
+	anim.play("boom")
+	await get_tree().create_timer(0.2).timeout
+	queue_free()

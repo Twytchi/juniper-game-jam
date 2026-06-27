@@ -1,13 +1,73 @@
 [gd_scene format=3 uid="uid://wdhlmtnjwqaq"]
 
 [ext_resource type="Script" uid="uid://bv0tplwii1g6c" path="res://Scene/berserker_ai.gd" id="1_ojwy5"]
-[ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="1_ts1hq"]
+[ext_resource type="Texture2D" uid="uid://c27gfn0dhvckv" path="res://Asset/effect/Sans_titre_41_20260626174424.png" id="2_1ihxj"]
+[ext_resource type="Texture2D" uid="uid://dhkfm2mx2afkk" path="res://Asset/enemy/zer_dead.png" id="2_2oimo"]
 [ext_resource type="Script" uid="uid://d3kcc8f64jxxd" path="res://Script/hurtbox.gd" id="2_ojwy5"]
+[ext_resource type="Texture2D" uid="uid://cuq6j3m6000tm" path="res://Asset/enemy/zer_rest.png" id="3_1ihxj"]
+[ext_resource type="Texture2D" uid="uid://cbmwp7x0mcc5c" path="res://Asset/enemy/zer_idle.png" id="4_1w6be"]
 [ext_resource type="Script" uid="uid://da52ihtpjml2f" path="res://Script/spincomponent.gd" id="4_g3jxb"]
 [ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="5_b3etd"]
+[ext_resource type="Texture2D" uid="uid://lgghlw7f5wn8" path="res://Asset/enemy/zer_detect.png" id="5_f3ou2"]
+[ext_resource type="Texture2D" uid="uid://dmd3n4nveyi54" path="res://Asset/enemy/zer_attack_move01.png" id="6_am630"]
 [ext_resource type="Resource" uid="uid://bsoabraammveh" path="res://Ressources/player Attack/Missile_atack.tres" id="6_cftap"]
+[ext_resource type="Texture2D" uid="uid://c7g7jb6rkmd0s" path="res://Asset/enemy/zer_attack_move00.png" id="7_4qwqj"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="7_gan71"]
 [ext_resource type="PackedScene" uid="uid://bos1sj152pmob" path="res://Scene/hit_particle.tscn" id="8_hsvcb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i2d38"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1ihxj")
+}],
+"loop": true,
+"name": &"boom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2oimo")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1ihxj")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1w6be")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_f3ou2")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_am630")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4qwqj")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3jxb"]
 size = Vector2(32, 32)
@@ -26,7 +86,7 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_ojwy5")
 enraged_speed = 350.0
-attack_range = 100.0
+attack_range = 150.0
 attack_cooldown = 0.7
 separation_area = NodePath("Area2D")
 detection_range = 1000.0
@@ -35,9 +95,12 @@ max_health = 100
 
 [node name="Sprite2D" type="Node2D" parent="." unique_id=1560469114]
 
-[node name="Sprite" type="Sprite2D" parent="Sprite2D" unique_id=1303960414]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_ts1hq")
+[node name="Sprite" type="AnimatedSprite2D" parent="Sprite2D" unique_id=941769507]
+position = Vector2(0, -32)
+scale = Vector2(0.35, 0.35)
+sprite_frames = SubResource("SpriteFrames_i2d38")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1684642529]
 shape = SubResource("RectangleShape2D_g3jxb")

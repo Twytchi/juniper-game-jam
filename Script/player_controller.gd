@@ -7,7 +7,7 @@ class_name Player
 @export var attack_friction: float = 4.0 
 @export var health: float
 
-enum Action { NONE, LIGHT, HEAVY, SPIN, DASH, HURT }
+enum Action { NONE, LIGHT, HEAVY, SPIN, DASH, HURT, DEAD }
 
 var current_action: Action = Action.NONE
 var buffered_input: Action = Action.NONE
@@ -93,7 +93,7 @@ func _process(delta: float) -> void:
 		anim.rotation += 20.0 * delta *   (signf(direction.x ) if direction.x != 0.0 else 1.0 )
 	else : 
 		anim.rotation = 0
-	$Label.text = str(health)
+	$Label.text = str(health) + " HP "
 
 func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "up", "down")
@@ -420,9 +420,13 @@ func hit_flash() -> void:
 
 func die() -> void:
 	is_dead = true
-	current_action = Action.HURT
+	current_action = Action.DEAD
 	velocity = Vector2.ZERO
 	on_death.emit()
+	anim.hide()
+	$visual/explod.show()
+	await get_tree().create_timer(0.2)
+	get_tree().change_scene_to_file("res://Scene/lose_menu.tscn")
 	# logique de mort à compléter : anim, game over, respawn...
 
 

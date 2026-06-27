@@ -24,6 +24,9 @@ func _on_level_button_pressed(level_index: int) -> void:
 	if ResourceLoader.exists(full_path):
 		SoundManager.musique_player.stream = SoundManager.music_combat
 		SoundManager.musique_player.play()
+		ScoreManager.multiplier = 1.0
+		ScoreManager.score = 0 
+		ScoreManager.action_history.clear()
 		get_tree().change_scene_to_file(full_path)
 	else:
 		print("Erreur : La scène n'existe pas -> ", full_path)

@@ -24,12 +24,15 @@ theme_override_constants/separation = 10
 
 [node name="rank" type="Label" parent="VBoxContainer" unique_id=1084033663]
 layout_mode = 2
+text = "SSS"
 label_settings = SubResource("LabelSettings_fomav")
 
 [node name="score" type="Label" parent="VBoxContainer" unique_id=1655355464]
 layout_mode = 2
+text = "0000000"
 label_settings = SubResource("LabelSettings_fomav")
 
 [node name="mult" type="Label" parent="VBoxContainer" unique_id=1551046188]
 layout_mode = 2
+text = "x100"
 label_settings = SubResource("LabelSettings_fomav")

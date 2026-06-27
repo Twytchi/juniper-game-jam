@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://xybarsm2qx6x"]
 
+[ext_resource type="Script" uid="uid://bxqsgegsfq3u1" path="res://Scene/lose_menu.gd" id="1_dj2ys"]
+
 [node name="LoseMenu" type="Node2D" unique_id=1389202007]
+script = ExtResource("1_dj2ys")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=85266015]
 offset_right = 1296.0
@@ -12,4 +15,12 @@ offset_left = 616.0
 offset_top = 328.0
 offset_right = 684.0
 offset_bottom = 351.0
-text = "You died"
+text = "You died bro"
+
+[node name="Label2" type="Label" parent="." unique_id=663269425]
+offset_left = 600.0
+offset_top = 536.0
+offset_right = 698.0
+offset_bottom = 559.0
+text = "press space to continue
+"

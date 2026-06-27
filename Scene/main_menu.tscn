@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://x4v1ww5ubkg8" path="res://Asset/ui/Sans_titre_28_20260625213913.png" id="2_87ipw"]
 [ext_resource type="FontFile" uid="uid://5ayvxpkiidhx" path="res://Asset/ui/fonts/PirataOne-Regular.ttf" id="2_ejkra"]
 [ext_resource type="Texture2D" uid="uid://mpv6wh34s31o" path="res://Asset/ui/Sans_titre_28_20260625203029.png" id="3_s2f1d"]
-[ext_resource type="Texture2D" uid="uid://c7jtkggg5ba6o" path="res://Asset/enemy/Sans_titre_38_20260625151816.png" id="3_yok32"]
+[ext_resource type="Texture2D" uid="uid://c8hfvl2qctrnj" path="res://Asset/ui/Sans_titre_41_20260626180353.png" id="3_yok32"]
 [ext_resource type="Texture2D" uid="uid://d3lawl4trnfcr" path="res://Asset/ui/Sans_titre_28_20260625204844.png" id="4_ejkra"]
+[ext_resource type="Texture2D" uid="uid://dxu5fw0gh7fsc" path="res://Asset/effect/Sans_titre_28_20260626143000.png" id="5_klvvj"]
 [ext_resource type="Texture2D" uid="uid://dymspa8l5tanf" path="res://Asset/ui/Sans_titre_28_20260625203045.png" id="5_yok32"]
 [ext_resource type="Texture2D" uid="uid://b8wb2cjgey7eh" path="res://Asset/ui/Sans_titre_28_20260625204853.png" id="6_klvvj"]
 [ext_resource type="Texture2D" uid="uid://dvrkrvgbyjn3r" path="res://Asset/ui/Sans_titre_28_20260625203042.png" id="7_47k5r"]
@@ -65,6 +66,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_klvvj"]
+font = ExtResource("2_ejkra")
+font_size = 80
+outline_size = 14
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0.9411765, 0, 0, 0.5686275)
+
 [node name="Main menu" type="Node2D" unique_id=186063864]
 script = ExtResource("1_ftydy")
 
@@ -72,9 +81,9 @@ script = ExtResource("1_ftydy")
 
 [node name="Play" type="Button" parent="Bouton" unique_id=1105344188]
 z_index = 2
-offset_left = 1026.0
+offset_left = 1008.0
 offset_top = 118.0
-offset_right = 1244.0
+offset_right = 1226.0
 offset_bottom = 253.0
 theme_override_colors/font_color = Color(1, 0, 0.18039216, 1)
 theme_override_fonts/font = ExtResource("2_ejkra")
@@ -112,30 +121,30 @@ flat = true
 
 [node name="TextureRect" type="TextureRect" parent="Bouton" unique_id=2073956111]
 z_index = 1
-offset_left = 1029.0
-offset_top = 78.00001
-offset_right = 1541.0
-offset_bottom = 590.0
+offset_left = 985.0
+offset_top = 69.00001
+offset_right = 1497.0
+offset_bottom = 581.0
 scale = Vector2(0.495, 0.495)
 mouse_filter = 2
 texture = ExtResource("3_yok32")
 
 [node name="TextureRect2" type="TextureRect" parent="Bouton" unique_id=688926759]
 z_index = 1
-offset_left = 770.0
-offset_top = 236.0
-offset_right = 1282.0
-offset_bottom = 748.0
+offset_left = 739.0
+offset_top = 234.0
+offset_right = 1251.0
+offset_bottom = 746.0
 scale = Vector2(0.495, 0.495)
 mouse_filter = 2
 texture = ExtResource("3_yok32")
 
 [node name="TextureRect3" type="TextureRect" parent="Bouton" unique_id=617570032]
 z_index = 1
-offset_left = 682.00006
-offset_top = 471.00003
-offset_right = 1194.0
-offset_bottom = 983.0
+offset_left = 663.00006
+offset_top = 444.0
+offset_right = 1175.0
+offset_bottom = 956.0
 scale = Vector2(0.495, 0.495)
 mouse_filter = 2
 texture = ExtResource("3_yok32")
@@ -157,6 +166,12 @@ offset_bottom = 814.0
 mouse_filter = 2
 color = Color(0.94908446, 0.9669406, 0.9347955, 1)
 
+[node name="SansTitre2820260626143000" type="Sprite2D" parent="visu1" unique_id=1482860470]
+visible = false
+z_index = -2
+position = Vector2(641, 178)
+texture = ExtResource("5_klvvj")
+
 [node name="visu2" type="Node2D" parent="." unique_id=543434660]
 
 [node name="perso" type="AnimatedSprite2D" parent="visu2" unique_id=2089777770]
@@ -175,6 +190,14 @@ animation = &"blue"
 [node name="Timer" type="Timer" parent="visu2" unique_id=283175052]
 wait_time = 10.0
 autostart = true
+
+[node name="Label" type="Label" parent="." unique_id=923798996]
+offset_left = 133.0
+offset_top = 5.0
+offset_right = 1321.0
+offset_bottom = 266.0
+text = "Space Pirate Drill Missile ! "
+label_settings = SubResource("LabelSettings_klvvj")
 
 [connection signal="pressed" from="Bouton/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Bouton/Quit" to="." method="_on_quit_pressed"]

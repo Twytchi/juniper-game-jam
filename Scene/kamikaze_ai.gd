@@ -37,3 +37,14 @@ func attack():
 				body.apply_damage(explosion_damage, self)
 
 	die()
+
+
+
+func die():
+	state = State.DEAD
+	anim.play("dead")
+	on_death.emit()
+	anim.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	anim.play("boom")
+	await get_tree().create_timer(0.2).timeout
+	queue_free()

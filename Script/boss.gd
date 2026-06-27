@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 	super._process(delta)
 	_check_enrage()
 	
-	anim.flip_h = (velocity.x > 0)
+	anim.flip_h = (velocity.x < 0)
 	sprite.position.y = -height
 	if hurtbox: hurtbox.position.y = -height
 	
@@ -48,6 +48,10 @@ func _process(delta: float) -> void:
 		sprite.rotation = 0 
 
 func _physics_process(delta):
+	if is_dead :
+		state =State.DEAD
+	
+	
 	if knockback_velocity.length() > 1.0:
 		velocity = knockback_velocity
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
@@ -159,7 +163,6 @@ func jump_attack():
 func shoot():
 	is_attacking = true
 	can_shoot = false
-	anim.play("shoot")
 	
 	await get_tree().create_timer(1.0).timeout
 	
@@ -180,7 +183,7 @@ func shoot():
 
 
 func _spawn_arrow(dir: Vector2):
-	var arrow = preload("res://Scene/Arrow.tscn").instantiate()
+	var arrow = preload("res://Scene/arrow.tscn").instantiate()
 	arrow.global_position = global_position
 	arrow.direction = dir
 	get_parent().add_child(arrow)
@@ -211,3 +214,14 @@ func _check_enrage():
 	if hp_percent <= enraged_threshold:
 		is_enraged = true
 		speed = enraged_speed
+
+
+func die():
+	state = State.DEAD
+	anim.play("dead")
+	on_death.emit()
+	vertical_velocity = 200
+	await height_reached_zero
+	anim.play("boom")
+	await get_tree().create_timer(0.2).timeout
+	queue_free()

@@ -103,6 +103,16 @@ script = ExtResource("4_v36x8")
 spawns = Array[ExtResource("5_g86sj")]([SubResource("Resource_d0yhf"), SubResource("Resource_ms22s"), SubResource("Resource_ylrwl")])
 metadata/_custom_type_script = "uid://dvqw441xw26cr"
 
+[sub_resource type="Resource" id="Resource_f0eh5"]
+script = ExtResource("5_g86sj")
+type = 7
+metadata/_custom_type_script = "uid://deumf51aa55m8"
+
+[sub_resource type="Resource" id="Resource_u8k2b"]
+script = ExtResource("4_v36x8")
+spawns = Array[ExtResource("5_g86sj")]([SubResource("Resource_f0eh5")])
+metadata/_custom_type_script = "uid://dvqw441xw26cr"
+
 [sub_resource type="Resource" id="Resource_ywtrv"]
 script = ExtResource("5_g86sj")
 type = 2
@@ -177,7 +187,7 @@ shape = SubResource("RectangleShape2D_aqehm")
 
 [node name="SpawnZone" parent="." unique_id=1885971783 instance=ExtResource("3_j4fo4")]
 position = Vector2(39, 73)
-waves = Array[ExtResource("4_v36x8")]([SubResource("Resource_8i6uh"), SubResource("Resource_j4fo4"), SubResource("Resource_v36x8"), SubResource("Resource_e6tq2"), SubResource("Resource_p5y0w"), SubResource("Resource_67btf"), SubResource("Resource_7quai"), SubResource("Resource_27nux")])
+waves = Array[ExtResource("4_v36x8")]([SubResource("Resource_8i6uh"), SubResource("Resource_j4fo4"), SubResource("Resource_v36x8"), SubResource("Resource_e6tq2"), SubResource("Resource_p5y0w"), SubResource("Resource_67btf"), SubResource("Resource_u8k2b"), SubResource("Resource_7quai"), SubResource("Resource_27nux")])
 
 [node name="point1" parent="SpawnZone" index="1" unique_id=1093720794]
 position = Vector2(811, 337)

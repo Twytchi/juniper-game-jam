@@ -88,6 +88,9 @@ func _process(_delta: float) -> void:
 	else :
 		sprite.rotation = 0 
 func _physics_process(delta):
+	if is_dead :
+		state = State.DEAD
+	
 	if knockback_velocity.length() > 1.0:
 		velocity = knockback_velocity
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
@@ -211,6 +214,7 @@ func apply_damage(attaq: AttackData, source: Node2D  = null):
 	start_iframes()
 
 	if current_health <= 0:
+		is_dead = true
 		die()
 	else:
 		state = State.HIT
@@ -259,6 +263,8 @@ func hit_flash():
 func die():
 	state = State.DEAD
 	on_death.emit()
+	vertical_velocity = 400
+	await height_reached_zero
 	queue_free()
 
 

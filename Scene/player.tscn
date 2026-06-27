@@ -26,12 +26,14 @@
 [ext_resource type="Texture2D" uid="uid://6ifbadbrdsm3" path="res://Asset/player asset/jump.png" id="14_jx4b7"]
 [ext_resource type="Texture2D" uid="uid://c68jvuk50y7dw" path="res://Asset/player asset/Sans_titre_35_20260624093550.png" id="15_2gnqs"]
 [ext_resource type="Texture2D" uid="uid://vlkafwukwjwp" path="res://Asset/player asset/land.png" id="15_2mxbm"]
+[ext_resource type="Texture2D" uid="uid://c27gfn0dhvckv" path="res://Asset/effect/Sans_titre_41_20260626174424.png" id="23_h2j5n"]
 [ext_resource type="Texture2D" uid="uid://4l0eugfwwmfr" path="res://Asset/effect/slash_20260624221639.png" id="24_c1eh6"]
 [ext_resource type="Texture2D" uid="uid://wkxeisyvgcm2" path="res://Asset/effect/slash_20260624221504.png" id="25_2gnqs"]
 [ext_resource type="Texture2D" uid="uid://cpeucfx0bm326" path="res://Asset/effect/slash_20260624221222.png" id="26_c1eh6"]
 [ext_resource type="Texture2D" uid="uid://cxbs8gjfaqf6v" path="res://Asset/effect/slash_20260624221319.png" id="28_2gnqs"]
 [ext_resource type="Texture2D" uid="uid://cl7boep2qgpl1" path="res://Asset/effect/slash_20260624221751.png" id="29_c1eh6"]
 [ext_resource type="AudioStream" uid="uid://ct17slbrepv6j" path="res://Asset/sfx/freesound_community-running-in-grass-6237.mp3" id="32_ddib3"]
+[ext_resource type="FontFile" uid="uid://5ayvxpkiidhx" path="res://Asset/ui/fonts/PirataOne-Regular.ttf" id="33_2p1i5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c68nv"]
 animations = [{
@@ -195,6 +197,12 @@ size = Vector2(67.999985, 187.99997)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivevv"]
 size = Vector2(60, 60)
 
+[sub_resource type="LabelSettings" id="LabelSettings_yosb2"]
+font = ExtResource("33_2p1i5")
+font_size = 20
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Player" type="CharacterBody2D" unique_id=500224478 groups=["player"]]
 collision_mask = 4
 script = ExtResource("1_y8w33")
@@ -213,6 +221,12 @@ scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_c68nv")
 animation = &"Dive"
 frame_progress = 0.8776266
+
+[node name="explod" type="Sprite2D" parent="visual" unique_id=1876149921]
+visible = false
+z_index = 1
+position = Vector2(-10, -18)
+texture = ExtResource("23_h2j5n")
 
 [node name="Dive" type="Area2D" parent="visual" unique_id=205158859]
 collision_mask = 2
@@ -345,10 +359,13 @@ script = ExtResource("13_4ao7i")
 shape = SubResource("RectangleShape2D_ivevv")
 
 [node name="Label" type="Label" parent="." unique_id=216114942]
-offset_left = -20.0
-offset_top = -100.0
-offset_right = 20.0
-offset_bottom = -77.0
+offset_left = -33.0
+offset_top = -104.0
+offset_right = 59.0
+offset_bottom = -35.0
+text = "100.0 hp
+"
+label_settings = SubResource("LabelSettings_yosb2")
 
 [node name="footstep" type="AudioStreamPlayer" parent="." unique_id=1393372632]
 stream = ExtResource("32_ddib3")

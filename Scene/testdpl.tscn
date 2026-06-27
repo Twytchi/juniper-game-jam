@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://deumf51aa55m8" path="res://Script/wave_entry.gd" id="5_46d5g"]
 [ext_resource type="PackedScene" uid="uid://vffr187x1riv" path="res://Scene/camera_2d.tscn" id="6_y865s"]
 [ext_resource type="PackedScene" uid="uid://bl2bu1k80r11i" path="res://combo_ui.tscn" id="7_46d5g"]
-[ext_resource type="PackedScene" uid="uid://b1hl38ggdlrn3" path="res://Scene/archer_ai.tscn" id="8_tm214"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y865s"]
 size = Vector2(1376, 623)
@@ -18,19 +17,16 @@ size = Vector2(1376, 573)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsd3"]
 size = Vector2(1376, 192)
 
-[sub_resource type="Resource" id="Resource_46d5g"]
-script = ExtResource("5_46d5g")
-type = 5
-metadata/_custom_type_script = "uid://deumf51aa55m8"
-
 [sub_resource type="Resource" id="Resource_68fol"]
 script = ExtResource("5_46d5g")
-type = 3
+type = 6
+count = 2
+difficulty = 1.7
 metadata/_custom_type_script = "uid://deumf51aa55m8"
 
 [sub_resource type="Resource" id="Resource_tm214"]
 script = ExtResource("4_y865s")
-spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_46d5g"), SubResource("Resource_68fol")])
+spawns = Array[ExtResource("5_46d5g")]([SubResource("Resource_68fol")])
 metadata/_custom_type_script = "uid://dvqw441xw26cr"
 
 [node name="test" type="Node2D" unique_id=1915128990]
@@ -83,8 +79,5 @@ position = Vector2(1071, 350)
 position = Vector2(640, 360)
 
 [node name="comboUi" parent="." unique_id=1870541239 instance=ExtResource("7_46d5g")]
-
-[node name="Archer" parent="." unique_id=931307868 instance=ExtResource("8_tm214")]
-position = Vector2(1089, 386)
 
 [editable path="SpawnZone"]

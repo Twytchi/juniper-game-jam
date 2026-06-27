@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://drslvp5c2bs2d"]
 
-[ext_resource type="Texture2D" uid="uid://ca5476j4d7p06" path="res://Asset/white_cube.png" id="1_hevao"]
 [ext_resource type="Script" uid="uid://duwxafhw36kw1" path="res://Scene/arrow.gd" id="1_x000j"]
+[ext_resource type="Texture2D" uid="uid://bjaqyjcwgl7qo" path="res://Asset/ui/Sans_titre_41_20260626175110.png" id="2_x000j"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="2_xjl78"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xjl78"]
@@ -15,11 +15,13 @@ speed = 700.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1655433611]
 z_index = 1
-texture = ExtResource("1_hevao")
+position = Vector2(-24.999998, 9.999997)
+scale = Vector2(0.9999998, 0.9999998)
+texture = ExtResource("2_x000j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=531842916]
-position = Vector2(0, -9.536743e-07)
-scale = Vector2(0.9999998, 0.9999998)
+position = Vector2(0, -9.5367415e-07)
+scale = Vector2(0.9999997, 0.9999997)
 shape = SubResource("RectangleShape2D_xjl78")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=646294005]

@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bsoabraammveh" path="res://Ressources/player Attack/Missile_atack.tres" id="5_670p6"]
 [ext_resource type="Texture2D" uid="uid://bf81coyp8htgq" path="res://Asset/shadow_place_holder.png" id="5_gke3p"]
 [ext_resource type="Script" uid="uid://hdd4d24onbw6" path="res://Script/enemy_hitbox.gd" id="6_xxlim"]
+[ext_resource type="Texture2D" uid="uid://c27gfn0dhvckv" path="res://Asset/effect/Sans_titre_41_20260626174424.png" id="7_fqofi"]
 [ext_resource type="Texture2D" uid="uid://bocue71sp71di" path="res://Asset/enemy/dash_charge_idle00.png" id="7_uvf5k"]
 [ext_resource type="Texture2D" uid="uid://cstlr2wupavjv" path="res://Asset/enemy/dash_charge_idle01.png" id="8_fqofi"]
 [ext_resource type="PackedScene" uid="uid://bos1sj152pmob" path="res://Scene/hit_particle.tscn" id="8_qy33t"]
@@ -32,6 +33,14 @@ radius = 60.827618
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r0m1w"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_fqofi")
+}],
+"loop": true,
+"name": &"boom",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("7_uvf5k")
@@ -146,6 +155,5 @@ position = Vector2(0, -30)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_r0m1w")
 animation = &"idle"
-frame_progress = 0.56381714
 
 [node name="hit_particle" parent="." unique_id=1085854101 instance=ExtResource("8_qy33t")]

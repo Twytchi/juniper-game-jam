@@ -3,7 +3,21 @@
 [ext_resource type="Texture2D" uid="uid://bakcvyw4av474" path="res://Asset/ui/Sans_titre_28_20260625212601.png" id="1_spyja"]
 [ext_resource type="Script" uid="uid://cfeai15utsyed" path="res://Scene/win_menu.gd" id="1_xogkx"]
 [ext_resource type="FontFile" uid="uid://5ayvxpkiidhx" path="res://Asset/ui/fonts/PirataOne-Regular.ttf" id="3_0qji5"]
-[ext_resource type="Texture2D" uid="uid://c7jtkggg5ba6o" path="res://Asset/enemy/Sans_titre_38_20260625151816.png" id="4_cbbwp"]
+[ext_resource type="Texture2D" uid="uid://c8hfvl2qctrnj" path="res://Asset/ui/Sans_titre_41_20260626180353.png" id="4_cbbwp"]
+[ext_resource type="PackedScene" uid="uid://bl2bu1k80r11i" path="res://combo_ui.tscn" id="5_q0ih5"]
+[ext_resource type="Texture2D" uid="uid://dvrkrvgbyjn3r" path="res://Asset/ui/Sans_titre_28_20260625203042.png" id="5_unbmu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xa24g"]
+font = ExtResource("3_0qji5")
+font_size = 100
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_unbmu"]
+font = ExtResource("3_0qji5")
+font_size = 64
+outline_size = 10
+outline_color = Color(1, 0, 0, 1)
 
 [node name="WinMenu" type="Node2D" unique_id=1389202007]
 script = ExtResource("1_xogkx")
@@ -24,7 +38,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_spyja")
 
 [node name="Button" type="Node2D" parent="." unique_id=2008970725]
-position = Vector2(847, 280)
+position = Vector2(896, 480)
 
 [node name="Continue" type="Button" parent="Button" unique_id=1866558091]
 z_index = 1
@@ -37,11 +51,46 @@ text = "Continue"
 flat = true
 
 [node name="TextureRect" type="TextureRect" parent="Button" unique_id=1488027890]
-offset_left = -71.0
-offset_top = -127.0
-offset_right = 441.0
-offset_bottom = 385.0
+offset_left = -119.0
+offset_top = -87.99999
+offset_right = 393.0
+offset_bottom = 305.87918
 scale = Vector2(0.745, 0.745)
+mouse_filter = 2
 texture = ExtResource("4_cbbwp")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1617312529]
+offset_left = 1592.0
+offset_top = 1224.0001
+offset_right = 2872.0
+offset_bottom = 2504.0
+rotation = 3.145413
+mouse_filter = 2
+texture = ExtResource("5_unbmu")
+
+[node name="comboUi" parent="." unique_id=1870541239 instance=ExtResource("5_q0ih5")]
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 8.0
+offset_bottom = 16.0
+
+[node name="Label" type="Label" parent="." unique_id=706370771]
+offset_left = 712.0
+offset_top = 32.0
+offset_right = 960.0
+offset_bottom = 161.0
+text = "Score :"
+label_settings = SubResource("LabelSettings_xa24g")
+
+[node name="Label2" type="Label" parent="." unique_id=1801996321]
+visible = false
+offset_left = 640.0
+offset_top = 240.0
+offset_right = 1200.0
+offset_bottom = 369.0
+rotation = -0.2201581
+text = "New best socre "
+label_settings = SubResource("LabelSettings_unbmu")
 
 [connection signal="pressed" from="Button/Continue" to="." method="_on_continue_pressed"]

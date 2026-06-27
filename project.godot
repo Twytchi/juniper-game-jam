@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Juniper Game Jam"
-run/main_scene="uid://cc2kd7g40hm6l"
+run/main_scene="uid://bb70i0cf7eyla"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

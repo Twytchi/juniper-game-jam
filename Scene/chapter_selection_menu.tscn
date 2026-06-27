@@ -2,6 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://c7jtkggg5ba6o" path="res://Asset/enemy/Sans_titre_38_20260625151816.png" id="1_5y8bw"]
 [ext_resource type="Script" uid="uid://rwy4aas2eaei" path="res://Scene/chapter_selection_menu.gd" id="1_ohrlm"]
+[ext_resource type="FontFile" uid="uid://5ayvxpkiidhx" path="res://Asset/ui/fonts/PirataOne-Regular.ttf" id="3_ytkhf"]
+[ext_resource type="Texture2D" uid="uid://dxu5fw0gh7fsc" path="res://Asset/effect/Sans_titre_28_20260626143000.png" id="4_ssuv8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ssuv8"]
+line_spacing = 5.0
+font = ExtResource("3_ytkhf")
+font_size = 64
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 23
+shadow_color = Color(0.047058824, 0.047058824, 0.043137256, 0.60784316)
 
 [node name="Chapter selection menu" type="Node2D" unique_id=486163852]
 script = ExtResource("1_ohrlm")
@@ -47,39 +58,49 @@ stretch_mode = 5
 [node name="text" type="Node2D" parent="." unique_id=373731886]
 
 [node name="Label" type="Label" parent="text" unique_id=713775387]
-offset_left = 136.0
-offset_top = 276.0
-offset_right = 176.0
-offset_bottom = 299.0
+offset_left = 98.0
+offset_top = 257.0
+offset_right = 191.0
+offset_bottom = 340.0
 text = "Tuto"
+label_settings = SubResource("LabelSettings_ssuv8")
 
 [node name="Label2" type="Label" parent="text" unique_id=1234563783]
-offset_left = 492.0
-offset_top = 153.0
-offset_right = 532.0
-offset_bottom = 176.0
-text = "2"
+offset_left = 458.0
+offset_top = 128.0
+offset_right = 498.0
+offset_bottom = 211.0
+text = "1"
+label_settings = SubResource("LabelSettings_ssuv8")
 
 [node name="Label3" type="Label" parent="text" unique_id=1685003200]
-offset_left = 758.0
-offset_top = 382.0
-offset_right = 798.0
-offset_bottom = 405.0
-text = "3"
+offset_left = 766.0
+offset_top = 337.0
+offset_right = 806.0
+offset_bottom = 420.0
+text = "2"
+label_settings = SubResource("LabelSettings_ssuv8")
 
 [node name="Label4" type="Label" parent="text" unique_id=1232331908]
-offset_left = 1103.0
-offset_top = 196.0
-offset_right = 1143.0
-offset_bottom = 219.0
-text = "4"
+offset_left = 1109.0
+offset_top = 168.0
+offset_right = 1149.0
+offset_bottom = 251.0
+text = "3"
+label_settings = SubResource("LabelSettings_ssuv8")
 
 [node name="Label5" type="Label" parent="text" unique_id=496249795]
-offset_left = 600.0
-offset_top = 633.0
-offset_right = 724.0
-offset_bottom = 656.0
+offset_left = 499.0
+offset_top = 586.0
+offset_right = 858.0
+offset_bottom = 669.0
 text = "Select a chapter"
+label_settings = SubResource("LabelSettings_ssuv8")
+
+[node name="SansTitre2820260626143000" type="Sprite2D" parent="text" unique_id=1581706460]
+z_index = -2
+position = Vector2(627, 206)
+texture = ExtResource("4_ssuv8")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=380369714]
 z_index = -7
