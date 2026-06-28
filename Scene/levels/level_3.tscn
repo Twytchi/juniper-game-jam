@@ -14,9 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://burah5ae13li6" path="res://Asset/props/fence_danger.png" id="12_8osc3"]
 [ext_resource type="Texture2D" uid="uid://opeqvyq2t2re" path="res://Asset/props/fence_aged.png" id="13_wa4rr"]
 [ext_resource type="Texture2D" uid="uid://coaqugljbej30" path="res://Asset/props/fence_hole.png" id="14_7kh6p"]
-[ext_resource type="Texture2D" uid="uid://ckbnqxdu2iy12" path="res://Asset/props/fence_damage.png" id="15_pc5n3"]
+[ext_resource type="Texture2D" uid="uid://diywom8x8uam8" path="res://Asset/props/fence_gate_open.png" id="14_y5fgp"]
 [ext_resource type="Texture2D" uid="uid://bco7271a0gvlb" path="res://Asset/props/corpsearch.png" id="16_muu7f"]
-[ext_resource type="Texture2D" uid="uid://bfpm13tcnabgq" path="res://Asset/props/fence_gate.png" id="17_x4itn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y865s"]
 size = Vector2(1599, 942)
@@ -262,77 +261,130 @@ position = Vector2(735, 118)
 [node name="Marker2D5" type="Marker2D" parent="SpawnZone" unique_id=911497050]
 position = Vector2(-421, 147)
 
-[node name="Props" type="Node2D" parent="." unique_id=2009930449]
+[node name="Props3" type="Node2D" parent="." unique_id=2051600810]
 z_index = -2
-position = Vector2(36, 229)
+position = Vector2(-126, 393)
 
-[node name="reactor" type="Sprite2D" parent="Props" unique_id=380615839]
-z_index = -3
-position = Vector2(92.2, 172)
-scale = Vector2(0.256, 0.25)
-texture = ExtResource("9_7hcc0")
-
-[node name="reactor2" type="Sprite2D" parent="Props" unique_id=797223167]
-z_index = -3
-position = Vector2(939.2, 182)
-scale = Vector2(0.256, 0.25)
-texture = ExtResource("9_7hcc0")
-
-[node name="crates2" type="Sprite2D" parent="Props" unique_id=285794691]
+[node name="crates" type="Sprite2D" parent="Props3" unique_id=985701627]
 z_index = -2
-position = Vector2(-280.99976, 198)
+position = Vector2(10.333324, 35)
 scale = Vector2(0.6066667, 0.5933333)
 texture = ExtResource("10_v8c6t")
 
-[node name="crates3" type="Sprite2D" parent="Props" unique_id=1799329327]
+[node name="reactor" type="Sprite2D" parent="Props3" unique_id=1604413098]
+z_index = -3
+position = Vector2(149.99998, -8)
+scale = Vector2(0.256, 0.25)
+texture = ExtResource("9_7hcc0")
+
+[node name="reactor2" type="Sprite2D" parent="Props3" unique_id=1943940150]
+z_index = -3
+position = Vector2(997, 2)
+scale = Vector2(0.256, 0.25)
+texture = ExtResource("9_7hcc0")
+
+[node name="crates2" type="Sprite2D" parent="Props3" unique_id=85623171]
 z_index = -2
-position = Vector2(1209, 232)
+position = Vector2(1112.3334, 53)
+scale = Vector2(0.6066667, 0.5933333)
+texture = ExtResource("10_v8c6t")
+
+[node name="crates3" type="Sprite2D" parent="Props3" unique_id=1417988932]
+z_index = -2
+position = Vector2(470.00006, 56)
 scale = Vector2(0.48666668, 0.4333327)
 texture = ExtResource("10_v8c6t")
 
-[node name="fences" type="Node2D" parent="Props" unique_id=1115697904]
-position = Vector2(-214, 132)
+[node name="fences" type="Node2D" parent="Props3" unique_id=1837002926]
+position = Vector2(-37, -27)
 
-[node name="fence" type="Sprite2D" parent="Props/fences" unique_id=1863097515]
+[node name="fence" type="Sprite2D" parent="Props3/fences" unique_id=2024266417]
 z_index = -1
 position = Vector2(4, 114)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("11_qx8ix")
 
-[node name="fence2" type="Sprite2D" parent="Props/fences" unique_id=2028058346]
+[node name="fence2" type="Sprite2D" parent="Props3/fences" unique_id=624885013]
 z_index = -1
 position = Vector2(131.085, 114)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("12_8osc3")
 
-[node name="fence3" type="Sprite2D" parent="Props/fences" unique_id=1844625711]
+[node name="fence3" type="Sprite2D" parent="Props3/fences" unique_id=681121364]
 z_index = -1
 position = Vector2(258, 114)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("13_wa4rr")
 
-[node name="fence4" type="Sprite2D" parent="Props/fences" unique_id=1072195934]
+[node name="fence4" type="Sprite2D" parent="Props3/fences" unique_id=1239596248]
 z_index = -1
 position = Vector2(385.08502, 114)
 scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_y5fgp")
+
+[node name="fence5" type="Sprite2D" parent="Props3/fences" unique_id=358904653]
+z_index = -1
+position = Vector2(512, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_qx8ix")
+
+[node name="fence6" type="Sprite2D" parent="Props3/fences" unique_id=772162822]
+z_index = -1
+position = Vector2(639.085, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_qx8ix")
+
+[node name="fence7" type="Sprite2D" parent="Props3/fences" unique_id=600561442]
+z_index = -1
+position = Vector2(766, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("12_8osc3")
+
+[node name="fence8" type="Sprite2D" parent="Props3/fences" unique_id=1005766348]
+z_index = -1
+position = Vector2(893.085, 114)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("14_7kh6p")
 
-[node name="fence5" type="Sprite2D" parent="Props/fences" unique_id=1961808160]
+[node name="fence9" type="Sprite2D" parent="Props3/fences" unique_id=1342747274]
 z_index = -1
-position = Vector2(1581, 114)
+position = Vector2(1019, 114)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("15_pc5n3")
+texture = ExtResource("11_qx8ix")
 
-[node name="bodies" type="Node2D" parent="Props" unique_id=691723436]
+[node name="fence10" type="Sprite2D" parent="Props3/fences" unique_id=1457441357]
+z_index = -1
+position = Vector2(1146.085, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_qx8ix")
 
-[node name="corpse" type="Sprite2D" parent="Props/bodies" unique_id=689151944]
+[node name="fence11" type="Sprite2D" parent="Props3/fences" unique_id=809606834]
+z_index = -1
+position = Vector2(1273, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("12_8osc3")
+
+[node name="fence12" type="Sprite2D" parent="Props3/fences" unique_id=850392650]
+z_index = -1
+position = Vector2(1400, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_qx8ix")
+
+[node name="fence13" type="Sprite2D" parent="Props3/fences" unique_id=3475786]
+z_index = -1
+position = Vector2(1527.085, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_qx8ix")
+
+[node name="fence14" type="Sprite2D" parent="Props3/fences" unique_id=2088372644]
+z_index = -1
+position = Vector2(1654, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("12_8osc3")
+
+[node name="bodies" type="Node2D" parent="Props3" unique_id=1009874476]
+
+[node name="corpse" type="Sprite2D" parent="Props3/bodies" unique_id=1597142179]
 z_index = 100
-position = Vector2(-172, 455)
+position = Vector2(1483, 350)
 texture = ExtResource("16_muu7f")
-
-[node name="gate" type="Sprite2D" parent="Props/bodies" unique_id=1354819028]
-z_index = 100
-position = Vector2(-191, 528)
-rotation = 0.4445935
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("17_x4itn")
