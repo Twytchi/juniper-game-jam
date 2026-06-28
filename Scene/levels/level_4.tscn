@@ -310,7 +310,7 @@ texture = ExtResource("14_qyvgr")
 
 [node name="corpse" type="Sprite2D" parent="Props4/bodies" unique_id=1222275939]
 z_index = 100
-position = Vector2(-172, 455)
+position = Vector2(-277, 687)
 texture = ExtResource("15_7jgmh")
 
 [node name="gate" type="Sprite2D" parent="Props4/bodies" unique_id=1083635128]

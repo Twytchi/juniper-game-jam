@@ -386,5 +386,5 @@ texture = ExtResource("12_8osc3")
 
 [node name="corpse" type="Sprite2D" parent="Props3/bodies" unique_id=1597142179]
 z_index = 100
-position = Vector2(1483, 350)
+position = Vector2(1529, 401)
 texture = ExtResource("16_muu7f")
