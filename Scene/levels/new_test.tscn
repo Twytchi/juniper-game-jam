@@ -4,7 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://ds00vjn0irmqn" path="res://Asset/player asset/grass_scen-grai n.png" id="2_5a3bq"]
 [ext_resource type="PackedScene" uid="uid://b60kqcijw2c3h" path="res://Scene/Boss.tscn" id="5_og6e3"]
 [ext_resource type="PackedScene" uid="uid://vffr187x1riv" path="res://Scene/camera_2d.tscn" id="6_1v856"]
+[ext_resource type="Texture2D" uid="uid://bxyspekpo6q2x" path="res://Asset/props/sonicring01.png" id="6_pvaof"]
+[ext_resource type="Texture2D" uid="uid://c2ku7lano63vk" path="res://Asset/props/grass00.png" id="7_7uo6s"]
+[ext_resource type="Texture2D" uid="uid://7vlodhp46t6i" path="res://Asset/props/crates.png" id="7_lvkr8"]
 [ext_resource type="PackedScene" uid="uid://bl2bu1k80r11i" path="res://combo_ui.tscn" id="7_pvaof"]
+[ext_resource type="Texture2D" uid="uid://bbajgraelhl1y" path="res://Asset/props/fence.png" id="8_lvkr8"]
+[ext_resource type="Texture2D" uid="uid://burah5ae13li6" path="res://Asset/props/fence_danger.png" id="9_pdf14"]
+[ext_resource type="Texture2D" uid="uid://opeqvyq2t2re" path="res://Asset/props/fence_aged.png" id="10_ajxs2"]
+[ext_resource type="Texture2D" uid="uid://c3w5l7yb4h7pj" path="res://Asset/props/fence_gate_closed.png" id="11_gyit8"]
+[ext_resource type="Texture2D" uid="uid://coaqugljbej30" path="res://Asset/props/fence_hole.png" id="12_j4584"]
+[ext_resource type="Texture2D" uid="uid://bco7271a0gvlb" path="res://Asset/props/corpsearch.png" id="14_pdf14"]
+[ext_resource type="Texture2D" uid="uid://dldi3ivy3avlt" path="res://Asset/props/corpsezerk.png" id="15_ajxs2"]
+[ext_resource type="Texture2D" uid="uid://chwm3vfc3kr84" path="res://Asset/props/corpsekam.png" id="15_pdf14"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y865s"]
 size = Vector2(1376, 623)
@@ -68,3 +79,105 @@ position = Vector2(250.00006, 350)
 scale = Vector2(1, 1)
 max_health = 450
 iframe_duration = 0.0
+
+[node name="Props" type="Node2D" parent="." unique_id=490966662]
+z_index = -2
+
+[node name="sonic" type="Sprite2D" parent="Props" unique_id=744016244]
+position = Vector2(261, 176)
+scale = Vector2(0.6066667, 0.5933333)
+texture = ExtResource("6_pvaof")
+
+[node name="crates" type="Sprite2D" parent="Props" unique_id=312899550]
+position = Vector2(1023, 116.00001)
+scale = Vector2(0.6066667, 0.5933333)
+texture = ExtResource("7_lvkr8")
+
+[node name="grass" type="Sprite2D" parent="Props" unique_id=50502828]
+z_index = -1
+position = Vector2(1169, 224)
+scale = Vector2(0.5461534, 0.53461534)
+texture = ExtResource("7_7uo6s")
+
+[node name="fences" type="Node2D" parent="Props" unique_id=1612398751]
+
+[node name="fence" type="Sprite2D" parent="Props/fences" unique_id=787740534]
+z_index = -1
+position = Vector2(4, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_lvkr8")
+
+[node name="fence2" type="Sprite2D" parent="Props/fences" unique_id=1856600345]
+z_index = -1
+position = Vector2(131.085, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_pdf14")
+
+[node name="fence3" type="Sprite2D" parent="Props/fences" unique_id=558494101]
+z_index = -1
+position = Vector2(258, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("10_ajxs2")
+
+[node name="fence4" type="Sprite2D" parent="Props/fences" unique_id=490245605]
+z_index = -1
+position = Vector2(385.08502, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_gyit8")
+
+[node name="fence5" type="Sprite2D" parent="Props/fences" unique_id=1892233939]
+z_index = -1
+position = Vector2(512, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_lvkr8")
+
+[node name="fence6" type="Sprite2D" parent="Props/fences" unique_id=557786410]
+z_index = -1
+position = Vector2(639.085, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_lvkr8")
+
+[node name="fence7" type="Sprite2D" parent="Props/fences" unique_id=1795900743]
+z_index = -1
+position = Vector2(766, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_pdf14")
+
+[node name="fence8" type="Sprite2D" parent="Props/fences" unique_id=820750948]
+z_index = -1
+position = Vector2(893.085, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("12_j4584")
+
+[node name="fence9" type="Sprite2D" parent="Props/fences" unique_id=850728318]
+z_index = -1
+position = Vector2(1019, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_lvkr8")
+
+[node name="fence10" type="Sprite2D" parent="Props/fences" unique_id=735569688]
+z_index = -1
+position = Vector2(1146.085, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_lvkr8")
+
+[node name="fence11" type="Sprite2D" parent="Props/fences" unique_id=671707387]
+z_index = -1
+position = Vector2(1273, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_pdf14")
+
+[node name="bodies" type="Node2D" parent="Props" unique_id=1279928683]
+
+[node name="corpse" type="Sprite2D" parent="Props/bodies" unique_id=786234742]
+z_index = 100
+position = Vector2(121, 697)
+texture = ExtResource("14_pdf14")
+
+[node name="corpse3" type="Sprite2D" parent="Props/bodies" unique_id=39866416]
+position = Vector2(126, 138)
+texture = ExtResource("15_pdf14")
+
+[node name="corpse2" type="Sprite2D" parent="Props/bodies" unique_id=189655033]
+position = Vector2(1267, 146)
+texture = ExtResource("15_ajxs2")

@@ -7,6 +7,14 @@
 [ext_resource type="Script" uid="uid://deumf51aa55m8" path="res://Script/wave_entry.gd" id="5_g86sj"]
 [ext_resource type="PackedScene" uid="uid://vffr187x1riv" path="res://Scene/camera_2d.tscn" id="6_hecgb"]
 [ext_resource type="PackedScene" uid="uid://bl2bu1k80r11i" path="res://combo_ui.tscn" id="7_e6tq2"]
+[ext_resource type="Texture2D" uid="uid://bxyspekpo6q2x" path="res://Asset/props/sonicring01.png" id="8_e6tq2"]
+[ext_resource type="Texture2D" uid="uid://c2ku7lano63vk" path="res://Asset/props/grass00.png" id="9_dpe3b"]
+[ext_resource type="Texture2D" uid="uid://7vlodhp46t6i" path="res://Asset/props/crates.png" id="9_ms22s"]
+[ext_resource type="Texture2D" uid="uid://bbajgraelhl1y" path="res://Asset/props/fence.png" id="10_d0yhf"]
+[ext_resource type="Texture2D" uid="uid://burah5ae13li6" path="res://Asset/props/fence_danger.png" id="11_ms22s"]
+[ext_resource type="Texture2D" uid="uid://opeqvyq2t2re" path="res://Asset/props/fence_aged.png" id="12_ylrwl"]
+[ext_resource type="Texture2D" uid="uid://c3w5l7yb4h7pj" path="res://Asset/props/fence_gate_closed.png" id="13_p5y0w"]
+[ext_resource type="Texture2D" uid="uid://coaqugljbej30" path="res://Asset/props/fence_hole.png" id="14_67btf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y865s"]
 size = Vector2(1376, 623)
@@ -208,5 +216,94 @@ position = Vector2(1071, 350)
 position = Vector2(640, 360)
 
 [node name="comboUi" parent="." unique_id=1870541239 instance=ExtResource("7_e6tq2")]
+
+[node name="Props" type="Node2D" parent="." unique_id=1964611122]
+z_index = -2
+
+[node name="sonic" type="Sprite2D" parent="Props" unique_id=278619704]
+position = Vector2(261, 176)
+scale = Vector2(0.6066667, 0.5933333)
+texture = ExtResource("8_e6tq2")
+
+[node name="crates" type="Sprite2D" parent="Props" unique_id=588072075]
+position = Vector2(1023, 116.00001)
+scale = Vector2(0.6066667, 0.5933333)
+texture = ExtResource("9_ms22s")
+
+[node name="grass" type="Sprite2D" parent="Props" unique_id=1450962558]
+z_index = -1
+position = Vector2(1169, 224)
+scale = Vector2(0.5461534, 0.53461534)
+texture = ExtResource("9_dpe3b")
+
+[node name="fences" type="Node2D" parent="Props" unique_id=533191847]
+
+[node name="fence" type="Sprite2D" parent="Props/fences" unique_id=652820431]
+z_index = -1
+position = Vector2(4, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("10_d0yhf")
+
+[node name="fence2" type="Sprite2D" parent="Props/fences" unique_id=1300212565]
+z_index = -1
+position = Vector2(131.085, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_ms22s")
+
+[node name="fence3" type="Sprite2D" parent="Props/fences" unique_id=185019962]
+z_index = -1
+position = Vector2(258, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("12_ylrwl")
+
+[node name="fence4" type="Sprite2D" parent="Props/fences" unique_id=582945324]
+z_index = -1
+position = Vector2(385.08502, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("13_p5y0w")
+
+[node name="fence5" type="Sprite2D" parent="Props/fences" unique_id=2056540594]
+z_index = -1
+position = Vector2(512, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("10_d0yhf")
+
+[node name="fence6" type="Sprite2D" parent="Props/fences" unique_id=232168]
+z_index = -1
+position = Vector2(639.085, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("10_d0yhf")
+
+[node name="fence7" type="Sprite2D" parent="Props/fences" unique_id=574825108]
+z_index = -1
+position = Vector2(766, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_ms22s")
+
+[node name="fence8" type="Sprite2D" parent="Props/fences" unique_id=1170635933]
+z_index = -1
+position = Vector2(893.085, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_67btf")
+
+[node name="fence9" type="Sprite2D" parent="Props/fences" unique_id=900314461]
+z_index = -1
+position = Vector2(1019, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("10_d0yhf")
+
+[node name="fence10" type="Sprite2D" parent="Props/fences" unique_id=148900986]
+z_index = -1
+position = Vector2(1146.085, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("10_d0yhf")
+
+[node name="fence11" type="Sprite2D" parent="Props/fences" unique_id=131381951]
+z_index = -1
+position = Vector2(1273, 114)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_ms22s")
+
+[node name="bodies" type="Node2D" parent="Props" unique_id=773238411]
 
 [editable path="SpawnZone"]
